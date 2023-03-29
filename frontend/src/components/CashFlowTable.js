@@ -92,9 +92,9 @@ function CashFlowsTable({ cashFlows }) {
                         Hành động
                       </MenuButton>
                       <MenuList>
-                        <Link to={`/cashFlow/${id}`}>
+                        {/* <Link to={`/cashFlow/${id}`}>
                           <MenuItem>Xem</MenuItem>
-                        </Link>
+                        </Link> */}
                         <MenuItem>
                           <UpdateCashFlowModal id={id} />
                         </MenuItem>

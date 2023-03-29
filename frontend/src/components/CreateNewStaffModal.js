@@ -35,7 +35,8 @@ function CreateNewStaffModal() {
       address,
       phone,
       suppostTime,
-      type
+      type,
+      from
     },
     updateNewStaffDetails,
     createNewStaff,
@@ -59,7 +60,8 @@ function CreateNewStaffModal() {
       !countryID ||
       !address ||
       !type ||
-      !suppostTime 
+      !suppostTime ||
+      !from
     ) {
       return toast({
         position: 'top',
@@ -78,7 +80,8 @@ function CreateNewStaffModal() {
       countryID,
       address,
       suppostTime,
-      type
+      type,
+      from
     };
     const responseCreate = await createNewStaff(staff);
     setLoading(false);
@@ -157,6 +160,17 @@ function CreateNewStaffModal() {
                 name='address'
                 focusBorderColor='brown.500'
                 value={address}
+                onChange={updateNewStaffDetails}
+              />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Đơn vị</FormLabel>
+              <Textarea
+                placeholder='Đơn vị'
+                name='from'
+                focusBorderColor='brown.500'
+                value={from}
                 onChange={updateNewStaffDetails}
               />
             </FormControl>

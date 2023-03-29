@@ -66,6 +66,7 @@ exports.getAllStaffs = catchAsyncError(async (req, res) => {
       phone,
       suppostTime,
       type,
+      from
       
     } = item;
     const newItem = {
@@ -76,6 +77,7 @@ exports.getAllStaffs = catchAsyncError(async (req, res) => {
       phone,
       suppostTime,
       type,
+      from
     };
     return newItem;
   });

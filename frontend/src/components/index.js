@@ -8,6 +8,7 @@ import AdminsTable from './AdminsTable';
 import StaffsTable from './StaffTable';
 import InforsTable from './InforTable';
 import BloodDonatesTable from './BloodDonateTable';
+import DonateTable from './DonateTable';
 import CashFlowsTable from './CashFlowTable';
 import BloodStoragesTable from './BloodStorageTable';
 
@@ -16,6 +17,7 @@ import CreateNewAdminModal from './CreateNewAdminModal';
 import ErrorBoundary from './ErrorBoundary';
 
 import StaffDetail from './StaffDetail';
+import DonateDetail from './DonateDetail';
 // import Stars from './Stars';
 
 import PreLoader from './PreLoader';
@@ -38,7 +40,9 @@ export {
   ErrorBoundary,
 
   // Stars,
+  DonateTable,
   BloodDonatesTable,
 
   PreLoader,
+  DonateDetail
 };

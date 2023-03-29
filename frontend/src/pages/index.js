@@ -9,6 +9,9 @@ import BloodDonatesPage from './BloodDonatesPage';
 // import SingleStaffPage from './StaffDetailsPage';
 import CashFlowsPage from './CashFlowPage';
 import StaffDetaislPage from './StaffDetailsPage';
+import DonatePage from './DonatePage';
+import DonateDetaislPage from './DonateDetailPage';
+
 
 export {
   Dashboard,
@@ -20,6 +23,7 @@ export {
   BloodStoragesPage,
   BloodDonatesPage,
   AdminsPage,
-
+  DonatePage,
   StaffDetaislPage,
+  DonateDetaislPage
 };

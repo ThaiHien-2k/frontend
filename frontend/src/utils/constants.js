@@ -15,9 +15,24 @@ export const LinkItems = [
   { name: 'Quản lý lượng máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
   { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
   { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIcon /> },
+  { name: 'Hiến máu', url: '/donates', icon: <AssignmentIcon /> },
+
 
   
 ];
+
+export const LinkItemsStaff = [
+  // { name: 'Dashboard', url: '/', icon: <DashboardIcon /> },
+  // { name: 'Quản lý tài khoản', url: '/accounts', icon: <PersonIcon /> },
+  // { name: 'Quản lý nhân viên', url: '/staffs', icon: <PeopleIcon /> },
+  // { name: 'Quản lý thu chi', url: '/cashFlows', icon: <AttachMoneyIcon /> },
+  // { name: 'Quản lý lượng máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
+  // { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
+  { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIcon /> },
+
+  
+];
+
 
 
 
@@ -32,6 +47,12 @@ export const admins_url = `${domain}api/admin/users/`;
 export const staffs_url = `${domain}api/staffs/`;
 export const create_new_staff = `${domain}api/admin/staff/new`;
 export const update_staff_url = `${domain}api/admin/staff/`;
+
+export const donates_url = `${domain}api/donates/`;
+export const create_new_donate = `${domain}api/admin/donate/new`;
+export const update_donate_url = `${domain}api/admin/donate/`;
+
+
 
 export const bloodDonates_url = `${domain}api/bloodDonates/`;
 export const bloodDonates_remaining = `${domain}api/bloodDonates/bloodDonateRemaining`;

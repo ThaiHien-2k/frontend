@@ -32,6 +32,7 @@ import { useBloodDonateContext } from '../context/bloodDonate_context';
 import { Hidden } from '@mui/material';
 import axios from 'axios';
 import { useStaffContext } from '../context/staff_context';
+
 import { BiCheckboxChecked } from 'react-icons/bi';
 // import { MultiSelect } from "react-multi-select-component";
 // import { MultiSelect, Loader } from '@mantine/core';
@@ -57,7 +58,6 @@ function CreateNewBloodDonateModal() {
   } = useStaffContext();
 
   
-
 
   const [loading, setLoading] = useState(false);
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavItem from './NavItem';
-import { LinkItems } from '../utils/constants';
+import { LinkItems, LinkItemsStaff} from '../utils/constants';
 import { useUserContext } from '../context/user_context';
 
 // import logo from '../assets/icon.svg';
@@ -28,15 +28,15 @@ export default function SidebarContent({ onClose, ...rest }) {
       setLinks(LinkItems);
     }
     if (privilege === 'staff') {
-      const tempLinks = LinkItems.filter((link) => link.name !== 'Admins');
-      setLinks(tempLinks);
+      // const tempLinksStaff = LinkItemsStaff.filter((link) => link.name !== 'Admins');
+      setLinks(LinkItemsStaff);
     }
-    if (privilege === 'user') {
-      const tempLinks = LinkItems.filter(
-        (link) => link.name !== 'Admins' && link.name !== 'Products'
-      );
-      setLinks(tempLinks);
-    }
+    // if (privilege === 'user') {
+    //   const tempLinks = LinkItems.filter(
+    //     (link) => link.name !== 'Admins' && link.name !== 'Products'
+    //   );
+    //   setLinks(tempLinks);
+    // }
     // eslint-disable-next-line
   }, []);
 

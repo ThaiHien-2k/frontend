@@ -10,7 +10,7 @@ const inforSchema = mongoose.Schema({
     type: String,
     required: [true],
     maxlength: [12, 'CMNN/CCCD không nhiều hơn 12 ký tự'],
-    minLength: [10, 'CMNN/CCCD không ít hơn 10 ký tự'],
+    minLength: [9, 'CMNN/CCCD không ít hơn 10 ký tự'],
   },
   address: {
     type: String,
@@ -29,22 +29,22 @@ const inforSchema = mongoose.Schema({
     
   },
 
-  from: {
+  // from: {
+  //   type: String,
+  //   required: [true],
+    
+  // },
+
+  typeBlood: {
     type: String,
     required: [true],
     
   },
-
-  typeBlood: {
-    type: String,
-    required: [false],
+  // status: {
+  //   type: String,
+  //   required: [false],
     
-  },
-  status: {
-    type: String,
-    required: [false],
-    
-  },
+  // },
 
   donateTime: {
     type: Number,
@@ -55,9 +55,7 @@ const inforSchema = mongoose.Schema({
     type: Date,
     required :false
   }, 
-//   donate:{
-
-//   } ,                                                       
+                                                    
   
   createdAt: {
     type: Date,

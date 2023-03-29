@@ -9,9 +9,14 @@ const staffSchema = mongoose.Schema({
     type: String,
     required: [true],
     maxlength: [12, 'CMNN/CCCD không nhiều hơn 12 ký tự'],
-    minLength: [10, 'CMNN/CCCD không ít hơn 10 ký tự'],
+    minLength: [9, 'CMNN/CCCD không ít hơn 9 ký tự'],
   },
   address: {
+    type: String,
+    required: [true],
+    
+  },
+  from: {
     type: String,
     required: [true],
     

@@ -28,6 +28,7 @@ const initialState = {
     phone:'',
     suppostTime: false,
     address: '',
+    from:'',
     type:'Nhân Viên Hỗ Trợ'
    
   },

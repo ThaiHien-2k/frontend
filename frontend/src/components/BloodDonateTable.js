@@ -77,8 +77,9 @@ function BloodDonatesTable({ bloodDonates }) {
           </Thead>
           <Tbody>
             {bloodDonates.map((bloodDonate, index) => {
-              const {  name, time, address, target,receive,status,id } =
+              const {  name, time, address, target,receive,status,donate,id } =
                 bloodDonate;
+                console.log(bloodDonate);
               return (
                 <Tr key={index}>
                    <Td>{index+1}</Td>

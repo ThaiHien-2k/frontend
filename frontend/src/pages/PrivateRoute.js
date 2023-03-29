@@ -9,7 +9,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   if (
     rest.path === '/login' ||
     rest.path === '/register' ||
-    rest.path === '/forgot-password' ||
+    // rest.path === '/forgot-password' ||
     rest.path === '/reset-password'
   ) {
     return currentUser ? (
@@ -19,13 +19,29 @@ const PrivateRoute = ({ children, ...rest }) => {
     );
   }
 
+  // if (rest.path === '/') {
+  //   return currentUser &&
+  //     ['staff'].includes(currentUser.privilege) ? (
+  //     <Route {...rest}>{children}</Route>
+  //   ) : (
+  //     <Redirect to={location.state?.from ?? '/infors'} />
+  //   );
+  // }
+  // if (rest.path === '/') {
+  //   return currentUser &&
+  //     ['admin'].includes(currentUser.privilege) ? (
+  //     <Route {...rest}>{children}</Route>
+  //   ) : (
+  //     <Redirect to={location.state?.from ?? '/'} />
+  //   );
+  // }
 
   if (rest.path === '/CashFlows') {
     return currentUser &&
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/CashFlows'} />
     );
   }
 
@@ -34,7 +50,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/bloodStorages'} />
     );
   }
 
@@ -43,7 +59,25 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/staffs'} />
+    );
+  }
+
+  if (rest.path === '/infors') {
+    return currentUser &&
+      ['staff', 'admin'].includes(currentUser.privilege) ? (
+      <Route {...rest}>{children}</Route>
+    ) : (
+      <Redirect to={location.state?.from ?? '/infors'} />
+    );
+  }
+
+  if (rest.path === '/donates') {
+    return currentUser &&
+      ['staff', 'admin'].includes(currentUser.privilege) ? (
+      <Route {...rest}>{children}</Route>
+    ) : (
+      <Redirect to={location.state?.from ?? '/donates'} />
     );
   }
 
@@ -52,7 +86,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/bloodDonates'} />
     );
   }
 
@@ -60,7 +94,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     return currentUser && currentUser.privilege === 'admin' ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/accounts'} />
     );
   }
 

@@ -28,7 +28,7 @@ function InforsTable({ infors }) {
   const toast = useToast();
   const { fetchInfors, deleteInfor } = useInforContext();
   const [loading, setLoading] = useState(false);
-
+  
   const handleDelete = async (id) => {
     setLoading(true);
     const response = await deleteInfor(id);
@@ -66,45 +66,98 @@ function InforsTable({ infors }) {
             <Th>STT</Th>
               <Th>CMND/CCCD</Th>
               <Th>Họ và tên</Th>
+              <Th>Số điện thoại</Th>
               <Th>Địa chỉ</Th>
-              <Th>Loại nhân viên</Th>
-              <Th>Số lần đã hỗ trợ</Th>
+              <Th>Nhóm máu</Th>
+        
+              <Th>Số lần hiến</Th>
+              <Th>Trạng thái</Th>
               <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
             {infors.map((infor, index) => {
-              const {  name, countryID, address, email,phone,id } =
+              const {  name, countryID, address, email,typeBlood,donateTime,lastDonate,phone,id } =
                 infor;
-              return (
-                <Tr key={index}>
-                   <Td>{index+1}</Td>
-                  <Td>{countryID}</Td>
-                  <Td>{name}</Td>
-                  <Td>{address}</Td>
-                  <Td>{email}</Td>
-                  <Td>{phone}</Td>
-                  <Td>
-                    <Menu>
-                      <MenuButton as={Button} rightIcon={<BiChevronDown />}>
-                        Hành động
-                      </MenuButton>
-                      <MenuList>
-                        <Link to={`/infors/${id}`}>
-                          <MenuItem>Xem</MenuItem>
-                        </Link>
-                        <MenuItem>
-                          <UpdateInforModal id={id} />
-                        </MenuItem>
-                      
-                        <MenuItem onClick={() => handleDelete(id)}>
-                          Xóa
-                        </MenuItem>
-                      </MenuList>
-                    </Menu>
-                  </Td>
-                </Tr>
-              );
+                const current = new Date();
+                const nextDonate = new Date(lastDonate).setDate(current.getDate() + 90);
+                
+                // console.log(new Date(nextDonate).toDateString());
+              
+                // console.log(infor);
+                if((current-nextDonate)>=0){
+                  return (
+                    <Tr key={index}>
+                       <Td>{index+1}</Td>
+                      <Td>{countryID}</Td>
+                      <Td>{name}</Td>
+                      <Td>{phone}</Td>
+                      <Td>{address}</Td>
+                      {/* <Td>{email}</Td> */}
+                    
+                      <Td>{typeBlood}</Td>
+                      <Td>{donateTime}</Td>
+                      <Td>Có thể hiến</Td>
+                      {/* <Td>{lastDonate}</Td> */}
+                      <Td>
+                        <Menu>
+                          <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                            Hành động
+                          </MenuButton>
+                          <MenuList>
+                            <Link to={`/infors/${id}`}>
+                              <MenuItem>Xem</MenuItem>
+                            </Link>
+                            <MenuItem>
+                              <UpdateInforModal id={id} />
+                            </MenuItem>
+                          
+                            <MenuItem onClick={() => handleDelete(id)}>
+                              Xóa
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </Td>
+                    </Tr>
+                  );
+                }
+                else if((current-nextDonate)<0){
+                  return (
+                    <Tr key={index}>
+                       <Td>{index+1}</Td>
+                      <Td>{countryID}</Td>
+                      <Td>{name}</Td>
+                      <Td>{phone}</Td>
+                      <Td>{address}</Td>
+                      {/* <Td>{email}</Td> */}
+                    
+                      <Td>{typeBlood}</Td>
+                      <Td>{donateTime}</Td>
+                      <Td>Chưa thể hiến</Td>
+                      {/* <Td>{lastDonate}</Td> */}
+                      <Td>
+                        <Menu>
+                          <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                            Hành động
+                          </MenuButton>
+                          <MenuList>
+                            <Link to={`/infors/${id}`}>
+                              <MenuItem>Xem</MenuItem>
+                            </Link>
+                            <MenuItem>
+                              <UpdateInforModal id={id} />
+                            </MenuItem>
+                          
+                            <MenuItem onClick={() => handleDelete(id)}>
+                              Xóa
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </Td>
+                    </Tr>
+                  );
+                }
+          
             })}
           </Tbody>
         </Table>

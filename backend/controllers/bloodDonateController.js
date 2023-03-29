@@ -63,7 +63,12 @@ exports.getAllBloodDonates = catchAsyncError(async (req, res) => {
       staffList,
       address,
       target,
+      donate,
       receive,
+      A,
+      B,
+      O,
+      AB,
     //   staff,
       status
 
@@ -77,6 +82,11 @@ exports.getAllBloodDonates = catchAsyncError(async (req, res) => {
         target,
         staffList,
         receive,
+        donate,
+        A,
+        B,
+        O,
+        AB,
         // staff,
         status
     };
@@ -101,6 +111,15 @@ exports.getSingleBloodDonate = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     data: bloodDonate,
+  });
+});
+
+exports.getSingleBloodDonateDetails = catchAsyncError(async (req, res, next) => {
+  const bloodDonate = await BloodDonate.findById(req.params.id);
+  const data = bloodDonate.donate;
+  res.status(200).json({
+    success: true,
+    data,
   });
 });
 

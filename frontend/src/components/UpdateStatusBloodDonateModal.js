@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import {
   Button,
   // Input,
@@ -27,7 +27,8 @@ import {
 import { useBloodDonateContext } from '../context/bloodDonate_context';
 import { useBloodStorageContext } from '../context/bloodStorage_context';
 import { Hidden } from '@mui/material';
-import { create_new_bloodStorage} from '../utils/constants';
+import { create_new_bloodStorage, donates_url} from '../utils/constants';
+// import { donates_url } from '../utils/constants';
 import { bloodStorages_url } from '../utils/constants';
 import axios from 'axios';
 function UpdateStatusBloodDonateModal({ id }) {
@@ -37,7 +38,7 @@ function UpdateStatusBloodDonateModal({ id }) {
       time = '',
       address = '',
       target = '',
-      receive='',
+      // receive='',
       status = 'Chưa thực hiện',
   
 
@@ -49,6 +50,54 @@ function UpdateStatusBloodDonateModal({ id }) {
     updateExistingBloodDonateDetails,
     updateBloodDonate,
   } = useBloodDonateContext();
+
+  const [A, setA] = useState({total:''});
+  useEffect(()=>{
+  const fetchA = async () => {
+   
+      const response = await axios.get(donates_url+'/A/'+id);
+     
+      setA(response.data);
+  };
+  fetchA();
+},[]);
+
+const [AB, setAB] = useState({total:''});
+  useEffect(()=>{
+  const fetchAB = async () => {
+   
+      const response = await axios.get(donates_url+'/AB/'+id);
+     
+      setAB(response.data);
+  };
+  fetchAB();
+},[]);
+
+const [B, setB] = useState({total:''});
+  useEffect(()=>{
+  const fetchB = async () => {
+   
+      const response = await axios.get(donates_url+'/B/'+id);
+     
+      setB(response.data);
+  };
+  fetchB();
+},[]);
+
+const [O, setO] = useState({total:''});
+  useEffect(()=>{
+  const fetchO = async () => {
+   
+      const response = await axios.get(donates_url+'/O/'+id);
+     
+      setO(response.data);
+  };
+  fetchO();
+},[]);
+
+const ave =(A.total+B.total+AB.total+O.total)/250;
+  
+
 
   const {deleteBloodStorage} = useBloodStorageContext();
 
@@ -68,7 +117,7 @@ function UpdateStatusBloodDonateModal({ id }) {
       !time ||
       !address ||
       !target ||
-      !receive ||
+      // !receive ||
       !status 
       // !donateID
     ) {
@@ -87,8 +136,12 @@ function UpdateStatusBloodDonateModal({ id }) {
       time,
       address,
       target,
-      receive,
+      receive:ave,
       status,
+      A:A.total,
+      B:B.total,
+      AB:AB.total,
+      O:O.total,
    
     };
     const responseCreate = await updateBloodDonate(id, bloodDonate);
@@ -113,10 +166,15 @@ function UpdateStatusBloodDonateModal({ id }) {
       
        if(!check){}
        else{
+     
         const response = await axios.post(create_new_bloodStorage,{
           _id:id,
           name: "Máu nhận",
-          amount: receive,
+          amount: ave,
+          A:A.total,
+          B:B.total,
+          AB:AB.total,
+          O:O.total,
           from: name,
           donateID: id,
           type: 'Nhận',
@@ -211,7 +269,7 @@ function UpdateStatusBloodDonateModal({ id }) {
               />
             </FormControl>
 
-            <FormControl>
+            {/* <FormControl>
        
               <Hidden
                 ref={initialRef}
@@ -221,7 +279,7 @@ function UpdateStatusBloodDonateModal({ id }) {
                 value={receive}
                 onChange={updateExistingBloodDonateDetails}
               />
-            </FormControl>
+            </FormControl> */}
 
             <FormControl mt={4}>
             <FormLabel>Đổi trạng thái</FormLabel>

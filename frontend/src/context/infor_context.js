@@ -24,15 +24,15 @@ const initialState = {
   infors: [],
   new_infor: {
     name: '',
-    countryID: "",
+    countryID: '',
     email:'',
     phone:'',
-    from: '',
+    // from: '',
     address: '',
-    typeBlood:'',
-    status:'',
-    donateTime:'',
-    lastDonate:','
+    typeBlood:'O',
+    // status:'',
+    donateTime:false,
+    // lastDonate:''
    
   },
   single_infor_loading: false,

@@ -66,6 +66,10 @@ exports.getAllBloodStorages = catchAsyncError(async (req, res) => {
       detail,
       date,
       type,
+      A,
+      B,
+      O,
+      AB,
       
     } = item;
     const newItem = {
@@ -76,6 +80,10 @@ exports.getAllBloodStorages = catchAsyncError(async (req, res) => {
       from,
       detail,
       type,
+      A,
+      B,
+      O,
+      AB,
     };
     return newItem;
   });

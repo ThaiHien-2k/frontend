@@ -63,10 +63,10 @@ exports.getAllInfors = catchAsyncError(async (req, res) => {
       countryID,
       address,
       phone,
-      from,
+      // from,
       typeBlood,
       donateTime,
-      status,
+      // status,
       lastDonate,
       
     } = item;
@@ -77,10 +77,10 @@ exports.getAllInfors = catchAsyncError(async (req, res) => {
       countryID,
       address,
       phone,
-      from,
+      // from,
       typeBlood,
       donateTime,
-      status,
+      // status,
       lastDonate,
     };
     return newItem;
@@ -105,5 +105,7 @@ exports.getSingleInfor = catchAsyncError(async (req, res, next) => {
     data: infor,
   });
 });
+
+
 
 

@@ -25,11 +25,17 @@ const initialState = {
   new_bloodDonate: {
     name: '',
     time: '',
-
+    A: 0,
+    B:0,
+    AB:0,
+    O:0,
     address: '',
     target: '',
     receive: '',
     staffList: [],
+    donate:[
+    
+    ],
     status: 'Chưa thực hiện',
     // type:'Nhân Viên Hỗ Trợ'
    

@@ -11,7 +11,9 @@ import {
   PrivateRoute,
   BloodStoragesPage,
   StaffDetaislPage,
-  BloodDonatesPage
+  DonateDetaislPage,
+  BloodDonatesPage,
+  DonatePage,
 } from './pages';
 
 
@@ -38,6 +40,10 @@ function App() {
           <BloodStoragesPage />
           </PrivateRoute>
 
+          <PrivateRoute exact path='/donates'>
+          <DonatePage />
+          </PrivateRoute>
+
           <PrivateRoute exact path='/infors'>
           <InforsPage />
           </PrivateRoute>
@@ -49,6 +55,10 @@ function App() {
          
           <PrivateRoute exact path='/staffs/:id'>
           <StaffDetaislPage />
+        </PrivateRoute>
+
+        <PrivateRoute exact path='/donates/:id'>
+          <DonateDetaislPage />
         </PrivateRoute>
         
       

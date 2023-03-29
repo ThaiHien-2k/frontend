@@ -15,9 +15,10 @@ const productRouter = require('./routes/productRouter');
 const inforRouter = require('./routes/inforRouter');
 const bloodStorageRouter = require('./routes/bloodStorageRouter');
 const staffRouter = require('./routes/staffRouter');
-const bloodDonateRouter = require('./routes/bloodDonateRouter');
+const donateRouter = require('./routes/donateRouter');
 const cashFlowRouter = require('./routes/cashFlowRouter');
 const adminRouter = require('./routes/adminRouter');
+const bloodDonateRouter = require('./routes/bloodDonateRouter');
 
 
 
@@ -63,6 +64,7 @@ app.use('/api/infors', inforRouter);
 
 app.use('/api/bloodStorages', bloodStorageRouter);
 app.use('/api/staffs', staffRouter);
+app.use('/api/donates', donateRouter);
 app.use('/api/bloodDonates', bloodDonateRouter);
 app.use('/api/cashFlows', cashFlowRouter);
 app.use('/api/products', productRouter);

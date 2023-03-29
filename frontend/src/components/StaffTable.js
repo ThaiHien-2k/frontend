@@ -68,6 +68,7 @@ function StaffsTable({ staffs }) {
               <Th>Họ và tên</Th>
               <Th>SĐT</Th>
               <Th>Địa chỉ</Th>
+              <Th>Đơn vị</Th>
               <Th>Loại nhân viên</Th>
               <Th>Số lần đã hỗ trợ</Th>
               <Th></Th>
@@ -75,9 +76,9 @@ function StaffsTable({ staffs }) {
           </Thead>
           <Tbody>
             {staffs.map((staff, index) => {
-              const {  name, countryID,phone, address, suppostTime,type,id } =
+              const {  name, countryID,phone, address, suppostTime,type,from,id } =
                 staff;
-                console.log(staff);
+                
               return (
                 <Tr key={index}>
                    <Td>{index+1}</Td>
@@ -85,6 +86,7 @@ function StaffsTable({ staffs }) {
                   <Td>{name}</Td>
                   <Td>{phone}</Td>
                   <Td>{address}</Td>
+                  <Td>{from}</Td>
                   <Td>{type}</Td>
                   <Td>{suppostTime}</Td>
                   <Td>

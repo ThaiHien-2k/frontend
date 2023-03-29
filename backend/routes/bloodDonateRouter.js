@@ -8,6 +8,7 @@ router.route('/bloodDonateRemaining').get(bloodDonateController.getBloodDonateRe
 
 
 // send a single bloodDonate
+router.route('/donate/:id').get(bloodDonateController.getSingleBloodDonateDetails);
 router.route('/:id').get(bloodDonateController.getSingleBloodDonate);
 
 

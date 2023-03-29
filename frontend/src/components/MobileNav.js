@@ -25,7 +25,8 @@ import { useLocation, Link } from 'react-router-dom';
 
 export default function MobileNav({ onOpen, ...rest }) {
   const {
-    currentUser: { name },
+    currentUser: { name ,privilege},
+    // privilege,
     logout,
   } = useUserContext();
   const location = useLocation();
@@ -129,7 +130,7 @@ export default function MobileNav({ onOpen, ...rest }) {
                 >
                   <Text fontSize='sm'>{name}</Text>
                   <Text fontSize='xs' color='gray.600'>
-                    Admin
+                    {privilege}
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -141,7 +142,7 @@ export default function MobileNav({ onOpen, ...rest }) {
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}
             >
-              <MenuItem onClick={handleSubmit}>Logout</MenuItem>
+              <MenuItem onClick={handleSubmit}>Đăng xuất</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

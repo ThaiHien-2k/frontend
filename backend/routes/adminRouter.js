@@ -8,6 +8,7 @@ const inforController = require('../controllers/inforController');
 const cashFlowController = require('../controllers/cashFlowController');
 const bloodDonateController = require('../controllers/bloodDonateController')
 
+const donateController = require('../controllers/donateController')
 
 const auth = require('../middleware/Auth');
 
@@ -132,29 +133,54 @@ router
 
 
 
-// create a new bloodDonate
+// create a new donate
 router
-  .route('/bloodDonate/new')
+  .route('/donate/new')
   .post(
     auth.checkUserAuthentication,
     auth.checkAdminPrivileges( 'admin'),
-    bloodDonateController.createBloodDonate
+    donateController.createDonate
   );
 
 
-// send, update, delete a single BloodDonate
+// send, update, delete a single Donate
 router
-  .route('/bloodDonate/:id')
+  .route('/donate/:id')
   .put(
     auth.checkUserAuthentication,
     auth.checkAdminPrivileges( 'admin'),
-    bloodDonateController.updateBloodDonate
+    donateController.updateDonate
   )
   .delete(
     auth.checkUserAuthentication,
     auth.checkAdminPrivileges( 'admin'),
-    bloodDonateController.deleteBloodDonate
+    donateController.deleteDonate
   );
+  
+
+  // create a new bloodDonate
+router
+.route('/bloodDonate/new')
+.post(
+  auth.checkUserAuthentication,
+  auth.checkAdminPrivileges( 'admin'),
+  bloodDonateController.createBloodDonate
+);
+
+
+// send, update, delete a single BloodDonate
+router
+.route('/bloodDonate/:id')
+.put(
+  auth.checkUserAuthentication,
+  auth.checkAdminPrivileges( 'admin'),
+  bloodDonateController.updateBloodDonate
+)
+.delete(
+  auth.checkUserAuthentication,
+  auth.checkAdminPrivileges( 'admin'),
+  bloodDonateController.deleteBloodDonate
+);
 
 
   // create a new infor

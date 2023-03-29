@@ -34,6 +34,7 @@ function UpdateStaffModal({ id }) {
       address = '',
       phone = '',
       suppostTime = '',
+      from = '',
       type = 'Nhân Viên Hỗ Trợ',
       
     },
@@ -62,6 +63,7 @@ function UpdateStaffModal({ id }) {
       !address ||
       !type ||
       !phone||
+      !from||
       !suppostTime 
     ) {
       return toast({
@@ -79,6 +81,7 @@ function UpdateStaffModal({ id }) {
       countryID,
       address,
       phone,
+      from,
       suppostTime,
       type
     };
@@ -168,6 +171,16 @@ function UpdateStaffModal({ id }) {
                 name='address'
                 focusBorderColor='brown.500'
                 value={address}
+                onChange={updateExistingStaffDetails}
+              />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Đơn vị</FormLabel>
+              <Textarea
+                placeholder='Đơn vị'
+                name='from'
+                focusBorderColor='brown.500'
+                value={from}
                 onChange={updateExistingStaffDetails}
               />
             </FormControl>

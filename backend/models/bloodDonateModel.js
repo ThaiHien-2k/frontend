@@ -24,12 +24,51 @@ const bloodDonateSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+
+  A: {
+    type: Number,
+    default: 0,
+  },
+  B: {
+    type: Number,
+    default: 0,
+  }, 
+  AB: {
+    type: Number,
+    default: 0,
+  },
+  O: {
+    type: Number,
+    default: 0,
+  },
+
   staffList:[ {
    
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Staff',
     required: [true],
  },],
+
+ donate:[ {
+  //  id: { type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Infor',
+  //   // required: [true],
+  // },
+  // name: {
+  //   type: String,
+   
+  // },
+  //   amount:{
+  //     type: Number,
+    
+  //   },
+  //   typeBlood:{
+  //     type: String,
+      
+  //   }
+},
+  
+],
   status:{
     type: String,
     require: false,

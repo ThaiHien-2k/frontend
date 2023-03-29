@@ -35,11 +35,11 @@ function CreateNewInforModal() {
         address,
         email,
         phone,
-        from,
+        // from,
         typeBlood,
         donateTime,
-        status,
-        lastDonate
+        // status,
+        // lastDonate
     },
     updateNewInforDetails,
     createNewInfor,
@@ -63,11 +63,11 @@ function CreateNewInforModal() {
         !address||
         !email||
         !phone||
-        !from||
+        // !from||
         !typeBlood||
-        !donateTime||
-        !status||
-        !lastDonate 
+        !donateTime
+        // !status||
+        // !lastDonate 
     ) {
       return toast({
         position: 'top',
@@ -86,11 +86,11 @@ function CreateNewInforModal() {
       address,
       email,
       phone,
-      from,
+      // from,
       typeBlood,
       donateTime,
-      status,
-      lastDonate
+      // status,
+      // lastDonate
     };
     const responseCreate = await createNewInfor(infor);
     setLoading(false);
@@ -123,7 +123,7 @@ function CreateNewInforModal() {
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Thêm nhân viên mới</ModalHeader>
+          <ModalHeader>Thêm người hiến mới</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
@@ -138,7 +138,7 @@ function CreateNewInforModal() {
               />
             </FormControl>
 
-            {/* <FormControl mt={4}>
+            <FormControl mt={4}>
               <FormLabel>CMND/CCCD</FormLabel>
               <Input
                 type='number'
@@ -150,6 +150,16 @@ function CreateNewInforModal() {
               />
             </FormControl>
 
+            <FormControl mt={4}>
+              <FormLabel>Email</FormLabel>
+              <Input
+                placeholder='Email'
+                name='email'
+                focusBorderColor='brown.500'
+                value={email}
+                onChange={updateNewInforDetails}
+              />
+              </FormControl>
             
 
             <FormControl mt={4}>
@@ -162,33 +172,45 @@ function CreateNewInforModal() {
                 onChange={updateNewInforDetails}
               />
             </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>SĐT</FormLabel>
+              <Input
+             
+                placeholder='SĐT'
+                name='phone'
+                focusBorderColor='brown.500'
+                value={phone}
+                onChange={updateNewInforDetails}
+              />
+            </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Số lần hỗ trợ</FormLabel>
+              <FormLabel>Số lần hiến</FormLabel>
               <Input
                 type='number'
-                placeholder='Số lần hỗ trợ'
-                name='suppostTime'
+                placeholder='Số lần hiến'
+                name='donateTime'
                 focusBorderColor='brown.500'
-                value={suppostTime}
+                value={donateTime}
                 onChange={updateNewInforDetails}
               />
             </FormControl>
             
             
             <FormControl mt={4}>
-            <FormLabel>Loại nhân viên</FormLabel>
+            <FormLabel>Nhóm máu</FormLabel>
               <Select
-                name='type'
+                name='typeBlood'
                 focusBorderColor='brown.500'
-                value={type}
+                value={typeBlood}
                 onChange={updateNewInforDetails}
               >
-                <option value='Quản Trị Viên'>Quản Trị Viên</option>
-                <option value='Bác Sĩ'>Bác Sĩ</option>
-                <option value='Nhân Viên Hỗ Trợ'>Nhân Viên Hỗ Trợ</option>
+                <option value='O'>O</option>
+                <option value='A'>A</option>
+                <option value='B'>B</option>
+                <option value='AB'>AB</option>
               </Select>
-            </FormControl> */}
+            </FormControl>
 
             
           </ModalBody>

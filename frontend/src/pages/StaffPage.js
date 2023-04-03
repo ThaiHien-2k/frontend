@@ -10,6 +10,9 @@ import CreateNewStaffModal from '../components/CreateNewStaffModal';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useStaffContext } from '../context/staff_context';
+import { Input } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import { useState,useEffect } from 'react';
 
 function StaffsPage() {
   const {
@@ -22,6 +25,26 @@ function StaffsPage() {
   const handleRefresh = async () => {
     await fetchStaffs();
   };
+  const [staffList, setStaffList] = useState([]);
+
+  useEffect(() => {
+  
+    
+ 
+          setStaffList(staffs);
+       
+      
+  }, [])
+
+  function setSearchTerm(e){
+    // staffs = staffs.filter(staff => staff.countryID < 60);
+    const results = staffs.filter(staff => {
+      if (e === "") return staffList
+      return staff.name.toLowerCase().includes(e.toLowerCase())
+      })
+      setStaffList(results);
+    console.log(staffList);
+  }
 
   if (loading) {
     return (
@@ -68,6 +91,13 @@ function StaffsPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
+      
+        <Input icon='search'
+       placeholder='Nhập tên cần tìm' 
+      onChange={(event) => {
+        setSearchTerm(event.target.value);
+      }}
+      />
         <CreateNewStaffModal />
         <Button
           colorScheme='brown'
@@ -78,7 +108,8 @@ function StaffsPage() {
           Tải lại
         </Button>
       </HStack>
-      <StaffsTable staffs={staffs} />
+     
+      <StaffsTable staffs={staffList} />
     </SidebarWithHeader>
   );
 }

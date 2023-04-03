@@ -26,16 +26,56 @@ import {
 import UpdateBloodDonateModal from './UpdateBloodDonateModal';
 import UpdateStatusBloodDonateModal from './UpdateStatusBloodDonateModal'
 import { formatPrice } from '../utils/helpers';
+import axios from 'axios';
+import { useStaffContext } from '../context/staff_context';
+import { bloodDonates_url, staffs_url } from '../utils/constants';
+
 function BloodDonatesTable({ bloodDonates }) {
   const toast = useToast();
-  const { fetchBloodDonates, deleteBloodDonate } = useBloodDonateContext();
+  const { fetchBloodDonates,fetchSingleBloodDonate, deleteBloodDonate } = useBloodDonateContext();
   const [loading, setLoading] = useState(false);
+
+  // const [nameList, setNameList] = useState([]);
+ 
+  // const handleClick=(e)=>{
+  //   setStaffList(oldMessages => [e, ...oldMessages])
+  //  console.log(e);
+  
+  // }
+  const {
+    staffs,
+    updateStaff
+  } = useStaffContext();
+  
+  // const handleChange = e => {
+  //   setNameList(e);
+  //   setStaffList( [nameList.map(index=> index.value)])
+  //   // console.log(e)
+   
+  // }
 
   const handleDelete = async (id) => {
     setLoading(true);
+    const data = await axios.get(bloodDonates_url+'/'+id);
+    console.log(data.data.data.staffList);
+    data.data.data.staffList.map((index) =>
+    {
+      
+      const res = axios.get(staffs_url+'/supTime/'+index) .then(function (response) {
+        const staff = {
+  
+          suppostTime: response.data.data-1,
+      
+        };
+        const responseCreate =  updateStaff(index, staff);
+       
+      });
+    })
     const response = await deleteBloodDonate(id);
     setLoading(false);
     if (response.success) {
+     
+    
       toast({
         position: 'top',
         description: response.message,
@@ -43,6 +83,7 @@ function BloodDonatesTable({ bloodDonates }) {
         duration: 5000,
         isClosable: true,
       });
+      window.location.reload(true);
       return await fetchBloodDonates();
     } else {
       return toast({
@@ -79,7 +120,7 @@ function BloodDonatesTable({ bloodDonates }) {
             {bloodDonates.map((bloodDonate, index) => {
               const {  name, time, address, target,receive,status,donate,id } =
                 bloodDonate;
-                console.log(bloodDonate);
+                
               return (
                 <Tr key={index}>
                    <Td>{index+1}</Td>

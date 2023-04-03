@@ -10,6 +10,8 @@ import CreateNewCashFlowModal from '../components/CreateNewCashFlowModal';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useCashFlowContext } from '../context/cashFlow_context';
+import { Input } from 'semantic-ui-react';
+import { useEffect,useState } from 'react';
 
 function CashFlowsPage() {
   const {
@@ -22,6 +24,24 @@ function CashFlowsPage() {
   const handleRefresh = async () => {
     await fetchCashFlows();
   };
+
+  const [cashFlowList, setCashFlowList] = useState([]);
+
+  function setSearchTerm(e){
+    // staffs = staffs.filter(staff => staff.countryID < 60);
+    const results = cashFlows.filter(cashFlow => {
+      if (e === "") return cashFlowList
+      return cashFlow.name.toLowerCase().includes(e.toLowerCase())
+      })
+      setCashFlowList(results);
+    console.log(cashFlows);
+  }
+
+  useEffect(() => {
+    setCashFlowList(cashFlows);
+ 
+
+}, [])
 
   if (loading) {
     return (
@@ -68,6 +88,12 @@ function CashFlowsPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
+      <Input icon='search'
+       placeholder='Nhập tên cần tìm' 
+      onChange={(event) => {
+        setSearchTerm(event.target.value);
+      }}
+      />
         <CreateNewCashFlowModal />
         <Button
           colorScheme='brown'
@@ -78,7 +104,7 @@ function CashFlowsPage() {
           Tải lại
         </Button>
       </HStack>
-      <CashFlowsTable cashFlows={cashFlows} />
+      <CashFlowsTable cashFlows={cashFlowList} />
     </SidebarWithHeader>
   );
 }

@@ -37,7 +37,7 @@ function UpdateStatusBloodDonateModal({ id }) {
       time = '',
       address = '',
       target = '',
-      receive=0,
+      // receive=0,
       status = 'Chưa thực hiện',
 
       
@@ -67,7 +67,7 @@ function UpdateStatusBloodDonateModal({ id }) {
       !time ||
       !address ||
       !target ||
-      !receive ||
+      // !receive ||
       !status
     ) {
       return toast({
@@ -85,7 +85,7 @@ function UpdateStatusBloodDonateModal({ id }) {
       time,
       address,
       target,
-      receive,
+      // receive,
       status
     };
     const responseCreate = await updateBloodDonate(id, bloodDonate);
@@ -109,7 +109,7 @@ function UpdateStatusBloodDonateModal({ id }) {
           const response = await axios.post(create_new_bloodStorage,{
             _id:id,
             name: "Máu nhận",
-            amount: receive,
+            // amount: receive,
             from: name,
             donateID: id,
             type: 'Nhận',
@@ -203,8 +203,8 @@ function UpdateStatusBloodDonateModal({ id }) {
               />
             </FormControl>
 
-            <FormControl>
-            <FormLabel>Thu được</FormLabel>
+            {/* <FormControl> */}
+            {/* <FormLabel>Thu được</FormLabel>
               <Input
                 ref={initialRef}
                 placeholder='Thu được'
@@ -213,7 +213,7 @@ function UpdateStatusBloodDonateModal({ id }) {
                 value={receive}
                 onChange={updateExistingBloodDonateDetails}
               />
-            </FormControl>
+            </FormControl> */}
 
             <FormControl mt={4}>
             <FormLabel>Đổi trạng thái</FormLabel>

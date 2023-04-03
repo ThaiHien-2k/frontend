@@ -28,7 +28,7 @@ function InforsTable({ infors }) {
   const toast = useToast();
   const { fetchInfors, deleteInfor } = useInforContext();
   const [loading, setLoading] = useState(false);
-  
+ 
   const handleDelete = async (id) => {
     setLoading(true);
     const response = await deleteInfor(id);
@@ -41,6 +41,7 @@ function InforsTable({ infors }) {
         duration: 5000,
         isClosable: true,
       });
+      window.location.reload(false);
       return await fetchInfors();
     } else {
       return toast({

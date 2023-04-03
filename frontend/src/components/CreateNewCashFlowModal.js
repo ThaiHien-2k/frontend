@@ -81,6 +81,7 @@ function CreateNewCashFlowModal() {
     const responseCreate = await createNewCashFlow(cashFlow);
     setLoading(false);
     if (responseCreate.success) {
+      window.location.reload(false);
       onClose();
       return toast({
         position: 'top',

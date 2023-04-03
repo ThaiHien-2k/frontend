@@ -46,6 +46,7 @@ function CreateNewDonateModal({ id }) {
     },
     updateNewDonateDetails,
     createNewDonate,
+    fetchSingleDonate
   } = useDonateContext();
 
   // console.log(id);
@@ -56,6 +57,7 @@ function CreateNewDonateModal({ id }) {
     infors,
     fetchSingleInfor,
     updateInfor,
+    fetchInfors,
     updateNewInforDetails
   } = useInforContext();
 
@@ -68,6 +70,7 @@ function CreateNewDonateModal({ id }) {
   const [name, setName] = useState('');
   const [typeBlood, setTypeBlood] = useState('');
   const [donateTime, setDonateTime] = useState('');
+  
 
   useEffect(() => {
   
@@ -113,7 +116,9 @@ function CreateNewDonateModal({ id }) {
     const time = donateTime+1;
     const infor = {
       donateTime: time,
-      lastDonate: Date.now()
+      lastDonate: Date.now(),
+      // oldDate: Date.now(),
+      status: 'Chưa thể hiến'
   };
   
   const updatetime = await updateInfor(iduser, infor);
@@ -122,7 +127,9 @@ function CreateNewDonateModal({ id }) {
     
        
     setLoading(false);
-    if (responseCreate.success) {
+    if (responseCreate.success) { 
+      await fetchSingleDonate(id);
+      await fetchInfors();
         onClose();
         return toast({
           position: 'top',
@@ -174,7 +181,7 @@ function CreateNewDonateModal({ id }) {
               >
 
                 <option>Chọn người hiến</option>
-                {infors.map(index => (
+                {infors.filter(infors => infors.status.includes('Có thể hiến')).map(index => ( 
                 <option value={index.id} >{index.name}</option>
                 ))}
               </Select>

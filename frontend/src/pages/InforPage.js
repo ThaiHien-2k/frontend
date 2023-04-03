@@ -10,7 +10,8 @@ import CreateNewInforModal from '../components/CreateNewInforModal';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useInforContext } from '../context/infor_context';
-
+import { useState ,useEffect} from 'react';
+import { Input } from 'semantic-ui-react';
 function InforsPage() {
   const {
     infors,
@@ -23,6 +24,23 @@ function InforsPage() {
     await fetchInfors();
   };
 
+  const [inforList, setInforList] = useState([]);
+
+  function setSearchTerm(e){
+    // staffs = staffs.filter(staff => staff.countryID < 60);
+    const results = infors.filter(infor => {
+      if (e === "") return inforList
+      return infor.name.toLowerCase().includes(e.toLowerCase())
+      })
+      setInforList(results);
+    console.log(infors);
+  }
+
+  useEffect(() => {
+    setInforList(infors);
+ 
+
+}, [])
   if (loading) {
     return (
       <SidebarWithHeader>
@@ -68,6 +86,12 @@ function InforsPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
+      <Input icon='search'
+       placeholder='Nhập tên cần tìm' 
+      onChange={(event) => {
+        setSearchTerm(event.target.value);
+      }}
+      />
         <CreateNewInforModal />
         <Button
           colorScheme='brown'
@@ -78,7 +102,7 @@ function InforsPage() {
           Tải lại
         </Button>
       </HStack>
-      <InforsTable infors={infors} />
+      <InforsTable infors={inforList} />
     </SidebarWithHeader>
   );
 }

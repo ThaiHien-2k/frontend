@@ -32,7 +32,7 @@ function DonateDetail({ donates, id }) {
   const { fetchDonates, deleteDonate } = useDonateContext();
   const [loading, setLoading] = useState(false);
   const [donateTime, setDonateTime] = useState('');
-  const donateID = id;
+  const donateID = id; 
   // console.log(id);
   const {
     infors,
@@ -46,11 +46,12 @@ function DonateDetail({ donates, id }) {
     const response = await deleteDonate(id);
     setLoading(false);
     if (response.success) {
+    
       const time = donateTime-1;
       const infor = {
-     
+        status:'Có thể hiến',
         donateTime: time,
-     
+        
     };
   
     const updatetime = await updateInfor(iduser, infor);

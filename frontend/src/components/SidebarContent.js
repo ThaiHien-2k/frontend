@@ -53,7 +53,7 @@ export default function SidebarContent({ onClose, ...rest }) {
     >
       <Flex h='20' alignItems='center' mx='8' justifyContent='space-around'>
         {/* <Image src={logo} /> */}
-       <button > <Image src={icon} alt="Logo" height={75} /> </button> 
+       <button > <Image src={icon} alt="Logo" height={70} /> </button> 
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {Links.map((link) => (

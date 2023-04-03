@@ -12,7 +12,8 @@ import { MdOutlineRefresh } from 'react-icons/md';
 // import { useDonateContext } from '../context/donate_context';
 import { useDonateContext } from '../context/donate_context';
 import { useParams } from 'react-router-dom';
-
+import { Input } from 'semantic-ui-react';
+import { useEffect,useState } from 'react';
 function DonateDetailPage() {
   const { id } = useParams();
   const {
@@ -30,12 +31,35 @@ function DonateDetailPage() {
     await fetchSingleDonate(id);
   };
   console.log(id)
+  
+  const [donateList, setDonateList] = useState([]);
 
+  function setSearchTerm(e){
+    // staffs = staffs.filter(staff => staff.countryID < 60);
+    const results = donates.filter(donate => {
+      if (e === "") return donateList
+      return donate.name.toLowerCase().includes(e.toLowerCase())
+      })
+      setDonateList(results);
+    console.log(donates);
+  }
+
+  useEffect(() => {
+    setDonateList(donates);
+ 
+
+}, [])
 // console.log(donates);
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        <CreateNewDonateModal  id={id}/>
+      <Input icon='search'
+       placeholder='Nhập tên cần tìm' 
+      onChange={(event) => {
+        setSearchTerm(event.target.value);
+      }}
+      />
+        <CreateNewDonateModal  id={id} />
         <Button
           colorScheme='brown'
           variant='outline'
@@ -47,7 +71,7 @@ function DonateDetailPage() {
        
       </HStack>
      
-      <DonateDetail donates={donates}  id={id}/>
+      <DonateDetail donates={donateList}  id={id}/>
     </SidebarWithHeader>
   );
 }

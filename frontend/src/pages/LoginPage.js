@@ -4,6 +4,7 @@ import { useToast } from '@chakra-ui/react';
 import { PreLoader } from '../components';
 import useMounted from '../hooks/useMounted';
 import logo from '../assets/logo.svg';
+import icon from '../assets/icon.jpg'
 import {
   Flex,
   Box,
@@ -64,10 +65,11 @@ export default function LoginPage() {
   }
 
   return (
-    <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'gray.50'}>
+    <Flex minH={'80vh'} align={'center'} justify={'center'} bg={'gray.50'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Image src={logo} alt='logo' w='50%' />
+       <Image src={icon}alt='logo' w='30%'  /> 
+          {/* <Image src={logo} alt='logo' w='50%' /> */}
         </Stack>
         <Box bg={'white'} rounded={'lg'} boxShadow={'lg'} p={8}>
           <Stack spacing={4}>

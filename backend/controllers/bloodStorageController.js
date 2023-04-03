@@ -70,6 +70,7 @@ exports.getAllBloodStorages = catchAsyncError(async (req, res) => {
       B,
       O,
       AB,
+      createdAt
       
     } = item;
     const newItem = {
@@ -84,6 +85,7 @@ exports.getAllBloodStorages = catchAsyncError(async (req, res) => {
       B,
       O,
       AB,
+      createdAt
     };
     return newItem;
   });
@@ -137,3 +139,51 @@ exports.getBloodRemaining = catchAsyncError(async  (req, res) => {
   }); 
 });
 
+exports.getBlood = catchAsyncError(async  (req, res) => {
+ 
+  
+  let ABLood = 0;
+  let BBLood = 0;
+  let OBLood = 0;
+  let ABBLood = 0;
+   
+  const bloodStorage = await BloodStorage.find();
+  let data = bloodStorage.map((item, index) => {
+    const {
+      type,
+      A,
+      B,
+      AB,
+      O
+      
+
+    } = item;
+    const newItem = {
+      type,
+      A,
+      B,
+      AB,
+      O
+      
+    };
+    if(type=='Nhận'){
+      ABLood=ABLood+A;
+      BBLood=BBLood+B;
+      OBLood=OBLood+O;
+      ABBLood=ABBLood+AB;}
+      if(type == 'Cho'){
+        ABLood=ABLood-A;
+        BBLood=BBLood-B;
+        OBLood=OBLood-O;
+        ABBLood=ABBLood-AB;
+      }
+   
+    
+    return ABLood , BBLood,OBLood ,ABBLood;
+    
+  });
+
+  res.status(200).json({
+    ABLood , BBLood,OBLood ,ABBLood
+  }); 
+});

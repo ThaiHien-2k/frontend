@@ -27,7 +27,7 @@ import { useInforContext } from '../context/infor_context';
 
 
 
-function CreateNewInforModal() {
+function CreateNewInforModal({oldDate}) {
   const {
     new_infor: {
         name,
@@ -38,7 +38,7 @@ function CreateNewInforModal() {
         // from,
         typeBlood,
         donateTime,
-        // status,
+        status,
         // lastDonate
     },
     updateNewInforDetails,
@@ -89,13 +89,15 @@ function CreateNewInforModal() {
       // from,
       typeBlood,
       donateTime,
-      // status,
-      // lastDonate
+      status:'Có thể hiến',
+      lastDonate: oldDate
     };
     const responseCreate = await createNewInfor(infor);
     setLoading(false);
     if (responseCreate.success) {
+      
       onClose();
+      window.location.reload(false);
       return toast({
         position: 'top',
         description: 'infor created',

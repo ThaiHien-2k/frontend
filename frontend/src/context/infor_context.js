@@ -30,8 +30,9 @@ const initialState = {
     // from: '',
     address: '',
     typeBlood:'O',
-    // status:'',
-    donateTime:false,
+    status:'',
+    oldDate:'',
+    donateTime:'',
     // lastDonate:''
    
   },

@@ -35,7 +35,11 @@ function CreateNewBloodStorageModal() {
       from,
       type,
       date,
-      detail
+      detail,
+      A,
+      B,
+      AB,
+      O
     },
     updateNewBloodStorageDetails,
     createNewBloodStorage,
@@ -77,7 +81,11 @@ function CreateNewBloodStorageModal() {
         amount,
         from,
         type,
-        date,
+        date,  
+        A,
+        B,
+        AB,
+        O,
         detail
     };
     const responseCreate = await createNewBloodStorage(bloodStorage);
@@ -171,6 +179,45 @@ function CreateNewBloodStorageModal() {
                 value={date}
                 onChange={updateNewBloodStorageDetails}
               />
+            </FormControl>
+            <FormControl mt={4}>
+            <FormLabel>Chọn máu</FormLabel>
+            Máu O:
+              <Input
+             
+                // placeholder='Máu O'
+                name='O'
+                focusBorderColor='brown.500'
+                // value={O}
+                onChange={updateNewBloodStorageDetails}
+              />
+              Máu A:
+              <Input
+             
+            //  placeholder='Máu A'
+             name='A'
+             focusBorderColor='brown.500'
+             // value={O}
+             onChange={updateNewBloodStorageDetails}
+           />
+           Máu AB:
+           <Input
+             
+            //  placeholder='Máu AB'
+             name='AB'
+             focusBorderColor='brown.500'
+             // value={O}
+             onChange={updateNewBloodStorageDetails}
+           />
+           Máu B:
+           <Input
+             
+            //  placeholder='Máu B'
+             name='B'
+             focusBorderColor='brown.500'
+             // value={O}
+             onChange={updateNewBloodStorageDetails}
+           />
             </FormControl>
             
             

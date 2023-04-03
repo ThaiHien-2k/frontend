@@ -69,6 +69,7 @@ exports.getAllBloodDonates = catchAsyncError(async (req, res) => {
       B,
       O,
       AB,
+      createdAt,
     //   staff,
       status
 
@@ -87,6 +88,7 @@ exports.getAllBloodDonates = catchAsyncError(async (req, res) => {
         B,
         O,
         AB,
+        createdAt,
         // staff,
         status
     };
@@ -150,5 +152,6 @@ exports.getBloodDonateRemaining = catchAsyncError(async  (req, res) => {
     total,
   }); 
 });
+
 
 

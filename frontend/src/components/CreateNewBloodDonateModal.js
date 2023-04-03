@@ -15,7 +15,7 @@ import {
   useDisclosure,
   useToast,
   Textarea,
-  Select,
+  // Select,
   CheckboxGroup,
   Stack,
   // Center,
@@ -32,10 +32,13 @@ import { useBloodDonateContext } from '../context/bloodDonate_context';
 import { Hidden } from '@mui/material';
 import axios from 'axios';
 import { useStaffContext } from '../context/staff_context';
-
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import { BiCheckboxChecked } from 'react-icons/bi';
 // import { MultiSelect } from "react-multi-select-component";
 // import { MultiSelect, Loader } from '@mantine/core';
+const animatedComponents = makeAnimated();
+
 function CreateNewBloodDonateModal() {
   const {
     new_bloodDonate: {
@@ -43,7 +46,7 @@ function CreateNewBloodDonateModal() {
       time,
       address,
       target,
-      receive,
+      // receive,
       // staffList,
       status
      
@@ -54,7 +57,7 @@ function CreateNewBloodDonateModal() {
 
   const {
     staffs,
-   
+    updateStaff
   } = useStaffContext();
 
   
@@ -62,13 +65,25 @@ function CreateNewBloodDonateModal() {
   const [loading, setLoading] = useState(false);
 
   const [staffList, setStaffList] = useState([]);
+  const [nameList, setNameList] = useState([]);
  
-  const handleClick=(e)=>{
-    setStaffList(oldMessages => [e, ...oldMessages])
-   
+  // const handleClick=(e)=>{
+  //   setStaffList(oldMessages => [e, ...oldMessages])
+  //  console.log(e);
   
+  // }
+
+  const handleChange = e => {
+    setNameList(e);
+    // setStaffList( [nameList.map(index=> index.value)])
+    
+   
   }
 
+
+ let options = staffs.map(function (index) {
+  return { value: index.id, label: index.name+' - '+index.type };
+})
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef();
@@ -81,7 +96,7 @@ function CreateNewBloodDonateModal() {
       !time ||
       !address ||
       !target ||
-      !receive ||
+      // !receive ||
       !staffList ||
       !status 
     ) {
@@ -96,20 +111,40 @@ function CreateNewBloodDonateModal() {
     
     setLoading(true);
     console.log('uploading');
+   
     const bloodDonate = {
         name,
       time,
       address,
       target,
-      receive,
-      staffList,
+      // receive,
+      staffList:nameList.map(index=> index.value),
       status
     };
     console.log(bloodDonate);
     const responseCreate = await createNewBloodDonate(bloodDonate);
     setLoading(false);
     if (responseCreate.success) {
+      console.log(nameList);
+      nameList.map((index) =>
+      {
+        
+        const res = axios.get(staffs_url+'/supTime/'+index.value) .then(function (response) {
+          const staff = {
+    
+            suppostTime: response.data.data+1,
+        
+          };
+          const responseCreate =  updateStaff(index.value, staff);
+         window.location.reload(true);
+        });
+       
+     
+    
+      })
+    
       onClose();
+      
       return toast({
         position: 'top',
         description: 'bloodDonate created',
@@ -117,6 +152,7 @@ function CreateNewBloodDonateModal() {
         duration: 5000,
         isClosable: true,
       });
+     
     } else {
       return toast({
         position: 'top',
@@ -191,50 +227,22 @@ function CreateNewBloodDonateModal() {
               />
             </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Thu được</FormLabel>
-              <Input
-                type='number'
-                placeholder='Thu được'
-                name='receive'
-                focusBorderColor='brown.500'
-                value={receive}
-                onChange={updateNewBloodDonateDetails}
-              />
-            </FormControl>
+      
+<FormControl mt={4}>
+<FormLabel>Chọn nhân viên</FormLabel>
+            <Select
+         
+            value={options.find(obj => obj.value === staffList)}
+      closeMenuOnSelect={false}
+      onChange={handleChange}
+      components={animatedComponents}
 
-            <FormControl mt={4}>
-            <FormLabel>Chọn nhân viên</FormLabel>
-            {staffs.map(index => (
-            <Checkbox  
-            
-            multiple={true}
-                 name='staffList'
-                focusBorderColor='brown.500'
-                value={index.id}
-                onChange={e=>handleClick(index.id)}
-            
-                >
-              
-              <option value={index.id}>{index.type} - {index.name}</option>
+      isMulti
+      
+      options={options}
+    />
+             </FormControl>
 
-             
-                </Checkbox> ))
-              } 
-            </FormControl>
-
-            
-{/* <FormControl>
-        
-        <Hidden
-        
-        
-          name='staffList'
-          focusBorderColor='brown.500'
-          value={nameList}
-          onChange={updateNewBloodDonateDetails}
-        />
-      </FormControl> */}
 
           
           </ModalBody>

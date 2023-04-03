@@ -7,7 +7,7 @@ import {
 // import DonateTable from '../components/BloodDonateTable';
 import DonateTable from '../components/DonateTable';
 import CreateNewBloodDonateModal from '../components/CreateNewBloodDonateModal';
-import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
+import { HStack, VStack, Spinner, Heading, Button,Input } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useBloodDonateContext } from '../context/bloodDonate_context';
 
@@ -22,6 +22,10 @@ function DonatePage() {
   const handleRefresh = async () => {
     await fetchBloodDonates();
   };
+  
+  function setSearchTerm(){
+    console.log('haha')
+  }
 
 
   return (
@@ -29,7 +33,15 @@ function DonatePage() {
       <HStack mb={5}>
        
       </HStack>
-     
+     {/* <Input              
+                placeholder='Tên buổi hiến'
+                name='name'
+            
+         
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
+              /> */}
       <DonateTable bloodDonates={bloodDonates} />
     </SidebarWithHeader>
   );

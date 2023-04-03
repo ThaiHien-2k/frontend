@@ -40,11 +40,11 @@ const inforSchema = mongoose.Schema({
     required: [true],
     
   },
-  // status: {
-  //   type: String,
-  //   required: [false],
+  status: {
+    type: String,
+    required: [false],
     
-  // },
+  },
 
   donateTime: {
     type: Number,
@@ -52,6 +52,10 @@ const inforSchema = mongoose.Schema({
   },
 
   lastDonate:{
+    type: Date,
+    required :false
+  }, 
+  oldDate:{
     type: Date,
     required :false
   }, 

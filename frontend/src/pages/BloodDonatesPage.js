@@ -10,7 +10,8 @@ import CreateNewBloodDonateModal from '../components/CreateNewBloodDonateModal';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useBloodDonateContext } from '../context/bloodDonate_context';
-
+import { Input } from 'semantic-ui-react';
+import { useEffect,useState } from 'react';
 function BloodDonatesPage() {
   const {
     bloodDonates,
@@ -22,6 +23,24 @@ function BloodDonatesPage() {
   const handleRefresh = async () => {
     await fetchBloodDonates();
   };
+  
+  const [bloodDonateList, setBloodDonateList] = useState([]);
+
+  function setSearchTerm(e){
+    // staffs = staffs.filter(staff => staff.countryID < 60);
+    const results = bloodDonates.filter(bloodDonate => {
+      if (e === "") return bloodDonateList
+      return bloodDonate.name.toLowerCase().includes(e.toLowerCase())
+      })
+      setBloodDonateList(results);
+    console.log(bloodDonates);
+  }
+
+  useEffect(() => {
+    setBloodDonateList(bloodDonates);
+ 
+
+}, [])
 
   if (loading) {
     return (
@@ -68,6 +87,12 @@ function BloodDonatesPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
+      <Input icon='search'
+       placeholder='Nhập tên cần tìm' 
+      onChange={(event) => {
+        setSearchTerm(event.target.value);
+      }}
+      />
         <CreateNewBloodDonateModal />
         <Button
           colorScheme='brown'
@@ -78,7 +103,7 @@ function BloodDonatesPage() {
           Tải lại
         </Button>
       </HStack>
-      <BloodDonatesTable bloodDonates={bloodDonates} />
+      <BloodDonatesTable bloodDonates={bloodDonateList} />
     </SidebarWithHeader>
   );
 }

@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "apexcharts": "^3.37.2",
     "axios": "^0.24.0",
     "date-fns": "^2.29.3",
     "echarts": "^5.4.2",
@@ -23,6 +24,7 @@
     "moment-timezone": "^0.5.41",
     "momentjs": "^2.0.0",
     "react": "^16.13.1",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-donut-chart": "^1.3.3",
     "react-dropzone": "^11.5.1",
@@ -34,7 +36,11 @@
     "react-search-box": "^3.0.0",
     "react-select": "^5.7.0",
     "react-select-search": "^4.1.6",
-    "web-vitals": "^2.1.3"
+    "react-svg-donuts": "^3.0.0",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4",
+    "web-vitals": "^2.1.3",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",

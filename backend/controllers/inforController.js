@@ -66,7 +66,8 @@ exports.getAllInfors = catchAsyncError(async (req, res) => {
       // from,
       typeBlood,
       donateTime,
-      // status,
+      status,
+      oldDate,
       lastDonate,
       
     } = item;
@@ -78,9 +79,10 @@ exports.getAllInfors = catchAsyncError(async (req, res) => {
       address,
       phone,
       // from,
+      oldDate,
       typeBlood,
       donateTime,
-      // status,
+      status,
       lastDonate,
     };
     return newItem;

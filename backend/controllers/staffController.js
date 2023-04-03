@@ -87,6 +87,38 @@ exports.getAllStaffs = catchAsyncError(async (req, res) => {
   });
 });
 
+exports.getName= catchAsyncError(async (req, res) => {
+  const staffs = await Staff.find();
+  const data = staffs.map((item, index) => {
+    const {
+      // _id: id,
+      name,
+      
+    } = item;
+    const newItem = {
+      // id,
+      name,
+
+    };
+    return newItem;
+  });
+  res.status(200).json({
+    success: true,
+    data,
+  });
+});
+
+exports.getSupTime = catchAsyncError(async (req, res, next) => {
+ 
+  const staff = await Staff.findById(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    data: staff.suppostTime,
+  });
+});
+
+
 // send only a single staff detaisl
 exports.getSingleStaff = catchAsyncError(async (req, res, next) => {
   if (!req.params.id) {
@@ -97,7 +129,7 @@ exports.getSingleStaff = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler('staff Not Found', 200));
   }
   res.status(200).json({
-    success: true,
+
     data: staff,
   });
 });

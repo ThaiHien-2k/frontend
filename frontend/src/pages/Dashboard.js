@@ -15,6 +15,8 @@ export default function Dashboard() {
   const [bloodAB, setBLoodAB]= useState([]);
   const [data, setData]= useState([]);
   const [name, setName]= useState([]);
+  
+  
   const [A, setA]= useState([]);
   const [B, setB]= useState([]);
   const [AB, setAB]= useState([]);
@@ -28,7 +30,7 @@ const {
 
   fetchBloodStorages,
 } = useBloodStorageContext();
-
+// const name =[]
 const {
   bloodDonates,
   bloodDonates_loading: loading,
@@ -58,13 +60,22 @@ const {
     useEffect(()=>{
       const getdataChart =  () => {
        
-        // data.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o));
-        name.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.name));
-        A.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.A));
-        B.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.B));
-        O.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.O));
-        AB.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.AB));
-    // setName(name);
+        data.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o));
+        
+        // name.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.name));
+        // A.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.A));
+        // B.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.B));
+        // O.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.O));
+        // AB.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.AB));
+   
+        data[0].forEach(index=> name.push(index.name));
+        data[0].forEach(index=> A.push(index.A));
+        data[0].forEach(index=> O.push(index.O));
+        data[0].forEach(index=> AB.push(index.AB));
+        data[0].forEach(index=> B.push(index.B));
+    // setA(A);
+    // setAB(AB);
+    console.log(name)
   }
 
       
@@ -89,21 +100,21 @@ const {
             height={ 400}
             series={[{
               name: 'O',
-              data: O[0]
+              data:O
             }, {
               name: 'A',
-              data: [76, 85, 101, 98]
+              data: A
             }, {
               name: 'B',
-              data: [35, 41, 36, 26]
+              data: B
             },
             {
               name: 'AB',
-              data: [76, 85, 101, 98]
+              data: AB
             },]}
 
             options={{
-             labels:name[0],
+             labels:name,
              title:{
                 text:"Biểu đồ máu nhận 4 lần hiến máu gần nhất",
                // align:"center",
@@ -120,7 +131,8 @@ const {
             
 
              dataLabels:{
-                enabled:true,
+                enabled:false,
+                
              },
              stroke: {
               show: true,
@@ -132,7 +144,7 @@ const {
             },
             yaxis: {
               title: {
-                text: 'Đơn vị'
+                text: 'ml'
               }
             },
             fill: {
@@ -141,7 +153,7 @@ const {
             tooltip: {
               y: {
                 formatter: function (val) {
-                  return val + " đơn vị"
+                  return val + " ml"
                 }
               }
             }

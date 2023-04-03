@@ -78,15 +78,15 @@ function InforsTable({ infors }) {
           </Thead>
           <Tbody>
             {infors.map((infor, index) => {
-              const {  name, countryID, address, email,typeBlood,donateTime,lastDonate,phone,id } =
+              const {  name, countryID, address, email,typeBlood,donateTime,status,lastDonate,phone,id } =
                 infor;
                 const current = new Date();
                 const nextDonate = new Date(lastDonate).setDate(current.getDate() + 90);
-                
+                // const status ='';
                 // console.log(new Date(nextDonate).toDateString());
               
                 // console.log(infor);
-                if((current-nextDonate)>=0){
+               
                   return (
                     <Tr key={index}>
                        <Td>{index+1}</Td>
@@ -98,7 +98,7 @@ function InforsTable({ infors }) {
                     
                       <Td>{typeBlood}</Td>
                       <Td>{donateTime}</Td>
-                      <Td>Có thể hiến</Td>
+                      <Td>{status}</Td>
                       {/* <Td>{lastDonate}</Td> */}
                       <Td>
                         <Menu>
@@ -121,43 +121,8 @@ function InforsTable({ infors }) {
                       </Td>
                     </Tr>
                   );
-                }
-                else if((current-nextDonate)<0){
-                  return (
-                    <Tr key={index}>
-                       <Td>{index+1}</Td>
-                      <Td>{countryID}</Td>
-                      <Td>{name}</Td>
-                      <Td>{phone}</Td>
-                      <Td>{address}</Td>
-                      {/* <Td>{email}</Td> */}
-                    
-                      <Td>{typeBlood}</Td>
-                      <Td>{donateTime}</Td>
-                      <Td>Chưa thể hiến</Td>
-                      {/* <Td>{lastDonate}</Td> */}
-                      <Td>
-                        <Menu>
-                          <MenuButton as={Button} rightIcon={<BiChevronDown />}>
-                            Hành động
-                          </MenuButton>
-                          <MenuList>
-                            <Link to={`/infors/${id}`}>
-                              <MenuItem>Xem</MenuItem>
-                            </Link>
-                            <MenuItem>
-                              <UpdateInforModal id={id} />
-                            </MenuItem>
-                          
-                            <MenuItem onClick={() => handleDelete(id)}>
-                              Xóa
-                            </MenuItem>
-                          </MenuList>
-                        </Menu>
-                      </Td>
-                    </Tr>
-                  );
-                }
+                
+             
           
             })}
           </Tbody>

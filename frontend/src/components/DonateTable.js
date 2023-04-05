@@ -74,7 +74,7 @@ function DonateTable({ bloodDonates }) {
         <Table variant='simple'>
           <Thead>
             <Tr>
-            {/* <Th>STT</Th> */}
+            <Th>STT</Th>
               <Th>Tên buổi hiến</Th>
               <Th>Thời gian</Th>
               <Th>Địa điểm</Th>
@@ -89,7 +89,7 @@ function DonateTable({ bloodDonates }) {
                 if(status==='Chưa thực hiện'){
               return (
                 <Tr key={index}>
-                   {/* <Td>{index+1}</Td> */}
+                   <Td>{index+1}</Td>
                 <Td>{name}</Td>
                   <Td>{moment(time).format("MM:HHA D/M/YYYY")}</Td>
                   <Td>{address}</Td>

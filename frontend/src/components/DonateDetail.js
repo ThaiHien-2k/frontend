@@ -92,7 +92,7 @@ function DonateDetail({ donates, id }) {
             </Tr>
           </Thead>
           <Tbody>
-            {donates.map((donate, index) => {
+            {donates.filter(index=> index.idBD.includes(donateID)).map((donate, index) => {
               const {  name,id,typeBlood ,amount,iduser,idBD} =
                 donate;
         if(donateID===idBD){

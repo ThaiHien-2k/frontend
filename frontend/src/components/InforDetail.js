@@ -15,17 +15,17 @@ import {
 } from '@chakra-ui/react';
 import { formatPrice } from '../utils/helpers';
 import { useAdminContext } from '../context/admin_context';
-import { useStaffContext } from '../context/staff_context';
-import { bloodDonates_url } from '../utils/constants';
+import { useDonateContext } from '../context/donate_context';
+import { donates_url } from '../utils/constants';
 import { useBloodDonateContext } from '../context/bloodDonate_context';
 import { Stars } from '.';
 import moment from 'moment';
 import axios from 'axios';
 
-function StaffDetail({ staff }) {
+function InforDetail({ infor }) {
   const { admins } = useAdminContext();
 
-  // const { single_staff_loading: loading } = useStaffContext();
+  // const { single_infor_loading: loading } = useinforContext();
   // const [createdBy, setCreatedBy] = useState('');
   // const [unitSold, setUnitSold] = useState(0);
   const {
@@ -34,10 +34,17 @@ function StaffDetail({ staff }) {
     countryID='',
     address='',
     phone,
-    from,
-    type,
-    suppostTime,
-  } = staff;
+    email,
+    typeBlood,
+    status,
+    lastDonate,
+    donateTime,
+  } = infor;
+
+  const {
+    donates,
+   
+  } = useDonateContext();
 
   const {
     bloodDonates,
@@ -45,46 +52,46 @@ function StaffDetail({ staff }) {
     bloodDonates_error: error,
     fetchBloodDonates,
   } = useBloodDonateContext();
+  const [donate, setDonate] = useState([]);
 
-  const [suppost, setSuppost] = useState([]);
-
-
+  const [data, setData] = useState([]);
 
     useEffect(()=>{
       const getdata =  () => {
    
-        setSuppost(bloodDonates.filter(index=> index.staffList.includes(id)));
-
-    console.log(suppost);
+        donate.push(donates.filter(index=> index.iduser.includes(id)).map(index=>index.idBD));
+        // donate.foreach(index=>index.idBD)
+    
+        setData(bloodDonates.filter(index=>  donate[0].includes(index.id)));
   }
 
-      
 
   getdata();
       },[]);
-
+  
 
 
   
 
   return (
     <VStack alignItems='left' justifyContent='left'>
-      <Text as='b'>THÔNG TIN NHÂN VIÊN</Text>
+      <Text as='b'>THÔNG TIN NGƯỜI HIẾN</Text>
        <VStack alignItems='left' justifyContent='left'>
       <HStack><Text as='b'>CMND/CCCD: </Text><Text>{countryID}</Text></HStack>
      <HStack> <Text as='b'>Họ và tên: </Text><Text>{name}</Text></HStack>
      <HStack> <Text as='b'>Địa chỉ: </Text><Text>{address}</Text></HStack>
      <HStack><Text as='b'>Số điện thoại: </Text><Text>{phone}</Text></HStack>
-     <HStack><Text as='b'>Đơn vị: </Text><Text>{from}</Text></HStack>
-     <HStack> <Text as='b'>Loại nhân viên: </Text><Text>{type}</Text></HStack>
-     <HStack>  <Text as='b'>Số lần hỗ trợ: </Text><Text>{suppostTime}</Text></HStack>
+     <HStack><Text as='b'>Email: </Text><Text>{email}</Text></HStack>
+     <HStack> <Text as='b'>Nhóm máu: </Text><Text>{typeBlood}</Text></HStack>
+     <HStack>  <Text as='b'>Số lần hỗ trợ: </Text><Text>{donateTime}</Text></HStack>
+     <HStack>  <Text as='b'>Trạng thái: </Text><Text>{status}</Text></HStack>
      </VStack>
      <VStack></VStack>
      <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>
      <Table variant='simple'>
           <Thead>
             <Tr>
-            <Th>Lần hỗ trợ</Th>
+            <Th>Lần hiến</Th>
               <Th>Tên buổi hiến</Th>
               <Th>Thời gian</Th>
               <Th>Địa điểm</Th>
@@ -92,12 +99,11 @@ function StaffDetail({ staff }) {
             </Tr>
           </Thead>
           <Tbody>
-            {suppost.map((sup, index) => {
-              const {  name, time, address,staffList } =
-              sup;
-                // console.log(staffList.map(index=>index))
-                // console.log(id)
-               
+            
+              {data.map((bloodDonate, index) => {
+                const {  name, time, address,id } =
+                bloodDonate;
+            //    if(idBD==id){
               return (
                  
                 <Tr key={index}>
@@ -108,8 +114,9 @@ function StaffDetail({ staff }) {
         
                 </Tr>
               );
-             
-            })}
+            // }
+               })}
+               
           </Tbody>
         </Table>
         </SimpleGrid>
@@ -117,4 +124,4 @@ function StaffDetail({ staff }) {
   );
 }
 
-export default StaffDetail;
+export default InforDetail;

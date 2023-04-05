@@ -10,7 +10,8 @@ import {
   CashFlowsPage,
   PrivateRoute,
   BloodStoragesPage,
-  StaffDetaislPage,
+  InforDetaislPage,
+   StaffDetaislPage,
   DonateDetaislPage,
   BloodDonatesPage,
   DonatePage,
@@ -53,7 +54,10 @@ function App() {
           </PrivateRoute>
 
          
-          <PrivateRoute exact path='/staffs/:id'>
+          <PrivateRoute exact path='/infors/:id'>
+          <InforDetaislPage />
+        </PrivateRoute>
+        <PrivateRoute exact path='/staffs/:id'>
           <StaffDetaislPage />
         </PrivateRoute>
 

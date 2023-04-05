@@ -11,7 +11,7 @@ import CashFlowsPage from './CashFlowPage';
 import StaffDetaislPage from './StaffDetailsPage';
 import DonatePage from './DonatePage';
 import DonateDetaislPage from './DonateDetailPage';
-
+import InforDetaislPage from './InforDetailPage';
 
 export {
   Dashboard,
@@ -19,11 +19,13 @@ export {
   PrivateRoute,
   StaffsPage,
   InforsPage,
+  InforDetaislPage,
   CashFlowsPage,
   BloodStoragesPage,
   BloodDonatesPage,
   AdminsPage,
   DonatePage,
+
   StaffDetaislPage,
   DonateDetaislPage
 };

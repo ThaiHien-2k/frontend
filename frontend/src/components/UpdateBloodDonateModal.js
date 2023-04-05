@@ -215,20 +215,6 @@ function UpdateStatusBloodDonateModal({ id }) {
               />
             </FormControl> */}
 
-            <FormControl mt={4}>
-            <FormLabel>Đổi trạng thái</FormLabel>
-              <Select
-                name='status'
-                focusBorderColor='brown.500'
-                value={status}
-                onChange={updateExistingBloodDonateDetails}
-              >
-                <option value='Chưa thực hiện'>Chưa thực hiện</option>
-                <option value='Đã thực hiện'>Đã thực hiện</option>
-     
-              </Select>
-            </FormControl>
-         
 
           </ModalBody>
 

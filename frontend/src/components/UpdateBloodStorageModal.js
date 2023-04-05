@@ -25,7 +25,8 @@ import {
 } from '@chakra-ui/react';
 // import { useDropzone } from 'react-dropzone';
 import { useBloodStorageContext } from '../context/bloodStorage_context';
-
+import axios from 'axios';
+import { bloodStorages_url } from '../utils/constants';
 function UpdateBloodStorageModal({ id }) {
   const {
     single_bloodStorage: {
@@ -35,6 +36,8 @@ function UpdateBloodStorageModal({ id }) {
       date = '',
       detail = '',
       type = '',
+      O,
+      A,AB,B
       
     },
     // single_bloodstorage_loading,
@@ -52,7 +55,25 @@ function UpdateBloodStorageModal({ id }) {
   const initialRef = useRef();
   const toast = useToast();
 
+  const [bloodO, setBLoodO]= useState([]);
+  const [bloodA, setBLoodA]= useState([]);
+  const [bloodB, setBLoodB]= useState([]);
+  const [bloodAB, setBLoodAB]= useState([]);
+  const getdata= async()=>{     
 
+    const response = await axios.get(bloodStorages_url+'/getBlood');
+   let ABLood =response.data.ABLood;
+   let BBLood= response.data.BBLood;
+   let OBLood =response.data.BBLood;
+   let ABBLood =response.data.ABBLood;
+  setBLoodA(ABLood);
+  setBLoodO(OBLood);
+  setBLoodAB(ABBLood);
+  setBLoodB(BBLood);
+  // bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o);
+ console.log(bloodA);
+}
+getdata();
 
   const handleSubmit = async () => {
     if (
@@ -71,7 +92,61 @@ function UpdateBloodStorageModal({ id }) {
         isClosable: true,
       });
     }
+    if (
+      type == 'Cho' &&
+      bloodA < A 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodA +'ml máu A',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
 
+    if (
+      type == 'Cho' &&
+      bloodB < B 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodB +'ml máu B',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    if (
+      type == 'Cho' &&
+      bloodAB < AB 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodAB +'ml máu AB',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    if (
+      type == 'Cho' &&
+      bloodO < O 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodO +'ml máu O',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
     setLoading(true);
     const bloodStorage = {
       name,
@@ -79,7 +154,8 @@ function UpdateBloodStorageModal({ id }) {
       from,
       date,
       detail,
-      type
+      type, O,
+      A,AB,B
     };
     const responseCreate = await updateBloodStorage(id, bloodStorage);
     setLoading(false);
@@ -138,7 +214,7 @@ function UpdateBloodStorageModal({ id }) {
 
            
 
-            <FormControl mt={4}>
+            {/* <FormControl mt={4}>
               <FormLabel>Số lượng</FormLabel>
               <Input
                 type='number'
@@ -148,7 +224,7 @@ function UpdateBloodStorageModal({ id }) {
                 value={amount}
                 onChange={updateExistingBloodStorageDetails}
               />
-            </FormControl>
+            </FormControl> */}
 
             <FormControl mt={4}>
               <FormLabel>Từ/Đến</FormLabel>
@@ -186,6 +262,49 @@ function UpdateBloodStorageModal({ id }) {
                 onChange={updateExistingBloodStorageDetails}
               />
             </FormControl>
+            <FormControl mt={4}>
+            <FormLabel>Chọn máu</FormLabel>
+            Máu O:
+              <Input
+             
+                // placeholder='Máu O'
+                name='O'
+                focusBorderColor='brown.500'
+                value={O}
+                onChange={updateExistingBloodStorageDetails}
+              />
+              Máu A:
+              <Input
+             
+            //  placeholder='Máu A'
+             name='A'
+             focusBorderColor='brown.500'
+             value={A}
+             onChange={updateExistingBloodStorageDetails}
+           />
+           Máu AB:
+           <Input
+             
+            //  placeholder='Máu AB'
+             name='AB'
+             focusBorderColor='brown.500'
+             value={AB}
+             onChange={updateExistingBloodStorageDetails}
+           />
+           Máu B:
+           <Input
+             
+            //  placeholder='Máu B'
+             name='B'
+             focusBorderColor='brown.500'
+             value={B}
+             onChange={updateExistingBloodStorageDetails}
+           />
+            </FormControl>
+            
+            
+      
+
             
             <FormControl mt={4}>
             <FormLabel>Loại</FormLabel>

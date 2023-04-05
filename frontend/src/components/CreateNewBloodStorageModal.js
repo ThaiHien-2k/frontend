@@ -24,7 +24,8 @@ import {
 } from '@chakra-ui/react';
 // import { useDropzone } from 'react-dropzone';
 import { useBloodStorageContext } from '../context/bloodStorage_context';
-
+import axios from 'axios';
+import { bloodStorages_url } from '../utils/constants';
 
 
 function CreateNewBloodStorageModal() {
@@ -48,6 +49,25 @@ function CreateNewBloodStorageModal() {
 
   const [loading, setLoading] = useState(false);
 
+  const [bloodO, setBLoodO]= useState([]);
+  const [bloodA, setBLoodA]= useState([]);
+  const [bloodB, setBLoodB]= useState([]);
+  const [bloodAB, setBLoodAB]= useState([]);
+  const getdata= async()=>{     
+
+    const response = await axios.get(bloodStorages_url+'/getBlood');
+   let ABLood =response.data.ABLood;
+   let BBLood= response.data.BBLood;
+   let OBLood =response.data.BBLood;
+   let ABBLood =response.data.ABBLood;
+  setBLoodA(ABLood);
+  setBLoodO(OBLood);
+  setBLoodAB(ABBLood);
+  setBLoodB(BBLood);
+  // bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o);
+ console.log(bloodA);
+}
+getdata();
 
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -59,7 +79,7 @@ function CreateNewBloodStorageModal() {
   const handleSubmit = async () => {
     if (
       !name ||
-      !amount ||
+      // !amount ||
       !from ||
       !type ||
       !date||
@@ -73,12 +93,67 @@ function CreateNewBloodStorageModal() {
         isClosable: true,
       });
     }
+    if (
+      type == 'Cho' &&
+      bloodA < A 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodA +'ml máu A',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    if (
+      type == 'Cho' &&
+      bloodB < B 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodB +'ml máu B',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    if (
+      type == 'Cho' &&
+      bloodAB < AB 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodAB +'ml máu AB',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+    if (
+      type == 'Cho' &&
+      bloodO < O 
+    
+    ) {
+      return toast({
+        position: 'top',
+        description: 'Chỉ còn lại '+ bloodO +'ml máu O',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
     
     setLoading(true);
     console.log('uploading');
     const bloodStorage = {
         name,
-        amount,
+        amount: 250/(A+B+O+AB),
         from,
         type,
         date,  
@@ -134,7 +209,7 @@ function CreateNewBloodStorageModal() {
               />
             </FormControl>
 
-            <FormControl mt={4}>
+            {/* <FormControl mt={4}>
               <FormLabel>Số lượng</FormLabel>
               <Input
                 type='number'
@@ -144,7 +219,7 @@ function CreateNewBloodStorageModal() {
                 value={amount}
                 onChange={updateNewBloodStorageDetails}
               />
-            </FormControl>
+            </FormControl> */}
 
             <FormControl mt={4}>
               <FormLabel>Từ/Đến</FormLabel>

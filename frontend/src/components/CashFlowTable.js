@@ -66,6 +66,7 @@ function CashFlowsTable({ cashFlows }) {
         <Table variant='simple'>
           <Thead>
             <Tr>
+            <Th>STT</Th>
               <Th>Tên thu/chi</Th>
               <Th>Số tiền</Th>
               <Th>Mô tả</Th>
@@ -81,6 +82,7 @@ function CashFlowsTable({ cashFlows }) {
                 cashFlow;
               return (
                 <Tr key={index}>
+                   <Td>{index+1}</Td>
                   <Td>{name}</Td>
                   <Td>{formatPrice(amount)}đ</Td>
                   <Td>{from}</Td>

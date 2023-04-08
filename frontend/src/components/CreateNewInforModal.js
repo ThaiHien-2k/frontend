@@ -97,7 +97,7 @@ function CreateNewInforModal({oldDate}) {
     if (responseCreate.success) {
       
       onClose();
-      window.location.reload(false);
+    
       return toast({
         position: 'top',
         description: 'infor created',

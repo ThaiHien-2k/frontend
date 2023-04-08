@@ -6,23 +6,23 @@ import {
 } from '../components';
 // import DonateTable from '../components/BloodDonateTable';
 import DonateTable from '../components/DonateTable';
-import CreateNewBloodDonateModal from '../components/CreateNewBloodDonateModal';
-import { HStack, VStack, Spinner, Heading, Button,Input } from '@chakra-ui/react';
-import { MdOutlineRefresh } from 'react-icons/md';
+// import CreateNewBloodDonateModal from '../components/CreateNewBloodDonateModal';
+import { HStack } from '@chakra-ui/react';
+// import { MdOutlineRefresh } from 'react-icons/md';
 import { useBloodDonateContext } from '../context/bloodDonate_context';
 
 
 function DonatePage() {
   const {
     bloodDonates,
-    bloodDonates_loading: loading,
-    bloodDonates_error: error,
+    // bloodDonates_loading: loading,
+    // bloodDonates_error: error,
     fetchBloodDonates,
   } = useBloodDonateContext();
 
-  const handleRefresh = async () => {
-    await fetchBloodDonates();
-  };
+  // const handleRefresh = async () => {
+  //   // await fetchBloodDonates();
+  // };
   
 
   const [data, setData] = useState([]);

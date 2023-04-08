@@ -16,11 +16,11 @@ import { AdminProvider } from './context/admin_context';
 ReactDOM.render(
   <UserProvider>
     <AdminProvider>
-     
+    <InforProvider>
         <CashFlowProvider>
         <BloodDonateProvider>
         <StaffProvider>
-        <InforProvider>
+       
          
         <BloodStorageProvider>
         <DonateProvider>
@@ -30,13 +30,13 @@ ReactDOM.render(
           </DonateProvider>
           </BloodStorageProvider>
           
-          </InforProvider>
+         
 
           </StaffProvider>
          
           </BloodDonateProvider>
           </CashFlowProvider>
-      
+          </InforProvider>
     </AdminProvider>
   </UserProvider>,
   document.getElementById('root')

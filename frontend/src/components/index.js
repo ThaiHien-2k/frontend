@@ -19,7 +19,7 @@ import ErrorBoundary from './ErrorBoundary';
 import StaffDetail from './StaffDetail';
 import DonateDetail from './DonateDetail';
 // import Stars from './Stars';
-
+import BloodDonateDetail from './BloodDonateDetail';
 import PreLoader from './PreLoader';
 
 export {
@@ -42,7 +42,7 @@ export {
   // Stars,
   DonateTable,
   BloodDonatesTable,
-
+BloodDonateDetail,
   PreLoader,
   DonateDetail
 };

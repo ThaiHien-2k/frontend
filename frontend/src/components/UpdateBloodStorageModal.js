@@ -93,7 +93,7 @@ getdata();
       });
     }
     if (
-      type == 'Cho' &&
+      type === 'Cho' &&
       bloodA < A 
     
     ) {
@@ -107,7 +107,7 @@ getdata();
     }
 
     if (
-      type == 'Cho' &&
+      type === 'Cho' &&
       bloodB < B 
     
     ) {
@@ -121,7 +121,7 @@ getdata();
     }
 
     if (
-      type == 'Cho' &&
+      type === 'Cho' &&
       bloodAB < AB 
     
     ) {
@@ -135,7 +135,7 @@ getdata();
     }
 
     if (
-      type == 'Cho' &&
+      type === 'Cho' &&
       bloodO < O 
     
     ) {

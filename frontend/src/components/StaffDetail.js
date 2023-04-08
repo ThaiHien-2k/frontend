@@ -9,21 +9,21 @@ import {
   Tr,
   Td,
   Text,
-  Box,
+  // Box,
   SimpleGrid,
-  Tag,
+  // Tag,
 } from '@chakra-ui/react';
-import { formatPrice } from '../utils/helpers';
-import { useAdminContext } from '../context/admin_context';
-import { useStaffContext } from '../context/staff_context';
-import { bloodDonates_url } from '../utils/constants';
+// import { formatPrice } from '../utils/helpers';
+// import { useAdminContext } from '../context/admin_context';
+// import { useStaffContext } from '../context/staff_context';
+// import { bloodDonates_url } from '../utils/constants';
 import { useBloodDonateContext } from '../context/bloodDonate_context';
-import { Stars } from '.';
+// import { Stars } from '.';
 import moment from 'moment';
-import axios from 'axios';
+// import axios from 'axios';
 
 function StaffDetail({ staff }) {
-  const { admins } = useAdminContext();
+  // const { admins } = useAdminContext();
 
   // const { single_staff_loading: loading } = useStaffContext();
   // const [createdBy, setCreatedBy] = useState('');
@@ -41,9 +41,9 @@ function StaffDetail({ staff }) {
 
   const {
     bloodDonates,
-    bloodDonates_loading: loading,
-    bloodDonates_error: error,
-    fetchBloodDonates,
+    // bloodDonates_loading: loading,
+    // bloodDonates_error: error,
+    // fetchBloodDonates,
   } = useBloodDonateContext();
 
   const [suppost, setSuppost] = useState([]);
@@ -69,7 +69,7 @@ function StaffDetail({ staff }) {
 
   return (
     <VStack alignItems='left' justifyContent='left'>
-      <Text as='b'>THÔNG TIN NHÂN VIÊN</Text>
+      <Text fontSize='4xl' as='b'>THÔNG TIN NHÂN VIÊN</Text>
        <VStack alignItems='left' justifyContent='left'>
       <HStack><Text as='b'>CMND/CCCD: </Text><Text>{countryID}</Text></HStack>
      <HStack> <Text as='b'>Họ và tên: </Text><Text>{name}</Text></HStack>
@@ -80,8 +80,10 @@ function StaffDetail({ staff }) {
      <HStack>  <Text as='b'>Số lần hỗ trợ: </Text><Text>{suppostTime}</Text></HStack>
      </VStack>
      <VStack></VStack>
+     <Text fontSize='2xl' as='b'>Bảng thống kê các lần hỗ trợ</Text>
      <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>
      <Table variant='simple'>
+     
           <Thead>
             <Tr>
             <Th>Lần hỗ trợ</Th>
@@ -92,7 +94,7 @@ function StaffDetail({ staff }) {
             </Tr>
           </Thead>
           <Tbody>
-            {suppost.map((sup, index) => {
+            {suppost.sort((a, b) =>new Date(a.time).getTime()-new Date(b.time).getTime()).map((sup, index) => {
               const {  name, time, address,staffList } =
               sup;
                 // console.log(staffList.map(index=>index))

@@ -160,7 +160,7 @@ const ave =(A.total+B.total+AB.total+O.total)/250;
       await fetchBloodDonates();
 
       // const dt = await fetchSingleBloodDonate(id, bloodDonate);
-      if(status=='Đã thực hiện'){
+      if(status==='Đã thực hiện'){
       const createBloodStorage = async () => {
        const check = await axios.get(bloodStorages_url,id);
       
@@ -185,7 +185,7 @@ const ave =(A.total+B.total+AB.total+O.total)/250;
     };
     createBloodStorage();}
 
-    if(status=='Chưa thực hiện'){
+    if(status==='Chưa thực hiện'){
     
       return await deleteBloodStorage(id);
    }

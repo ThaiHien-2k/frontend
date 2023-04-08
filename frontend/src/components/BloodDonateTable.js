@@ -17,7 +17,7 @@ import {
   MenuList,
   MenuItem,
   SimpleGrid,
-
+  useDisclosure,
   HStack,
   Spinner,
 
@@ -42,6 +42,7 @@ function BloodDonatesTable({ bloodDonates }) {
   //  console.log(e);
   
   // }
+  
   const {
     staffs,
     updateStaff
@@ -136,7 +137,7 @@ function BloodDonatesTable({ bloodDonates }) {
                         Hành động
                       </MenuButton>
                       <MenuList>
-                        <Link to={`/bloodDonate/${id}`}>
+                        <Link to={`/bloodDonates/${id}`} id={id}>
                           <MenuItem>Xem</MenuItem>
                         </Link>
                         <MenuItem>

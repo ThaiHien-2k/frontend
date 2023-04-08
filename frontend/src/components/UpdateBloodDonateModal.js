@@ -15,13 +15,14 @@ import {
   useDisclosure,
   useToast,
   // Textarea,
+  Option,
   // Center,
   // HStack,
   // Image,
   // VStack,
   // Checkbox,
   Text,
-  Select
+  // Select
 } from '@chakra-ui/react';
 import { useBloodDonateContext } from '../context/bloodDonate_context';
 import { useBloodStorageContext } from '../context/bloodStorage_context';
@@ -29,6 +30,11 @@ import { Hidden } from '@mui/material';
 import { create_new_bloodStorage} from '../utils/constants';
 import { bloodStorages_url } from '../utils/constants';
 import axios from 'axios';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import { useStaffContext } from '../context/staff_context';
+
+const animatedComponents = makeAnimated();
 
 function UpdateStatusBloodDonateModal({ id }) {
   const {
@@ -39,7 +45,7 @@ function UpdateStatusBloodDonateModal({ id }) {
       target = '',
       // receive=0,
       status = 'Chưa thực hiện',
-
+      staffList=[]
       
     },
     // single_bloodDonate_loading,
@@ -54,12 +60,43 @@ function UpdateStatusBloodDonateModal({ id }) {
 
   const {deleteBloodStorage} = useBloodStorageContext();
 
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef();
   const toast = useToast();
+  const [List, setList] = useState([]);
+  const [nameList, setNameList] = useState([]);
+  // const [defaults, setDefaults] = useState([]);
+ 
+  const handleChange = e => {
+    setNameList(e);
+    // setStaffList( [nameList.map(index=> index.value)])
+  
+  }
+  const {
+    staffs,
+    updateStaff
+  } = useStaffContext();
+
+  // console.log(staffs.filter(index=> staffList.includes(id)));
+//   useEffect(()=>{
+//     const getdata =  () => {
+//       defaults.push()
+// }     
 
 
+// getdata();
+
+//     },[]);
+  
+let defaults = staffs.filter(index=> staffList.includes(index.id)).map(function (index) {
+  return { value: index.id, label: index.name+' - '+index.type };
+})
+
+ let options = staffs.map(function (index) {
+  return { value: index.id, label: index.name+' - '+index.type };
+})
+
+// console.log(options);
 
   const handleSubmit = async () => {
     if (
@@ -79,16 +116,20 @@ function UpdateStatusBloodDonateModal({ id }) {
       });
     }
 
+ 
+
     setLoading(true);
     const bloodDonate = {
       name,
       time,
       address,
       target,
+      staffList:nameList.map(index=> index.value),
       // receive,
       status
     };
     const responseCreate = await updateBloodDonate(id, bloodDonate);
+
     setLoading(false);
     if (responseCreate.success) {
       onClose();
@@ -214,6 +255,22 @@ function UpdateStatusBloodDonateModal({ id }) {
                 onChange={updateExistingBloodDonateDetails}
               />
             </FormControl> */}
+<FormControl >
+<FormLabel>Chọn nhân viên</FormLabel>
+{/* {console.log(options)} */}
+            <Select
+          ref={initialRef}
+            value={options.find(obj => obj.value === staffList)}
+      closeMenuOnSelect={false}
+      onChange={handleChange}
+      defaultValue={defaults}
+      components={animatedComponents}
+
+      isMulti
+      
+      options={options}
+    />
+             </FormControl>
 
 
           </ModalBody>

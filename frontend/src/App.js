@@ -14,7 +14,9 @@ import {
    StaffDetaislPage,
   DonateDetaislPage,
   BloodDonatesPage,
+  ViewBloodStoragePage,
   DonatePage,
+  ViewBloodDonatePage,
 } from './pages';
 
 
@@ -26,7 +28,9 @@ function App() {
         <PrivateRoute exact path='/'>
           <Dashboard />
         </PrivateRoute>
-
+        <PrivateRoute exact path='/infors'>
+          <InforsPage />
+          </PrivateRoute>
 
         <PrivateRoute exact path='/cashFlows'>
           <CashFlowsPage />
@@ -36,18 +40,24 @@ function App() {
           <BloodDonatesPage />
           </PrivateRoute>
 
+          <PrivateRoute exact path='/bloodDonates/:id'>
+          <ViewBloodDonatePage />
+          </PrivateRoute>
+
           
           <PrivateRoute exact path='/bloodStorages'>
           <BloodStoragesPage />
+          </PrivateRoute>
+
+          <PrivateRoute exact path='/bloodStorages/:id'>
+          <ViewBloodStoragePage />
           </PrivateRoute>
 
           <PrivateRoute exact path='/donates'>
           <DonatePage />
           </PrivateRoute>
 
-          <PrivateRoute exact path='/infors'>
-          <InforsPage />
-          </PrivateRoute>
+        
 
           <PrivateRoute exact path='/staffs'>
           <StaffsPage />

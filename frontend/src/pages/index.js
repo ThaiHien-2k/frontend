@@ -12,7 +12,8 @@ import StaffDetaislPage from './StaffDetailsPage';
 import DonatePage from './DonatePage';
 import DonateDetaislPage from './DonateDetailPage';
 import InforDetaislPage from './InforDetailPage';
-
+import ViewBloodDonatePage from './ViewBloodDonatePage';
+import ViewBloodStoragePage from'./ViewBloodStoragePage';
 export {
   Dashboard,
   LoginPage,
@@ -22,7 +23,9 @@ export {
   InforDetaislPage,
   CashFlowsPage,
   BloodStoragesPage,
+  ViewBloodStoragePage,
   BloodDonatesPage,
+  ViewBloodDonatePage,
   AdminsPage,
   DonatePage,
 

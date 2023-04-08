@@ -22,13 +22,14 @@ export const LinkItems = [
 ];
 
 export const LinkItemsStaff = [
-  // { name: 'Dashboard', url: '/', icon: <DashboardIcon /> },
+  { name: 'Dashboard', url: '/', icon: <DashboardIcon /> },
   // { name: 'Quản lý tài khoản', url: '/accounts', icon: <PersonIcon /> },
   // { name: 'Quản lý nhân viên', url: '/staffs', icon: <PeopleIcon /> },
   // { name: 'Quản lý thu chi', url: '/cashFlows', icon: <AttachMoneyIcon /> },
   // { name: 'Quản lý lượng máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
   // { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
   { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIcon /> },
+  // { name: 'Hiến máu', url: '/donates', icon: <AssignmentIcon /> },
 
   
 ];

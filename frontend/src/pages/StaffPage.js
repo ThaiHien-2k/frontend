@@ -23,6 +23,14 @@ function StaffsPage() {
   } = useStaffContext();
 
   const handleRefresh = async () => {
+ 
+  
+    
+ 
+      setStaffList(staffs);
+   
+  
+
     await fetchStaffs();
   };
   const [staffList, setStaffList] = useState([]);

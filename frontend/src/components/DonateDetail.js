@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { BiChevronDown } from 'react-icons/bi';
+// import { BiChevronDown } from 'react-icons/bi';
 import { useDonateContext } from '../context/donate_context';
-import { Link } from 'react-router-dom';
-import moment from 'moment';
+// import { Link } from 'react-router-dom';
+// import moment from 'moment';
 import {
   Table,
   Thead,
@@ -12,10 +12,10 @@ import {
   Td,
  
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
+  // Menu,
+  // MenuButton,
+  // MenuList,
+  // MenuItem,
   SimpleGrid,
 
   HStack,
@@ -25,7 +25,7 @@ import {
 } from '@chakra-ui/react';
 // import UpdateDonateModal from './UpdateDonateModal';
 // import UpdateStatusDonateModal from './UpdateStatusDonateModal'
-import { formatPrice } from '../utils/helpers';
+// import { formatPrice } from '../utils/helpers';
 import { useInforContext } from '../context/infor_context';
 function DonateDetail({ donates, id }) {
   const toast = useToast();
@@ -35,10 +35,10 @@ function DonateDetail({ donates, id }) {
   const donateID = id; 
   // console.log(id);
   const {
-    infors,
-    fetchSingleInfor,
+    // infors,
+    // fetchSingleInfor,
     updateInfor,
-    updateNewInforDetails
+    // updateNewInforDetails
   } = useInforContext();
 
   const handleDelete = async (id,iduser) => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../assets/logo.svg';
-import { Image, Progress, VStack, Text, HStack } from '@chakra-ui/react';
+// import logo from '../assets/logo.svg';
+import {  Progress, VStack, Text, HStack } from '@chakra-ui/react';
 
 function PreLoader() {
   return (

@@ -5,9 +5,16 @@ import Chart from 'react-apexcharts';
 import { Flex } from "@chakra-ui/react";
 import { bloodStorages_url } from "../utils/constants";
 import axios from "axios";
-import moment from "moment";
+// import moment from "moment";
+import { useUserContext } from '../context/user_context';
 import { useBloodStorageContext } from "../context/bloodStorage_context";
 import { useBloodDonateContext } from "../context/bloodDonate_context";
+import { HStack } from '@chakra-ui/react';
+import DonateTable from '../components/DonateTable';
+// import { MdOutlineRefresh } from 'react-icons/md';
+
+  
+
 export default function Dashboard() {
   const [bloodO, setBLoodO]= useState([]);
   const [bloodA, setBLoodA]= useState([]);
@@ -15,8 +22,8 @@ export default function Dashboard() {
   const [bloodAB, setBLoodAB]= useState([]);
   const [data, setData]= useState([]);
   const [name, setName]= useState([]);
-  
-  
+ 
+ 
   const [A, setA]= useState([]);
   const [B, setB]= useState([]);
   const [AB, setAB]= useState([]);
@@ -39,6 +46,29 @@ const {
 } = useBloodDonateContext();
 
 
+
+// const handleRefresh = async () => {
+//   // await fetchBloodDonates();
+// };
+
+
+const [data2, setData2] = useState([]);
+
+
+
+  useEffect(()=>{
+    const getdata2 =  () => {
+ 
+      setData2(bloodDonates.filter(index=> index.status.includes('Chưa thực hiện')));
+
+  console.log(data);
+}
+
+    
+
+getdata2();
+    },[]);
+
    const getdata= async()=>{     
 
         const response = await axios.get(bloodStorages_url+'/getBlood');
@@ -60,14 +90,9 @@ const {
     useEffect(()=>{
       const getdataChart =  () => {
        
-        data.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o));
+        data.push(bloodDonates.filter(o => o.status.includes('Đã thực hiện')).sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(index=>index));
         
-        // name.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.name));
-        // A.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.A));
-        // B.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.B));
-        // O.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.O));
-        // AB.push(bloodDonates.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(o => o.AB));
-   
+     
         data[0].forEach(index=> name.push(index.name));
         data[0].forEach(index=> A.push(index.A));
         data[0].forEach(index=> O.push(index.O));
@@ -75,14 +100,27 @@ const {
         data[0].forEach(index=> B.push(index.B));
     // setA(A);
     // setAB(AB);
-    console.log(name)
+    // console.log(bloodDonates.filter(o => o.status.includes('Đã thực hiện')).sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4))
   }
 
       
 
       getdataChart();
       },[]);
-
+      const { currentUser } = useUserContext();
+      if(currentUser.privilege==='staff'){
+        return (
+          <SidebarWithHeader>
+            <HStack mb={5}>
+             
+            </HStack>
+          
+            <DonateTable bloodDonates={data2} />
+          </SidebarWithHeader>
+        );
+      }
+      
+      else
    return (
     <SidebarWithHeader>
       <DashboardCards />

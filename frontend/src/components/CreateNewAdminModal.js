@@ -102,6 +102,7 @@ function CreateNewAdminModal() {
               <Input
                 placeholder='Password'
                 name='password'
+                type='password'
                 focusBorderColor='brown.500'
                 value={password}
                 onChange={updateNewAdminDetails}

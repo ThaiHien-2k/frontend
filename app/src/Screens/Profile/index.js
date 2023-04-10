@@ -56,7 +56,7 @@ async function change() {
     
          <View style={styles.container}>
        <Ionicons style={styles.icon} name="person-circle-outline"/>
-       <Text style={styles.text}>Chào, Ph</Text>
+       {/* <Text style={styles.text}>Chào, {auth.email}</Text> */}
        <Text style={styles.text}>Bạn còn 0 ngày nữa đến ngày được hiến máu</Text>
        <TouchableOpacity style={styles.button1} onPress={infor}>
             <Text style={styles.text1}>Thông tin cá nhân</Text>

@@ -12,6 +12,7 @@ import {
   ScrollView,
   Keyboard
 } from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import { db } from '../../Database';
 import {
   addDoc,
@@ -27,79 +28,80 @@ import {
 } from "firebase/firestore";
 import { getAuth, Unsubscribe } from "firebase/auth";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import axios from 'axios';
+// import { getAuth } from "firebase/auth";
+
 
 export default function InforPage({ navigation }) {
+  const auth = getAuth().currentUser;
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([])
 
   const [task, setTask] = useState([])
+  // const bloodStorage_remaining = `http://localhost:5000/api/infors`;
 
-  // async function createTasks() {
-  //   await addDoc(collection(db, 'tasks'), {
-  //     descripition: task,
-  //   })
-  //   Keyboard.dismiss()
-  // }
-
-  // async function querySnapShotUser() {
-
-  //   const usersQuery = collection(db, 'tasks');
-  //   await onSnapshot(usersQuery, (snapshopt) => {
-  //     let listTask = []
-  //     snapshopt.forEach((doc) => {
-  //       setTask()
-  //       listTask.push(doc.data())
-  //       setTask(listTask)
-  //       Keyboard.dismiss()
-  //       return true
-  //     })
-  //   })
-  // }
-
-
-
-  // async function deleteItem() {
-  //   alert('Delete')
-  // }
-
-  // const renderItemTask = ({ item }) => {
-  //   return (
-  //     <View style={styles.cardViewItem}>
-  //       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-  //         <TouchableOpacity onPress={deleteItem} style={styles.buttonDelete}>
-  //           <MaterialIcons
-  //             name="delete"
-  //             size={30}
-  //             color="#232323"
-  //           />
-  //         </TouchableOpacity>
-  //       </View>
-  //       <Text style={styles.textItemDescription}> {item.descripition} </Text>
-  //     </View>
-  //   )
-  // }
-
-  // useEffect(() => {
-  //   querySnapShotUser();
-  // }, []);
-
-  return (
-         <View style={styles.container}>
-        
-        <Text>CMND/CCCD</Text>
-           <Text>Họ và tên</Text>
-           <Text>Số điện thoại</Text>
-           <Text>Địa chỉ</Text>
-           <Text>Đơn vị</Text>
-           <Text>Giới tính: </Text>
-           <Text>Số lần hiến</Text>
-           <Text>Tổng lượng máu đã hiến:</Text>
-           <Text>Nhóm máu</Text>
-           <Text>Trạng thái</Text>
-          
  
-        
-        </View>
+  const getData = async () => {
+    try {
+      const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
+  setData(response.data.data);
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setLoading(false);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+ 
+
+  // setData(response);
+  // console.log(response);
+
+}
+useEffect( () => {
+  getData();
+  }, [])
+
+ 
+// const [remainList, setRemainlist] = useState([]);
+// useEffect(()=>{
+// const fetchCashFlowsRemaining = async () => {
+ 
+//     const response = await axios.get(bloodStorage_remaining);
+   
+//     setRemainlist('haha');
+// };
+// fetchCashFlowsRemaining();
+// },[]);
+    if (!data) return (
+    <View style={styles.container}>
+       
+      <Text style={styles.text1}>Bạn chưa có thông tin!</Text>
+
+  
+       </View>);
+  else 
+  return (
+    <View style={{flex: 1, padding: 24}}>
+    {isLoading ? (
+      <ActivityIndicator />
+    ) : (
+      <View >
+       
+         <Text style={styles.text2}> <Text style={styles.text3}>CMND/CCCD:</Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.countryID)}</Text>
+             <Text style={styles.text2}> <Text style={styles.text3}>Họ và tên: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name)}</Text>
+             <Text style={styles.text2}><Text style={styles.text3}>Số điện thoại: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.phone)}</Text>
+            <Text style={styles.text2}><Text style={styles.text3}>Địa chỉ: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.address)}</Text>
+              <Text style={styles.text2}><Text style={styles.text3}>Số lần hiến: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.donateTime)}</Text>
+     <Text style={styles.text2}><Text style={styles.text3}>Nhóm máu: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.typeBlood)}</Text>
+           <Text style={styles.text2}><Text style={styles.text3}>Trạng thái: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.status)}</Text>
+          
      
-  );
+          </View>
+    )}
+  </View>)
+   
+
 }
 
 const styles = StyleSheet.create({
@@ -110,5 +112,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
+  text1: {
+    color: 'red',
+    fontSize: 50,
+    padding: 5,
+    textAlign: 'left',
+  },
  
+  text2: {
+    textAlign: 'left',
+    color: 'black',
+    fontSize: 20,
+    padding: 10,
+    fontWeight: 'normal',
+    textAlign: 'left',
+  },
+  text3: {
+    textAlign: 'left',
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 18,
+    padding: 10,
+    textAlign: 'left',
+  },
 });

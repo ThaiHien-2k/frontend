@@ -28,14 +28,14 @@ const PrivateRoute = ({ children, ...rest }) => {
   //     <Redirect to={location.state?.from ?? '/infors'} />
   //   );
   // }
-  if (rest.path === '/') {
-    return currentUser &&
-      ['staff'].includes(currentUser.privilege) ? (
-      <Route {...rest}>{children}</Route>
-    ) : (
-      <Redirect to={location.state?.from ?? '/'} />
-    );
-  }
+  // if (rest.path === '/') {
+  //   return currentUser &&
+  //     ['staff'].includes(currentUser.privilege) ? (
+  //     <Route {...rest}>{children}</Route>
+  //   ) : (
+  //     <Redirect to={location.state?.from ?? '/'} />
+  //   );
+  // }
 
   if (rest.path === '/CashFlows') {
     return currentUser &&

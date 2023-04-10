@@ -9,22 +9,22 @@ import db from '../../Database/';
 
 export default function SingUp({ navigation }) {
 
-    const [name, setName] = useState('');
+    // const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [erorSingUp, setErrorSingUp] = useState(false)
-
+    const [cfPass, setCfPass] = useState('');
     async function singUp() {
+        if(password===cfPass){
         const auth = getAuth()
         createUserWithEmailAndPassword(auth, email, password)
+     
             .then((value) => {
                 // Signed in 
                 const user = value.user;
                 if (user) {
-                    navigation.navigate('Home')
-                } else {
-                    console.log('error');
-                }
+                    navigation.navigate('myTabs', { userID: user.uid })
+                  } else { console.log('error'); }
             })
             .catch((error) => {
                 console.log(error.code);
@@ -32,6 +32,8 @@ export default function SingUp({ navigation }) {
                 setErrorSingUp(true)
             });
     }
+    else  setErrorSingUp(true);
+}
 
     useEffect(() => {
     }, [])
@@ -46,16 +48,7 @@ export default function SingUp({ navigation }) {
                     <StatusBar style="light" />
 
                     <Text style={styles.textMain}>Đăng ký</Text>
-                    <TextInput style={styles.TextInput}
-                        placeholder="Tên"
-                        placeholderTextColor="#90D700"
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        keyboardType='default'
-                        value={name}
-                        variant="outlined" label="Label"
-                        onChangeText={(text) => setName(text)}
-                    />
+                 
 
                     <TextInput style={styles.TextInput}
                         placeholder="Email"
@@ -79,6 +72,18 @@ export default function SingUp({ navigation }) {
                         secureTextEntry
                         onChangeText={(text) => setPassword(text)}
                     />
+
+                    <TextInput style={styles.TextInput}
+                        placeholder="Confirm Password"
+                        placeholderTextColor="#90D700"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        value={cfPass}
+                        variant="outlined" label="Label"
+                        keyboardType='numeric'
+                        secureTextEntry
+                        onChangeText={(t) => setCfPass(t)}
+                    />  
 
                     {erorSingUp === true
                         ? <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

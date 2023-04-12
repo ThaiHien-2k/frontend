@@ -86,7 +86,7 @@ useEffect( () => {
     {isLoading ? (
       <ActivityIndicator />
     ) : (
-      <View >
+      <View style={styles.view} >
        
          <Text style={styles.text2}> <Text style={styles.text3}>CMND/CCCD:</Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.countryID)}</Text>
              <Text style={styles.text2}> <Text style={styles.text3}>Họ và tên: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name)}</Text>
@@ -111,6 +111,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
+  },
+  view: {
+   borderWidth:1,
+backgroundColor:'#d6d6c2'
   },
   text1: {
     color: 'red',

@@ -197,8 +197,8 @@ router
 router
 .route('/infor/:id')
 .put(
-  auth.checkUserAuthentication,
-  auth.checkAdminPrivileges( 'admin'),
+  // auth.checkUserAuthentication,
+  // auth.checkAdminPrivileges( 'admin'),
   inforController.updateInfor
 )
 .delete(

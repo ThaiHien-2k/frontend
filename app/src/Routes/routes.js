@@ -7,13 +7,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Screens/Home'
 import Login from '../Screens/Login'
 import SingUp from '../Screens/SingUp'
-import Message from '../Screens/Message';
+import BLoodDonate from '../Screens/BLoodDonate';
 import Statistic from '../Screens/Statistic';
 import { Ionicons } from "@expo/vector-icons";
 import Profile from "../Screens/Profile";
 import changePage from '../Screens/change';
 import InforPage from '../Screens/Infor';
 // import myTabs from '../component/tab';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,11 +54,11 @@ function myTabs() {
     /> 
    
     <Tab.Screen
-      name="Chat"
-      component={Message}
+      name="Các buổi hiến máu sắp tới"
+      component={BLoodDonate}
       options={{
         tabBarIcon: ({ color }) => (
-          <Ionicons name="chatbubble-ellipses-outline" color={color} size={26} />
+          <Ionicons name="calendar-outline" color={color} size={26} />
         ),
       }}
     /> 

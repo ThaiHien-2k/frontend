@@ -36,13 +36,13 @@ const PrivateRoute = ({ children, ...rest }) => {
   //     <Redirect to={location.state?.from ?? '/'} />
   //   );
   // }
-
+  
   if (rest.path === '/CashFlows') {
     return currentUser &&
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/CashFlows'} />
     );
   }
 
@@ -51,7 +51,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/bloodStorages'} />
     );
   }
 
@@ -60,7 +60,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/staffs'} />
     );
   }
 
@@ -70,7 +70,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['staff', 'admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/infors'} />
     );
   }
 
@@ -79,7 +79,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       ['staff', 'admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/donates'} />
     );
   }
 
@@ -88,7 +88,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     ['staff', 'admin'].includes(currentUser.privilege) ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/bloodDonates'} />
     );
   }
   
@@ -97,7 +97,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     return currentUser && currentUser.privilege === 'admin' ? (
       <Route {...rest}>{children}</Route>
     ) : (
-      <Redirect to={location.state?.from ?? '/'} />
+      <Redirect to={location.state?.from ?? '/accounts'} />
     );
   }
 

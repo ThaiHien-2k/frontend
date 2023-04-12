@@ -76,7 +76,7 @@ export default function Login({ navigation, route }) {
           <Text style={styles.textMain}>Đăng nhập</Text>
           <TextInput style={styles.textInput}
             placeholder="Email"
-            placeholderTextColor="#90D700"
+            placeholderTextColor="#ffcccc"
             autoCapitalize="none"
             autoCorrect={false}
             keyboardType='email-address'
@@ -86,7 +86,7 @@ export default function Login({ navigation, route }) {
 
           <TextInput style={styles.textInput}
             placeholder="Password"
-            placeholderTextColor="#90D700"
+            placeholderTextColor="#ffcccc"
             autoCapitalize="none"
             autoCorrect={false}
             value={password}
@@ -138,14 +138,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#232323',
     padding: 10,
-    color: '#90D700',
+    color: '#ffcccc',
   },
   buttonLogin: {
     width: 300,
     height: 50,
     borderRadius: 5,
     margin: 5,
-    backgroundColor: '#90D700',
+    backgroundColor: '#ffcccc',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
     borderWidth: 1,
-    borderColor: '#90D700',
+    borderColor: '#ffcccc',
   },
   textLogin: {
     color: '#232323',
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   textSingUp: {
-    color: '#90D700',
+    color: '#ffcccc',
     fontSize: 18,
     padding: 10,
     textAlign: 'center',
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   textMain: {
-    color: '#90D700',
+    color: '#ffcccc',
     fontSize: 60,
     textAlign: 'center',
     fontWeight: 'bold',

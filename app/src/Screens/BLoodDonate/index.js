@@ -32,8 +32,7 @@ import { Avatar, Card, IconButton } from 'react-native-paper';
 import axios from 'axios';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
-export default function Home({ navigation }) {
-
+export default function BLoodDonate({ navigation }) {
   const [data, setData] = useState([])
 
   const [isLoading, setLoading] = useState(true);
@@ -43,10 +42,7 @@ export default function Home({ navigation }) {
       data: data,
     },
 
-    {
-      title: 'Thông báo',
-      data: data,
-    },
+
    
     
   ];
@@ -55,7 +51,7 @@ export default function Home({ navigation }) {
     try {
    
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
-      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)).slice(0, 3));
+      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
   // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
@@ -89,9 +85,9 @@ useEffect( () => {
         </ScrollView>
         </SafeAreaView>
       )}
-      renderSectionHeader={({section: {title}}) => (
-        <Text style={styles.header}>{title}</Text>
-      )}
+      // renderSectionHeader={({section: {title}}) => (
+      //   <Text style={styles.header}>{title}</Text>
+      // )}
     />
   </SafeAreaView>
 
@@ -121,3 +117,4 @@ const styles = StyleSheet.create({
     // borderWidth:1
   },
 });
+

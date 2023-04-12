@@ -52,7 +52,7 @@ export default function SingUp({ navigation }) {
 
                     <TextInput style={styles.TextInput}
                         placeholder="Email"
-                        placeholderTextColor="#90D700"
+                        placeholderTextColor="#ffcccc"
                         autoCapitalize="none"
                         autoCorrect={false}
                         keyboardType='email-address'
@@ -63,7 +63,7 @@ export default function SingUp({ navigation }) {
 
                     <TextInput style={styles.TextInput}
                         placeholder="Password"
-                        placeholderTextColor="#90D700"
+                        placeholderTextColor="#ffcccc"
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={password}
@@ -75,7 +75,7 @@ export default function SingUp({ navigation }) {
 
                     <TextInput style={styles.TextInput}
                         placeholder="Confirm Password"
-                        placeholderTextColor="#90D700"
+                        placeholderTextColor="#ffcccc"
                         autoCapitalize="none"
                         autoCorrect={false}
                         value={cfPass}
@@ -124,14 +124,14 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#232323',
         padding: 10,
-        color: '#90D700',
+        color: '#ffcccc',
     },
     buttonSingUp: {
         width: 300,
         height: 50,
         borderRadius: 5,
         margin: 5,
-        backgroundColor: '#90D700',
+        backgroundColor: '#ffcccc',
     },
     textSingUp: {
         color: '#232323',
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     textMain: {
-        color: '#90D700',
+        color: '#ffcccc',
         fontSize: 60,
         textAlign: 'center',
         fontWeight: 'bold',

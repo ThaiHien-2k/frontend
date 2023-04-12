@@ -135,6 +135,48 @@ exports.getSingleDonateDetails = catchAsyncError(async (req, res, next) => {
 
 
 
+
+exports.Amount = catchAsyncError(async (req, res, next) => {
+
+  var idU =  req.params.id;
+  let total =0;
+  const donate =await Donate.find();
+  const data = donate.map((item, index) => {
+    const {
+      _id: id,
+      iduser,
+      amount,
+
+     
+    //   staff,
+   
+
+      
+    } = item;
+    const newItem = {
+        id,
+     iduser,
+      amount,
+     
+    };
+   
+
+    if(iduser == idU){
+      total= total + amount;
+      return total;
+    }
+ 
+  
+  });
+  res.status(200).json({
+
+    total,
+    
+  });
+      
+});
+
+
 exports.getA = catchAsyncError(async (req, res, next) => {
   if (!req.params.id) {
     return next(new ErrorHandler('Donate Not Found', 400));

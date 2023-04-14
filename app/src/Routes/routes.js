@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Profile from "../Screens/Profile";
 import changePage from '../Screens/change';
 import InforPage from '../Screens/Infor';
+import CreatePost  from '../Screens/CreatePost';
 // import myTabs from '../component/tab';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -52,6 +53,16 @@ function myTabs() {
         ),
       }}
     /> 
+     <Tab.Screen
+      name="Tạo bài viết"
+      component={CreatePost}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <Ionicons name="add-circle-outline" color={color} size={26} />
+        ),
+      }}
+    /> 
+   
    
     <Tab.Screen
       name="Các buổi hiến máu sắp tới"

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   SectionList,
   ScrollView,
+  TouchableOpacity
   // StatusBar,
 } from 'react-native';
 import { db } from '../../Database';
@@ -28,8 +29,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LogBox } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import { Modal, Portal, Button, Provider } from 'react-native-paper';
 import { Avatar, Card, IconButton } from 'react-native-paper';
 import axios from 'axios';
+import moment from 'moment';
+
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
 export default function Home({ navigation }) {
@@ -38,24 +42,38 @@ export default function Home({ navigation }) {
 
   const [isLoading, setLoading] = useState(true);
   const DATA = [
-    {
-      title: 'Các buổi hiến sắp tới',
-      data: data,
-    },
+    // {
+    //   title: 'Các buổi hiến sắp tới',
+    //   data: data,
+    // },
 
     {
-      title: 'Thông báo',
+
       data: data,
     },
    
     
   ];
+  // const [count, setCount] = useState(1)
+  const click = async (id) => {
+    //  count = count++;
+    // setCount(count+1);
+    // console.log(count);
+    console.log(id);
 
+}
+
+// const view =  (id) => {
+//   // navigation.navigate('myTabs');
+//   console.log(id)
+
+// }
+  
   const getData = async () => {
     try {
    
-      const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
-      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)).slice(0, 3));
+      const response3 = await axios.get(`http://10.0.2.2:5000/api/posts`);
+      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)).slice(0, 3));
       // console.log(response3.data.data.map(i=>i.status))
   // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
@@ -69,30 +87,46 @@ export default function Home({ navigation }) {
 
 useEffect( () => {
   getData();
- console.log(data)
+ 
   // getDta();
   }, [])
 
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {backgroundColor: 'white', padding: 20};
   return (
+
     <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>Bài viết mới</Text>
+      <Provider>
     <SectionList
       sections={DATA}
       keyExtractor={(item, index) => item + index}
       renderItem={({item}) => (
         <SafeAreaView>
         <ScrollView>
+      
+                     
+                   
         <View style={styles.item}>
-          <Text style={styles.title}>Tên Buổi hiến: {item.name}</Text>
-          <Text style={styles.title}>Thời gian: {item.time}</Text>
-          <Text style={styles.title}>Địa điểm: {item.address}</Text>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.newsSummary}>   {moment(item.CreatedAT).format("MM:HHA D/M/YYYY")}</Text>
+          <Text style={styles.newsTitle}>   {item.title}</Text>
+          {/* <Text style={styles.newsSummary}>{item.content}</Text> */}
+          <Text style={styles.like} ><Button   onPress={() => click(item.id)}>
+          --Xem thêm--
+  </Button></Text>
         </View>
+    
         </ScrollView>
         </SafeAreaView>
+        
       )}
-      renderSectionHeader={({section: {title}}) => (
-        <Text style={styles.header}>{title}</Text>
-      )}
+      
     />
+    </Provider>
   </SafeAreaView>
 
   );
@@ -109,15 +143,50 @@ const styles = StyleSheet.create({
     // padding: 20,
     marginHorizontal:8,
     marginVertical: 4,
-    borderWidth:1
+    borderWidth:1,
+    borderRadius:10
   },
   header: {
-    fontSize: 32,
+    fontSize: 20,
+    textAlign:'center',
     backgroundColor: '#fff',
+    padding: 8
   },
   title: {
     padding:5,
     fontSize: 15,
     // borderWidth:1
   },
+  
+  name : {
+    padding: 8,
+    paddingBottom:0,
+    color : '#4f4f4f',
+    fontSize : 20,
+    fontWeight:'bold',
+    textAlign : 'left',
+},
+
+  newsTitle : {
+    padding: 8,
+    paddingTop:0,
+    color : '#4f4f4f',
+    fontSize : 15,
+    textAlign : 'left',
+},
+newsSummary : {
+  padding: 8,
+    color : '#bababa',
+    paddingTop:0,
+    fontSize : 14,
+    maxLine:30,
+    textAlign : 'left',
+},
+like : {
+  padding: 8,
+
+    fontSize : 14,
+    maxLine:30,
+    textAlign : 'center',
+},
 });

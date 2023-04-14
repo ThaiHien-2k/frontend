@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
 const adminController = require('../controllers/adminController');
-const productController = require('../controllers/productController');
+
 const bloodStorageController = require('../controllers/bloodStorageController');
 const staffController = require('../controllers/staffController');
+const postController = require('../controllers/postController');
 const inforController = require('../controllers/inforController');
 const cashFlowController = require('../controllers/cashFlowController');
 const bloodDonateController = require('../controllers/bloodDonateController')
@@ -56,30 +57,6 @@ router
     auth.checkUserAuthentication,
     auth.checkAdminPrivileges('admin'),
     adminController.deleteAdmin
-  );
-
-// create a new product
-router
-  .route('/product/new')
-  .post(
-    auth.checkUserAuthentication,
-    auth.checkAdminPrivileges('staff', 'admin'),
-    productController.createProduct
-  );
-
-
-// send, update, delete a single product
-router
-  .route('/product/:id')
-  .put(
-    auth.checkUserAuthentication,
-    auth.checkAdminPrivileges('staff', 'admin'),
-    productController.updateProduct
-  )
-  .delete(
-    auth.checkUserAuthentication,
-    auth.checkAdminPrivileges('staff', 'admin'),
-    productController.deleteProduct
   );
 
 
@@ -230,5 +207,28 @@ router
     auth.checkAdminPrivileges( 'admin'),
     bloodStorageController.deleteBloodStorage
   );
+
+
+  // create a new Staff
+router
+.route('/post/new')
+.post(
+ 
+  postController.createPost
+);
+
+
+// send, update, delete a single Post
+router
+.route('/post/:id')
+.put(
+  
+  postController.updatePost
+)
+.delete(
+  auth.checkUserAuthentication,
+  auth.checkAdminPrivileges( 'admin'),
+  postController.deletePost
+);
 
 module.exports = router;

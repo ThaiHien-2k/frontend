@@ -30,6 +30,7 @@ import { LogBox } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { Avatar, Card, IconButton } from 'react-native-paper';
 import axios from 'axios';
+import moment from 'moment';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
 export default function BLoodDonate({ navigation }) {
@@ -79,7 +80,7 @@ useEffect( () => {
         <ScrollView>
         <View style={styles.item}>
           <Text style={styles.title}>Tên Buổi hiến: {item.name}</Text>
-          <Text style={styles.title}>Thời gian: {item.time}</Text>
+          <Text style={styles.title}>Thời gian: {moment(item.time).format("MM:HHA D/M/YYYY")}</Text>
           <Text style={styles.title}>Địa điểm: {item.address}</Text>
         </View>
         </ScrollView>

@@ -11,10 +11,10 @@ const app = express();
 
 // requiring routers
 
-const productRouter = require('./routes/productRouter');
 const inforRouter = require('./routes/inforRouter');
 const bloodStorageRouter = require('./routes/bloodStorageRouter');
 const staffRouter = require('./routes/staffRouter');
+const postRouter = require('./routes/postRouter');
 const donateRouter = require('./routes/donateRouter');
 const cashFlowRouter = require('./routes/cashFlowRouter');
 const adminRouter = require('./routes/adminRouter');
@@ -63,11 +63,12 @@ app.get('/', (req, res) => {
 app.use('/api/infors', inforRouter);
 
 app.use('/api/bloodStorages', bloodStorageRouter);
+app.use('/api/posts', postRouter);
 app.use('/api/staffs', staffRouter);
 app.use('/api/donates', donateRouter);
 app.use('/api/bloodDonates', bloodDonateRouter);
 app.use('/api/cashFlows', cashFlowRouter);
-app.use('/api/products', productRouter);
+
 app.use('/api/admin', adminRouter);
 
 

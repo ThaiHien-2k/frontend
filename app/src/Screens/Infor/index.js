@@ -45,7 +45,7 @@ export default function InforPage({ navigation }) {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
   setData(response.data.data);
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -88,13 +88,13 @@ useEffect( () => {
     ) : (
       <View style={styles.view} >
        
-         <Text style={styles.text2}> <Text style={styles.text3}>CMND/CCCD:</Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.countryID)}</Text>
-             <Text style={styles.text2}> <Text style={styles.text3}>Họ và tên: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name)}</Text>
-             <Text style={styles.text2}><Text style={styles.text3}>Số điện thoại: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.phone)}</Text>
-            <Text style={styles.text2}><Text style={styles.text3}>Địa chỉ: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.address)}</Text>
-              <Text style={styles.text2}><Text style={styles.text3}>Số lần hiến: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.donateTime)}</Text>
-     <Text style={styles.text2}><Text style={styles.text3}>Nhóm máu: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.typeBlood)}</Text>
-           <Text style={styles.text2}><Text style={styles.text3}>Trạng thái: </Text> {data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.status)}</Text>
+         <Text style={styles.text2}> <Text style={styles.text3}>CMND/CCCD:</Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.countryID)}</Text>
+             <Text style={styles.text2}> <Text style={styles.text3}>Họ và tên: </Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.name)}</Text>
+             <Text style={styles.text2}><Text style={styles.text3}>Số điện thoại: </Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.phone)}</Text>
+            <Text style={styles.text2}><Text style={styles.text3}>Địa chỉ: </Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.address)}</Text>
+              <Text style={styles.text2}><Text style={styles.text3}>Số lần hiến: </Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.donateTime)}</Text>
+     <Text style={styles.text2}><Text style={styles.text3}>Nhóm máu: </Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.typeBlood)}</Text>
+           <Text style={styles.text2}><Text style={styles.text3}>Trạng thái: </Text> {data.filter(index=> index.email.includes(auth.email)).map(i=>i.status)}</Text>
           
      
           </View>
@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
   },
   view: {
    borderWidth:1,
-backgroundColor:'#d6d6c2'
+// backgroundColor:'#d6d6c2'
+backgroundColor: '#fff',
   },
   text1: {
     color: 'red',

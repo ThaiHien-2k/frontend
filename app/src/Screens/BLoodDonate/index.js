@@ -54,7 +54,7 @@ export default function BLoodDonate({ navigation }) {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
       setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   item: {
     // backgroundColor: '#f9c2ff',
     // padding: 20,
+    backgroundColor: '#fff',
     marginHorizontal:8,
     marginVertical: 4,
     borderWidth:1

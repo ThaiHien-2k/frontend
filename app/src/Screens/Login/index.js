@@ -8,6 +8,7 @@ import {
   TouchableOpacity, 
   KeyboardAvoidingView, 
   TouchableWithoutFeedback, 
+  Image,
   View } from 'react-native';
 import { 
   getAuth, 
@@ -16,7 +17,7 @@ import {
   Unsubscribe } from "firebase/auth";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
+import {  Card } from 'react-native-paper';
 import db from '../../Database/';
 
 
@@ -67,12 +68,18 @@ export default function Login({ navigation, route }) {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}>
       <TouchableWithoutFeedback>
         <SafeAreaView>
           <StatusBar style="light" />
-
+          <Card.Cover style={styles.image} source={{ uri: 'https://media.istockphoto.com/id/1202899120/vi/vec-to/gi%E1%BB%8Dt-m%C3%A1u-%C4%91%E1%BB%8F-trong-tay-b%E1%BB%8B-c%C3%B4-l%E1%BA%ADp-tr%C3%AAn-n%E1%BB%81n-tr%E1%BA%AFng-thi%E1%BA%BFt-k%E1%BA%BF-vector-t%C3%ACnh-nguy%E1%BB%87n-vi%C3%AAn-hi%E1%BA%BFn-m%C3%A1u.jpg?s=170667a&w=0&k=20&c=atjeQGrKHcqRE8i50PORJct_QcWoU0AsaqkLPr81pyQ=' }} />
+          {/* <Image
+        // style={styles.tinyLogo}
+        source={{
+          uri: 'https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fvi%2Fvec-to%2Flogo-hi%25E1%25BA%25BFn-m%25C3%25A1u-m%25E1%25BB%2599t-gi%25E1%25BB%258Dt-m%25C3%25A1u-gm1155180616-314399482&psig=AOvVaw2IgeZR1IpgJMUTUj7FD10V&ust=1681837067502000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOjiyKyzsf4CFQAAAAAdAAAAABAJ',
+        }}
+      /> */}
           <Text style={styles.textMain}>Đăng nhập</Text>
           <TextInput style={styles.textInput}
             placeholder="Email"
@@ -140,6 +147,13 @@ const styles = StyleSheet.create({
     padding: 10,
     color: '#ffcccc',
   },
+  image: {
+    height: 100,
+    width:100,
+    marginHorizontal:120
+    // textAlign: 'center',
+    // fontSize: 18,
+},
   buttonLogin: {
     width: 300,
     height: 50,

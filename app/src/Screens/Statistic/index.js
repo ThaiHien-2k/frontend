@@ -42,7 +42,7 @@ import { List } from 'react-native-paper';
 import { Select } from "native-base";
 export default function Statistic({ navigation }) {
 
-  
+  const auth = getAuth().currentUser;
   const [id, setId] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -53,8 +53,8 @@ export default function Statistic({ navigation }) {
   const getId = async () => {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-      setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
-      setDntime(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.donateTime).toString());
+      setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
+      setDntime(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.donateTime).toString());
       
       const response2 = await axios.get(`http://10.0.2.2:5000/api/donates`);
       setData(response2.data.data.filter(index=> index.iduser.includes(id)).map(i=>i.idBD).toString());
@@ -62,7 +62,7 @@ export default function Statistic({ navigation }) {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
       setDta(response3.data.data.filter(index=> data.includes(index.id)));
       setTotal(0);
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -181,14 +181,14 @@ const handlePress = () => setExpanded(!expanded);
 
 const styles = StyleSheet.create({
   container: {
-
+    // backgroundColor: '#fff',
     paddingTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
 
   },
   table:{
-    
+    // backgroundColor: '#fff',
     padding:20,
     fontSize:20,
     
@@ -201,8 +201,8 @@ const styles = StyleSheet.create({
   },
 
   chosse:{
-    marginLeft:150,
-    marginRight:50
+    marginLeft:170,
+    marginRight:30
    },
   cell:{
     padding:10,

@@ -7,7 +7,8 @@ import {
   SafeAreaView,
   SectionList,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  RefreshControl,
   // StatusBar,
 } from 'react-native';
 import { db } from '../../Database';
@@ -54,20 +55,31 @@ export default function Home({ navigation }) {
    
     
   ];
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getData();
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 200);
+  }, []);
   // const [count, setCount] = useState(1)
   const click = async (id) => {
     //  count = count++;
     // setCount(count+1);
     // console.log(count);
-    console.log(id);
+    navigation.navigate('Post',{ id: id });
+    // console.log(id);
 
 }
 
-// const view =  (id) => {
-//   // navigation.navigate('myTabs');
-//   console.log(id)
+const view =  (id) => {
+  // navigation.navigate('Post');
+  // console.log(id)
 
-// }
+}
   
   const getData = async () => {
     try {
@@ -75,7 +87,7 @@ export default function Home({ navigation }) {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/posts`);
       setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)).slice(0, 3));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -91,23 +103,22 @@ useEffect( () => {
   // getDta();
   }, [])
 
-  const [visible, setVisible] = React.useState(false);
 
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
   return (
 
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Bài viết mới</Text>
-      <Provider>
+      {/* <Text style={styles.header}>Các bài viết</Text> */}
+      <ScrollView refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
     <SectionList
+    
       sections={DATA}
       keyExtractor={(item, index) => item + index}
       renderItem={({item}) => (
         <SafeAreaView>
-        <ScrollView>
-      
+       
+       
                      
                    
         <View style={styles.item}>
@@ -120,13 +131,13 @@ useEffect( () => {
   </Button></Text>
         </View>
     
-        </ScrollView>
+       
         </SafeAreaView>
         
       )}
       
     />
-    </Provider>
+  </ScrollView>
   </SafeAreaView>
 
   );
@@ -141,6 +152,7 @@ const styles = StyleSheet.create({
   item: {
     // backgroundColor: '#f9c2ff',
     // padding: 20,
+     backgroundColor: '#fff',
     marginHorizontal:8,
     marginVertical: 4,
     borderWidth:1,

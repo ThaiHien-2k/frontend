@@ -14,6 +14,7 @@ import Profile from "../Screens/Profile";
 import changePage from '../Screens/change';
 import InforPage from '../Screens/Infor';
 import CreatePost  from '../Screens/CreatePost';
+import Post  from '../Screens/Post';
 // import myTabs from '../component/tab';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -95,6 +96,15 @@ function myTabs() {
       )
   }
 
+  // function viewPost() {
+  //   return (
+  //     <Stack.Navigator>
+  //       <Stack.Screen name="Bài viết" component={Post} />
+ 
+  //     </Stack.Navigator>
+  //     )
+  // }
+
   function Change() {
     return (
       <Stack.Navigator>
@@ -113,13 +123,18 @@ export default function Routes() {
           headerShown: false,
         }}
       >
-        {/* <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name="SingUp" component={SingUp} /> */}
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name="SingUp" component={SingUp} />
+        
         <Stack.Screen name="myTabs" component={myTabs} />
+         <Stack.Screen name="Post" component={Post}   />
         <Stack.Screen name="Change" component={Change} />
         <Stack.Screen name="Infor" component={Infor} />
+       
 
       </Stack.Navigator>
+
+      
     </NavigationContainer>
   );
 }

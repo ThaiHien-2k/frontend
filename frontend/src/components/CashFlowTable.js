@@ -42,7 +42,7 @@ function CashFlowsTable({ cashFlows }) {
         duration: 5000,
         isClosable: true,
       });
-      window.location.reload(false);
+     
       return await fetchCashFlows();
     } else {
       return toast({

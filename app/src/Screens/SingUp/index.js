@@ -4,7 +4,7 @@ import { StyleSheet, TextInput, Text, Button,SafeAreaView, TouchableOpacity, Key
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from 'firebase/firestore';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import axios from 'axios';
 import db from '../../Database/';
 import {  Card } from 'react-native-paper';
 
@@ -18,9 +18,18 @@ export default function SingUp({ navigation }) {
     const [cfPass, setCfPass] = useState('');
     async function singUp() {
         if(password===cfPass){
+        const user={
+            name:'',
+            email:email,
+            privilege:'user',
+            password:password
+        }
+      
+        const res = await axios.post(`http://10.0.2.2:5000/api/admin/register`,user);
+        
         const auth = getAuth()
         createUserWithEmailAndPassword(auth, email, password)
-     
+  
             .then((value) => {
                 // Signed in 
                 const user = value.user;

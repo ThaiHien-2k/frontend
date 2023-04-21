@@ -4,26 +4,33 @@ const ErrorHandler = require('../utils/ErrorHandler');
 const catchAsyncError = require('../middleware/CatchAsyncErrors');
 const { sendToken } = require('../utils/jwt');
 
-exports.registerAdmin = catchAsyncError(async (req, res, next) => {
-  const { name, email, password, privilege } = req.body;
+// exports.registerAdmin = catchAsyncError(async (req, res, next) => {
+//   // const { name, email, password, privilege } = req.body;
 
-  // if (!name || !email || !password) {
-  //   return next(new ErrorHandler('Missing fields', 400));
-  // }
-  const admin = await Admin.create({
-    name,
-    email,
-    privilege,
-    password,
-  });
+//   // if (!name || !email || !password) {
+//   //   return next(new ErrorHandler('Missing fields', 400));
+//   // }
+//   const admin = await Admin.create(
+//     req.body
+//   );
+//   res.status(200).json({
+//     success: true,
+//     // data: {
+//     //   id: admin._id,
+//     //   name: admin.name,
+//     //   email: admin.email,
+//     //   privilege: admin.privilege,
+//     // },
+//   });
+// });
+
+exports.registerAdmin = catchAsyncError(async (req, res, next) => {
+  // req.body.admin = req.user.id;
+ 
+  const admin = await Admin.create(req.body);
   res.status(200).json({
     success: true,
-    data: {
-      id: admin._id,
-      name: admin.name,
-      email: admin.email,
-      privilege: admin.privilege,
-    },
+    data: admin,
   });
 });
 

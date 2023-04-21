@@ -82,7 +82,7 @@ export default function Post({ navigation,route}) {
       setData(response3.data.data);
       // console.log(response3.data.data.map(i=>i.status))
       console.log(response3.data.data);
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -116,10 +116,12 @@ useEffect( () => {
       {/* <Text style={styles.header}>Bài viết mới</Text> */}
       <View style={styles.item}>
         <Text style={styles.name}>{data.name}</Text>
-        <Text style={styles.newsSummary}>   {moment(data.CreatedAT).format("MM:HHA D/M/YYYY")}</Text>
-          <Text style={styles.newsTitle}>   {data.title}</Text>
+        <Text style={styles.newsSummary}>   {new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(data.createdAt)}</Text>
+        <View style={styles.item}>  
+        <Text style={styles.newsTitle}>   {data.title}</Text>
           <Text style={styles.content}>   {data.content}</Text>
-          <Text style={styles.content}>   {data.like}</Text>
+          {/* <Text style={styles.content}>   {data.like}</Text> */}
+          </View> 
           </View>
           {/* <View> </View> */}
   </SafeAreaView>

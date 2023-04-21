@@ -91,7 +91,7 @@ function InforDetail({ infor }) {
    getDate();
      getAmount();
 
-  console.log(moment('2023-04-21T06:23:22.478Z').format("D/M/YYYY"))
+  // console.log(moment('2023-04-21T06:23:22.478Z').format("D/M/YYYY"))
 
   return (
     <VStack alignItems='left' justifyContent='left'>
@@ -131,7 +131,8 @@ function InforDetail({ infor }) {
                 <Tr key={index}>
                    <Td>{index+1}</Td>
                 <Td>{name}</Td>
-                  <Td>{moment(getDate(id)).format("D/M/YYYY")}</Td>
+                  <Td>{  new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'})
+        .format(getDate(id))}</Td>
                   <Td>{address}</Td>
                   <Td>{getAmount(id)}ml</Td>
                 </Tr>

@@ -26,20 +26,26 @@ function CashFlowsPage() {
   };
 
   const [cashFlowList, setCashFlowList] = useState([]);
+  const [list, setList] = useState([]);
 
   function setSearchTerm(e){
+   
     // staffs = staffs.filter(staff => staff.countryID < 60);
-    const results = cashFlows.filter(cashFlow => {
-      if (e === "") return cashFlowList
-      return cashFlow.name.toLowerCase().includes(e.toLowerCase())
+    const results = cashFlows.filter(i => {
+      if (e === "") return  setCashFlowList(cashFlows.map(i=>i));
+      else
+      return i.name.toLowerCase().includes(e.toLowerCase())
       })
       setCashFlowList(results);
-    console.log(cashFlows);
+      console.log(cashFlows);
+      console.log(cashFlowList);
   }
 
   useEffect(() => {
-    setCashFlowList(cashFlows);
- 
+    console.log(cashFlows); cashFlowList.push(cashFlows.map(i=>i));
+    console.log(cashFlowList);
+   
+  
 
 }, [])
 
@@ -104,7 +110,7 @@ function CashFlowsPage() {
           Tải lại
         </Button>
       </HStack>
-      <CashFlowsTable cashFlows={cashFlowList} />
+      <CashFlowsTable cashFlows={cashFlows.filter(i=>i.id.includes(cashFlowList.map(i=>i.id)))} />
     </SidebarWithHeader>
   );
 }

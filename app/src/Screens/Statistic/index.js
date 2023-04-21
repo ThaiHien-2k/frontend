@@ -54,16 +54,21 @@ export default function Statistic({ navigation }) {
   const getId = async () => {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-      setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
-      setDntime(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.donateTime).toString());
+      setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
+      setDntime(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.donateTime).toString());
       
+      
+
       const response2 = await axios.get(`http://10.0.2.2:5000/api/donates`);
       setData(response2.data.data.filter(index=> index.iduser.includes(id)).map(i=>i.idBD).toString());
       setDonate(response2.data.data);
+      
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
       setDta(response3.data.data.filter(index=> data.includes(index.id)));
       setTotal(0);
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+      // console.log(id)
+      // console.log(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString())
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -109,6 +114,20 @@ const getOne =  async() => {
 const [expanded, setExpanded] = React.useState(true);
 
 const handlePress = () => setExpanded(!expanded);
+
+if(id===''){
+  return (
+    <SafeAreaView >
+    <ScrollView >
+         <View >
+        <Text style={styles.text}>Bạn chưa hiến lần nào!</Text>
+      
+        </View>
+        </ScrollView>
+    </SafeAreaView>
+  ); 
+}
+else 
   return (
 
     <SafeAreaView >
@@ -144,7 +163,10 @@ const handlePress = () => setExpanded(!expanded);
                     </View>
                     <View style={{flexDirection: 'row',}}>
           <Text style={styles.title}>Thời gian: </Text>
-          <Text style={styles.title2}>{moment(donate.filter(index=> index.idBD.includes(id)).filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt)).format("MM:HH D/M/YYYY")}</Text>
+          <Text style={styles.title2}>{new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'})
+        .format(donate.filter(index=> index.idBD.includes(id))
+        .filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt))
+}</Text>
           </View>
           <View style={{flexDirection: 'row',}}>
           <Text style={styles.title}>Địa điểm:</Text>
@@ -162,14 +184,18 @@ const handlePress = () => setExpanded(!expanded);
             if(num ===1 ){
               return (
                 <View style={styles.item}>
-                <Text style={styles.text}>Lần hiến thứ: {index+1} </Text>
+                <Text style={styles.text}>Lần hiến gần nhất</Text>
                 <View style={{flexDirection: 'row',}}>
                   <Text style={styles.title}>Tên Buổi hiến: </Text>
                   <Text style={styles.title2}>{name}</Text> 
                   </View>
                   <View style={{flexDirection: 'row',}}>
         <Text style={styles.title}>Thời gian: </Text>
-        <Text style={styles.title2}>{moment(donate.filter(index=> index.idBD.includes(id)).filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt)).format("MM:HH D/M/YYYY")}</Text>
+        <Text style={styles.title2}>{
+        new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'})
+        .format(donate.filter(index=> index.idBD.includes(id))
+        .filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt))
+        }</Text>
         </View>
         <View style={{flexDirection: 'row',}}>
         <Text style={styles.title}>Địa điểm:</Text>

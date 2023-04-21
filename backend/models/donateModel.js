@@ -29,7 +29,7 @@ const donateSchema = mongoose.Schema({
 
 
   createdAt: {
-    type: Date,
+    type: String,
     default: Date.now(),
   },
 });

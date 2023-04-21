@@ -37,6 +37,7 @@ function CreateNewCashFlowModal() {
     },
     updateNewCashFlowDetails,
     createNewCashFlow,
+    fetchCashFlows,
   } = useCashFlowContext();
 
 
@@ -81,7 +82,7 @@ function CreateNewCashFlowModal() {
     const responseCreate = await createNewCashFlow(cashFlow);
     setLoading(false);
     if (responseCreate.success) {
-      window.location.reload(false);
+      
       onClose();
       return toast({
         position: 'top',
@@ -90,6 +91,7 @@ function CreateNewCashFlowModal() {
         duration: 5000,
         isClosable: true,
       });
+      return await fetchCashFlows();
     } else {
       return toast({
         position: 'top',

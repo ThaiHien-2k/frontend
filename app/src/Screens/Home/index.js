@@ -85,9 +85,9 @@ const view =  (id) => {
     try {
    
       const response3 = await axios.get(`http://10.0.2.2:5000/api/posts`);
-      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)).slice(0, 3));
+      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -123,7 +123,7 @@ useEffect( () => {
                    
         <View style={styles.item}>
         <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.newsSummary}>   {moment(item.CreatedAT).format("MM:HHA D/M/YYYY")}</Text>
+        <Text style={styles.newsSummary}>   {new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(item.createdAt)}</Text>
           <Text style={styles.newsTitle}>   {item.title}</Text>
           {/* <Text style={styles.newsSummary}>{item.content}</Text> */}
           <Text style={styles.like} ><Button   onPress={() => click(item.id)}>

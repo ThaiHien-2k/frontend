@@ -6,14 +6,14 @@ const jwt = require('jsonwebtoken');
 const adminSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please provide a name'],
-    maxlength: [30, 'Name cannot exceed 30 characters'],
-    minLength: [4, 'Name must be atleast 4 characters long'],
+    // required: [true, 'Please provide a name'],
+    // maxlength: [30, 'Name cannot exceed 30 characters'],
+    // minLength: [4, 'Name must be atleast 4 characters long'],
   },
   email: {
     type: String,
-    required: [true, 'Please provide an email'],
-    unique: true,
+    // required: [true, 'Please provide an email'],
+    // unique: true,
     validate: [validator.isEmail, 'Please enter a valid email'],
   },
   privilege: {
@@ -22,9 +22,9 @@ const adminSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Please provide a password'],
-    minLength: [8, 'Password must be atleast 8 characters long'],
-    select: false,
+    // required: [true, 'Please provide a password'],
+    minLength: [6, 'Password must be atleast 8 characters long'],
+    // select: false,
   },
   createdAt: {
     type: Date,

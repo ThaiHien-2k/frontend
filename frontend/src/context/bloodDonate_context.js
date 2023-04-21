@@ -33,9 +33,10 @@ const initialState = {
     target: '',
     receive: '',
     staffList: [],
-    donate:[
+    timeF:'',
+    // donate:[
     
-    ],
+    // ],
     status: 'Chưa thực hiện',
     // type:'Nhân Viên Hỗ Trợ'
    

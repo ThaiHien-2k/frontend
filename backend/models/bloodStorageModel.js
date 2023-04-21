@@ -21,7 +21,7 @@ const bloodStorageSchema = mongoose.Schema({
     
   },
   date: {
-    type: Date,
+    type: String,
     required: [true],
     
   },

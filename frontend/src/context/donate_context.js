@@ -25,7 +25,7 @@ const initialState = {
   new_donate: {
     name: '',
     idBD: '',
-
+    createdAt:'',
     iduser: '',
     amount: 250,
     typeBlood: '',
@@ -76,12 +76,12 @@ export const DonateProvider = ({ children }) => {
     }
   };
 
-  const updateNewDonateDetails = (e) => {
-    const name = e.target.name;
-    let value = e.target.value;
+  // const updateNewDonateDetails = (e) => {
+  //   const name = e.target.name;
+  //   let value = e.target.value;
   
-    dispatch({ type: CREATE_NEW_DONATE, payload: { name, value } });
-  };
+  //   dispatch({ type: CREATE_NEW_DONATE, payload: { name, value } });
+  // };
 
   const updateExistingDonateDetails = (e) => {
     const name = e.target.name;
@@ -124,7 +124,7 @@ export const DonateProvider = ({ children }) => {
       value={{
         ...state,
         deleteDonate,
-        updateNewDonateDetails,
+        // updateNewDonateDetails,
         updateExistingDonateDetails,
         createNewDonate,
         fetchDonates,

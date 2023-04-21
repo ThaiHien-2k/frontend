@@ -41,6 +41,7 @@ function UpdateStatusBloodDonateModal({ id }) {
     single_bloodDonate: {
       name = '',
       time = '',
+      // timeF = '',
       address = '',
       target = '',
       // receive=0,
@@ -66,6 +67,11 @@ function UpdateStatusBloodDonateModal({ id }) {
   const [List, setList] = useState([]);
   const [nameList, setNameList] = useState([]);
   // const [defaults, setDefaults] = useState([]);
+  const [hour, setHour] = useState([]);
+  const [minute, setMinute] = useState([]);
+ 
+  const [hourF, setHourF] = useState([]);
+  const [minuteF, setMinuteF] = useState([]);
  
   const handleChange = e => {
     setNameList(e);
@@ -101,7 +107,7 @@ let defaults = staffs.filter(index=> staffList.includes(index.id)).map(function 
   const handleSubmit = async () => {
     if (
       !name ||
-      !time ||
+      // !time ||
       !address ||
       !target ||
       // !receive ||
@@ -121,9 +127,12 @@ let defaults = staffs.filter(index=> staffList.includes(index.id)).map(function 
     setLoading(true);
     const bloodDonate = {
       name,
-      time,
+      // time,
       address,
+      time:hourF+minute,
+      timeF:hourF+minuteF,
       target,
+      // timeF,
       staffList:nameList.map(index=> index.value),
       // receive,
       status
@@ -209,15 +218,44 @@ let defaults = staffs.filter(index=> staffList.includes(index.id)).map(function 
             </FormControl>
 
             <FormControl>
-            <FormLabel>Thời gian</FormLabel>
-              <Input
-                ref={initialRef}
-                type='datetime-local'
-                name='time'
+            <FormLabel>Giờ bắt đầu</FormLabel>
+            <Input
+                type='Time'
+                placeholder='Thời gian'
+                name='minute'
                 focusBorderColor='brown.500'
-                value={time}
-                onChange={updateExistingBloodDonateDetails}
+                value={minute}
+                onChange={e=>setMinute(e.target.value)}
               />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Giờ kết thúc</FormLabel>
+             
+              <Input
+                type='Time'
+                placeholder='Thời gian'
+                name='minute'
+                focusBorderColor='brown.500'
+                value={minuteF}
+                onChange={e=>setMinuteF(e.target.value)}
+              />
+            
+             
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Ngày thực hiện</FormLabel>
+          
+        
+              <Input
+                type='date'
+                placeholder='Thời gian'
+                name='hour'
+                focusBorderColor='brown.500'
+                value={hourF}
+                onChange={e=>setHourF(e.target.value)}
+              />
+             
             </FormControl>
 
             <FormControl>

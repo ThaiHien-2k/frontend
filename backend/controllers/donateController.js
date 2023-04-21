@@ -63,6 +63,7 @@ exports.getAllDonates = catchAsyncError(async (req, res) => {
       name,
       amount,
       typeBlood,
+      createdAt
      
     //   staff,
    
@@ -76,6 +77,7 @@ exports.getAllDonates = catchAsyncError(async (req, res) => {
       name,
       amount,
       typeBlood,
+      createdAt
     };
     return newItem;
   });
@@ -101,7 +103,7 @@ exports.getSingleDonate = catchAsyncError(async (req, res, next) => {
       name,
       amount,
       typeBlood,
-     
+      createdAt
     //   staff,
    
 
@@ -114,6 +116,7 @@ exports.getSingleDonate = catchAsyncError(async (req, res, next) => {
       name,
       amount,
       typeBlood,
+      createdAt
     };
     return newItem;
   });

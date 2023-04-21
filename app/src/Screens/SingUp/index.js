@@ -108,7 +108,7 @@ export default function SingUp({ navigation }) {
                     <TouchableOpacity style={styles.buttonSingUp} onPress={singUp}>
                         <Text style={styles.textSingUp}>Đăng ký</Text>
                     </TouchableOpacity>
-                    <Text style={styles.text}>Đã có tài khoản? <TouchableOpacity onPress={singIn}><Text style={styles.text2}>Đăng nhập</Text></TouchableOpacity></Text>
+                    <Text style={styles.text}><TouchableOpacity onPress={singIn}><Text style={styles.text}>Đã có tài khoản?</Text></TouchableOpacity></Text>
 
                 </SafeAreaView>
             </TouchableWithoutFeedback>

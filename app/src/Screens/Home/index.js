@@ -87,7 +87,7 @@ const view =  (id) => {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/posts`);
       setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)).slice(0, 3));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -107,7 +107,7 @@ useEffect( () => {
   return (
 
     <SafeAreaView style={styles.container}>
-      {/* <Text style={styles.header}>Các bài viết</Text> */}
+      <Text style={styles.header}>Bài viết mới nhất</Text>
       <ScrollView refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>

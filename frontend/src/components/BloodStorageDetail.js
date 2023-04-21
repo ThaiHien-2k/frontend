@@ -34,7 +34,7 @@ function BloodStorageDetail({ bloodStorage }) {
     amount='',
     from='',
     type,
-    date,
+    date='',
     detail,
     A,
     O,
@@ -63,7 +63,7 @@ function BloodStorageDetail({ bloodStorage }) {
      <HStack> <Text as='b'>Từ/Đến: </Text><Text>{from}</Text></HStack>
      <HStack> <Text as='b'>Loại: </Text><Text>{type}</Text></HStack>
      
-     <HStack><Text as='b'>Ngày thực hiện: </Text><Text>{moment(date).format("D/M/YYYY")}</Text></HStack>
+     <HStack><Text as='b'>Ngày thực hiện: </Text><Text>{moment(date.substring(0,10)).format('DD/MM/YYYY')}</Text></HStack>
      <HStack><Text as='b'>Mô tả: </Text><Text>{detail}</Text></HStack>
      <HStack spacing='300px' >     <VStack  alignItems='left' justifyContent='left' ><Text as='b'>Chi tiết: </Text>
      <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>

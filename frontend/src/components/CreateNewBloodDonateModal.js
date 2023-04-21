@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Button,
   Input,
+  Text,
   FormControl,
   FormLabel,
   // FormHelperText,
@@ -43,7 +44,8 @@ function CreateNewBloodDonateModal() {
   const {
     new_bloodDonate: {
       name,
-      time,
+      // time,
+      // timeF,
       address,
       target,
       // receive,
@@ -66,7 +68,11 @@ function CreateNewBloodDonateModal() {
 
   const [staffList, setStaffList] = useState([]);
   const [nameList, setNameList] = useState([]);
+  const [hour, setHour] = useState([]);
+  const [minute, setMinute] = useState([]);
  
+  const [hourF, setHourF] = useState([]);
+  const [minuteF, setMinuteF] = useState([]);
   // const handleClick=(e)=>{
   //   setStaffList(oldMessages => [e, ...oldMessages])
   //  console.log(e);
@@ -79,7 +85,7 @@ function CreateNewBloodDonateModal() {
     
    
   }
-
+  console.log(minute);
 
  let options = staffs.map(function (index) {
   return { value: index.id, label: index.name+' - '+index.type };
@@ -93,7 +99,7 @@ function CreateNewBloodDonateModal() {
    
     if (
       !name ||
-      !time ||
+      // !time ||
       !address ||
       !target ||
       // !receive ||
@@ -114,14 +120,15 @@ function CreateNewBloodDonateModal() {
    
     const bloodDonate = {
         name,
-      time,
+      time:hourF+minute,
+      timeF:hourF+minuteF,
       address,
       target,
       // receive,
       staffList:nameList.map(index=> index.value),
       status
     };
-    console.log(bloodDonate);
+    // console.log(bloodDonate);
     const responseCreate = await createNewBloodDonate(bloodDonate);
     setLoading(false);
     if (responseCreate.success) {
@@ -178,7 +185,7 @@ function CreateNewBloodDonateModal() {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>Tên buổi hiến</FormLabel>
+            <FormLabel>Tên buổi hiến</FormLabel>
               <Input
                 ref={initialRef}
                 placeholder='Tên buổi hiến'
@@ -187,19 +194,62 @@ function CreateNewBloodDonateModal() {
                 value={name}
                 onChange={updateNewBloodDonateDetails}
               />
+            
+            
             </FormControl>
 
 
             <FormControl mt={4}>
-              <FormLabel>Thời gian</FormLabel>
+              <FormLabel>Giờ bắt đầu</FormLabel>
+              <Text></Text>
               <Input
-                type='datetime-local'
+                type='Time'
                 placeholder='Thời gian'
-                name='time'
+                name='minute'
                 focusBorderColor='brown.500'
-                value={time}
-                onChange={updateNewBloodDonateDetails}
+                value={minute}
+                onChange={e=>setMinute(e.target.value)}
               />
+              {/* <Text>Ngày bắt đầu</Text> */}
+              {/* <Input
+                type='date'
+                placeholder='Thời gian'
+                name='hour'
+                focusBorderColor='brown.500'
+                value={hour}
+                onChange={e=>setHour(e.target.value)}
+              /> */}
+             
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Giờ kết thúc</FormLabel>
+             
+              <Input
+                type='Time'
+                placeholder='Thời gian'
+                name='minute'
+                focusBorderColor='brown.500'
+                value={minuteF}
+                onChange={e=>setMinuteF(e.target.value)}
+              />
+            
+             
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Ngày thực hiện</FormLabel>
+          
+        
+              <Input
+                type='date'
+                placeholder='Thời gian'
+                name='hour'
+                focusBorderColor='brown.500'
+                value={hourF}
+                onChange={e=>setHourF(e.target.value)}
+              />
+             
             </FormControl>
 
             

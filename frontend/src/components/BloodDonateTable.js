@@ -119,14 +119,17 @@ function BloodDonatesTable({ bloodDonates }) {
           </Thead>
           <Tbody>
             {bloodDonates.map((bloodDonate, index) => {
-              const {  name, time, address, target,receive,status,donate,id } =
+              const {  name, time,timeF, address, target,receive,status,donate,id } =
                 bloodDonate;
                 
               return (
                 <Tr key={index}>
                    <Td>{index+1}</Td>
                 <Td>{name}</Td>
-                  <Td>{moment(time).format("MM:HHA D/M/YYYY")}</Td>
+                {/* +'-'+timeF.substring(12,5) */}
+                  <Td>{time.substr(10,5)+'-'+timeF.substr(10,5)}
+                  <br/>{moment(timeF.substring(0,10)).format('DD/MM/YYYY')}
+                  </Td>
                   <Td>{address}</Td>
                   <Td>{formatPrice(target)} Đơn vị</Td>
                   <Td>{formatPrice(receive)} Đơn vị</Td>

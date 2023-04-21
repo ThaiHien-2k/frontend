@@ -89,7 +89,7 @@ function BloodStoragesTable({ bloodStorages }) {
                   <Td>{from}</Td>
                   
                   <Td>{detail}</Td>
-                  <Td>{moment(date).format("D/M/YYYY")}</Td>
+                  <Td>{moment(date.substring(0,10)).format('DD/MM/YYYY')}</Td>
                   <Td>{type}</Td>
                   <Td>
                     <Menu>

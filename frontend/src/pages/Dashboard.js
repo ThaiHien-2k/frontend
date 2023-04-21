@@ -182,7 +182,7 @@ getdata2();
             },
             yaxis: {
               title: {
-                text: 'ml'
+                text: 'ML'
               }
             },
             fill: {
@@ -205,7 +205,6 @@ getdata2();
             width={600}
             height={ 400}
             series={[bloodO,bloodA,bloodB,bloodAB]}
-
             options={{
              labels:['O','A','B','AB'],
              title:{

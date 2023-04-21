@@ -51,7 +51,7 @@ const [data, setData] = useState([])
 const getData = async () => {
   try {
     const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-    setData(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.lastDonate).toString());
+    setData(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.lastDonate).toString());
   } catch (error) {
     console.error(error);
   } finally {
@@ -60,22 +60,22 @@ const getData = async () => {
 
 
 }
-useEffect( () => {
-getData();
-const current = new Date();
-const nextDonate = new Date(data).setDate(current.getDate() + 90);
-// console.log(current)
-if(data===''){
-  setTask('Bạn chưa hiến lần nào!')
-}
-if(current===nextDonate){
-  setTask('Bạn có thể hiến')
-}
-else if(current<nextDonate){
+// useEffect( () => {
+// getData();
+// const current = new Date();
+// const nextDonate = new Date(data).setDate(current.getDate() + 90);
+// // console.log(current)
+// if(data===''){
+//   setTask('Bạn chưa hiến lần nào!')
+// }
+// if(current===nextDonate){
+//   setTask('Bạn có thể hiến')
+// }
+// else if(current<nextDonate){
 
-  setTask('Ngày hiến hiến máu tiếp theo là:  '+moment(nextDonate).format("D/M/YYYY"))
-}
-}, [])
+//   setTask('Ngày hiến hiến máu tiếp theo là:  '+moment(nextDonate).format("D/M/YYYY"))
+// }
+// }, [])
 
 async function logout() {
   const auth = getAuth();
@@ -95,8 +95,8 @@ async function change() {
     
          <View style={styles.container}>
        <Ionicons style={styles.icon} name="person-circle-outline"/>
-       <Text style={styles.text}>Chào, {auth.email}</Text>
-       <Text style={styles.text}>{task}</Text>
+       <Text style={styles.text}>Chào, {'a@gmail.com'}</Text>
+       {/* <Text style={styles.text}>{task}</Text> */}
        <TouchableOpacity style={styles.button1} onPress={infor}>
             <Text style={styles.text1}>Thông tin cá nhân</Text>
            

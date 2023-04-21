@@ -54,7 +54,7 @@ export default function BLoodDonate({ navigation }) {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
       setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -79,9 +79,25 @@ useEffect( () => {
         <SafeAreaView>
         <ScrollView>
         <View style={styles.item}>
-          <Text style={styles.title}>Tên Buổi hiến: {item.name}</Text>
-          <Text style={styles.title}>Thời gian: {moment(item.time).format("MM:HHA D/M/YYYY")}</Text>
-          <Text style={styles.title}>Địa điểm: {item.address}</Text>
+        <View style={{flexDirection: 'row',}}>
+          <Text style={styles.title}>Tên Buổi hiến: </Text>
+          <Text style={styles.title2}> {item.name}</Text>
+
+          </View>
+          <View style={{flexDirection: 'row',}}>
+          <Text style={styles.title}>Thời gian: </Text>
+          <Text style={styles.title2}>{item.time.substr(10,5)+'-'+item.timeF.substr(10,5)}</Text>
+
+          </View>
+          <View style={{flexDirection: 'row',}}>
+          <Text style={styles.title}>Ngày tổ chức: </Text>
+          <Text style={styles.title2}>{moment(item.timeF.substring(0,10)).format('DD/MM/YYYY')}</Text>
+
+          </View>
+          <View style={{flexDirection: 'row',}}>
+          <Text style={styles.title}>Địa điểm: </Text>
+          <Text style={styles.title2}>{item.address}</Text>
+          </View>
         </View>
         </ScrollView>
         </SafeAreaView>
@@ -114,9 +130,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
+    fontWeight:'bold',
     padding:5,
-    fontSize: 15,
+    fontSize: 20,
+    // borderWidth:1
+  },
+  title2: {
+    padding:5,
+    fontSize: 20,
     // borderWidth:1
   },
 });
+
 

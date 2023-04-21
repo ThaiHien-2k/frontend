@@ -21,7 +21,7 @@ import {
   // VStack,
   Checkbox,
   Text,
-  Select
+  // Select
 } from '@chakra-ui/react';
 // import { useDropzone } from 'react-dropzone';
 import { useDonateContext } from '../context/donate_context';
@@ -33,18 +33,20 @@ import { useInforContext } from '../context/infor_context';
 import { update_infor_url } from '../utils/constants';
 import { Field, Form, Formik } from 'formik';
 import axios from 'axios';
+import Select from 'react-select';
 
+import makeAnimated from 'react-select/animated';
 
 function CreateNewDonateModal({ id }) {
   const {
     new_donate: {
       // name,
-      amount,
-      iduser,
+      // amount,
+      // iduser,
       // typeBlood
      
     },
-    updateNewDonateDetails,
+    // updateNewDonateDetails,
     createNewDonate,
     fetchSingleDonate
   } = useDonateContext();
@@ -70,24 +72,49 @@ function CreateNewDonateModal({ id }) {
   const [name, setName] = useState('');
   const [typeBlood, setTypeBlood] = useState('');
   const [donateTime, setDonateTime] = useState('');
-  
+  const animatedComponents = makeAnimated();
+  const [amount, setAmount] = useState('');
+  const [iduser, setIduser] = useState('');
 
   useEffect(() => {
   
  
   }, []);
 
+  const op= [
+    {value: 250,label:'250ml'},
+    {value: 350,label:'350ml'},
+    {value: 450,label:'450ml'}
+  ]
+
+  let options = infors.filter(infors => infors.status.includes('Có thể hiến')).map(function (index) {
+    return { value: index.id, label: index.name };
+  })
+  
 // console.log(time);
+
+const check = (iduser)=>{
+  // console.log(options);
+                infors.find((index) => {
+              if(index.id === iduser){setIduser(index.id);setName(index.name); setTypeBlood(index.typeBlood); setDonateTime(index.donateTime)
+                console.log(index.id);
+              
+              }})
+
+
+}
+
+console.log(name);
 
   const handleSubmit = async () => {
    
     
     // console.log(name);
     if (
-      !name ||
+      // !name ||
       !idBD ||
       !iduser ||
-      !amount ||
+      // !amount ||
       !typeBlood 
       // !donateID
     ) {
@@ -101,6 +128,7 @@ function CreateNewDonateModal({ id }) {
     }
     
     // name = na;
+
    
     setLoading(true);
     const donate = {
@@ -165,8 +193,28 @@ function CreateNewDonateModal({ id }) {
          
 
            <ModalBody pb={6}>
-
            <FormControl mt={4}>
+<FormLabel>Tên người hiến</FormLabel>
+            <Select
+            name='iduser'
+          // defaultValue={{value:0,label:'Chọn người hiến'}}
+            // value={iduser}
+            // value={options.find(obj => obj.value)}
+            onClick={() =>  check()}
+            // onClick={() =>    
+            //   infors.find((index) => {
+            //   if(index.id === iduser){setName(index.name); setTypeBlood(index.typeBlood); setDonateTime(index.donateTime)}})}
+      closeMenuOnSelect={true}
+      onChange={(options) =>  check(options.value)}
+      components={animatedComponents}
+
+      // isMulti
+      
+      options={options}
+    />
+             </FormControl>
+
+           {/* <FormControl mt={4}>
             <FormLabel>Tên người hiến</FormLabel>
               <Select
                 name='iduser'
@@ -185,19 +233,20 @@ function CreateNewDonateModal({ id }) {
                 <option value={index.id} >{index.name}</option>
                 ))}
               </Select>
-            </FormControl>
+            </FormControl> */}
        
            <FormControl mt={4}>
             <FormLabel>Số lượng</FormLabel>
               <Select
                 name='amount'
                 focusBorderColor='brown.500'
-                value={amount}
-                onChange={updateNewDonateDetails}
+                // value={amount}
+                options={op}
+                onChange={(op) =>  setAmount(op.value)}
               >
-                <option value='250'>250</option>
+                {/* <option value='250'>250</option>
                 <option value='350'>350</option>
-                <option value='450'>450</option>
+                <option value='450'>450</option> */}
               </Select>
             </FormControl>
 

@@ -102,7 +102,7 @@ export default function Login({ navigation, route }) {
             onChangeText={(text) => setPassword(text)}
           />
 
-          {erorSingUp === true
+          {/* {erorSingUp === true
             ? <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
               <MaterialIcons
                 name="info"
@@ -113,7 +113,7 @@ export default function Login({ navigation, route }) {
                Tài khoản không tồn tại
               </Text>
             </View>
-            : <View></View>}
+            : <View></View>} */}
 
           <TouchableOpacity style={styles.buttonLogin} onPress={login}>
             <Text style={styles.textLogin}>Đăng nhập</Text>
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width:100,
-    marginHorizontal:120
+    marginHorizontal:110
     // textAlign: 'center',
     // fontSize: 18,
 },

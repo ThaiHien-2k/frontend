@@ -45,6 +45,7 @@ const [loading, setIsLoaded] = useState(false);
     address='',
     target,
     receive,
+    timeF='',
     staffList,
     status,
     A,O,B,AB
@@ -107,8 +108,8 @@ const [loading, setIsLoaded] = useState(false);
       },[]);
       console.log(suppost)
     
-      const getAmount=(id)=>{
-        return donates.filter(index=> index.iduser.includes(id)).map(index=>index.amount);
+      const getAmount=(idU)=>{
+        return donates.filter(index=> index.iduser.includes(idU)).filter(index=> index.idBD.includes(id)).map(index=>index.amount);
         // supID.push(donates.filter(index=> index.idBD.includes(id)).map(index=>index.iduser));
         // // donate.foreach(index=>index.idBD)
        
@@ -129,7 +130,7 @@ const [loading, setIsLoaded] = useState(false);
       <Text fontSize='4xl' as='b'>THÔNG TIN BUỔI HIẾN MÁU</Text>
        {/* <VStack alignItems='left' justifyContent='left'> */}
       <HStack><Text as='b'>Tên buổi hiến: </Text><Text>{name}</Text></HStack>
-     <HStack> <Text as='b'>Thời gian: </Text><Text>{moment(time).format("MM:HHA D/M/YYYY")}</Text></HStack>
+     <HStack> <Text as='b'>Thời gian: </Text><Text>{time.substr(10,5)+'-'+timeF.substr(10,5)+'  '+moment(timeF.substring(0,10)).format('DD/MM/YYYY')}</Text></HStack>
      <HStack> <Text as='b'>Địa điểm: </Text><Text>{address}</Text></HStack>
      <HStack><Text as='b'>Mục tiêu: </Text><Text>{target}</Text></HStack>
      <HStack><Text as='b'>Thu được: </Text><Text>{receive}</Text></HStack>

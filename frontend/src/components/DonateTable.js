@@ -84,14 +84,16 @@ function DonateTable({ bloodDonates }) {
           </Thead>
           <Tbody>
             {bloodDonates.map((bloodDonate, index) => {
-              const {  name, time, address,status,id } =
+              const {  name, time,timeF, address,status,id } =
                 bloodDonate;
                 if(status==='Chưa thực hiện'){
               return (
                 <Tr key={index}>
                    <Td>{index+1}</Td>
                 <Td>{name}</Td>
-                  <Td>{moment(time).format("MM:HHA D/M/YYYY")}</Td>
+                <Td>{time.substr(10,5)+'-'+timeF.substr(10,5)}
+                  <br/>{moment(timeF.substring(0,10)).format('DD/MM/YYYY')}
+                  </Td>
                   <Td>{address}</Td>
                   <Td>{status}</Td>
                   <Td>

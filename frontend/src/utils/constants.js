@@ -7,6 +7,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 export const LinkItems = [
   { name: 'Dashboard', url: '/', icon: <DashboardIcon /> },
   { name: 'Quản lý tài khoản', url: '/accounts', icon: <PersonIcon /> },
@@ -14,9 +15,9 @@ export const LinkItems = [
   { name: 'Quản lý thu chi', url: '/cashFlows', icon: <AttachMoneyIcon /> },
   { name: 'Quản lý lượng máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
   { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
-  { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIcon /> },
+  { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIndIcon /> },
   { name: 'Hiến máu', url: '/donates', icon: <AssignmentIcon /> },
-
+  
 
   
 ];

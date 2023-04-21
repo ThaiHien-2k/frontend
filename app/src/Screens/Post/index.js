@@ -82,7 +82,7 @@ export default function Post({ navigation,route}) {
       setData(response3.data.data);
       // console.log(response3.data.data.map(i=>i.status))
       console.log(response3.data.data);
-  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -119,7 +119,9 @@ useEffect( () => {
         <Text style={styles.newsSummary}>   {moment(data.CreatedAT).format("MM:HHA D/M/YYYY")}</Text>
           <Text style={styles.newsTitle}>   {data.title}</Text>
           <Text style={styles.content}>   {data.content}</Text>
+          <Text style={styles.content}>   {data.like}</Text>
           </View>
+          {/* <View> </View> */}
   </SafeAreaView>
   </>
   );
@@ -130,15 +132,18 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     // marginHorizontal: 16,
+    backgroundColor: '#fff',
+    borderWidth:1,
+    borderRadius:10
   },
   item: {
     // backgroundColor: '#f9c2ff',
     // padding: 20,
-     backgroundColor: '#fff',
+    //  backgroundColor: '#fff',
     marginHorizontal:2,
     marginVertical: 4,
-    borderWidth:1,
-    borderRadius:10
+    // borderWidth:1,
+    // borderRadius:10
   },
   header: {
     fontSize: 20,

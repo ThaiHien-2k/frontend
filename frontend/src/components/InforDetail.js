@@ -37,6 +37,7 @@ function InforDetail({ infor }) {
     email,
     typeBlood,
     status,
+    lastDonate,
     // lastDonate,
     donateTime,
   } = infor;
@@ -78,12 +79,19 @@ function InforDetail({ infor }) {
         return donates.filter(index=> index.idBD.includes(id)).filter(index=> index.iduser.includes(idU)).map(index=>index.amount);
       // }
         // console.log(donates.map(index=>index.idBD).includes(id));
-     }     
+     }    
+     const getDate =  (id) => {
+      // if( donates.filter(index=>index.idBD).includes(id)){
+    
+      return donates.filter(index=> index.idBD.includes(id)).filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt).toString();
+    // }
+      // console.log(donates.map(index=>index.idBD).includes(id));
+   }     
      
-     
+   getDate();
      getAmount();
 
-  console.log(data)
+  console.log(moment('2023-04-21T06:23:22.478Z').format("D/M/YYYY"))
 
   return (
     <VStack alignItems='left' justifyContent='left'>
@@ -95,7 +103,8 @@ function InforDetail({ infor }) {
      <HStack><Text as='b'>Số điện thoại: </Text><Text>{phone}</Text></HStack>
      <HStack><Text as='b'>Email: </Text><Text>{email}</Text></HStack>
      <HStack> <Text as='b'>Nhóm máu: </Text><Text>{typeBlood}</Text></HStack>
-     <HStack>  <Text as='b'>Số lần hỗ trợ: </Text><Text>{donateTime}</Text></HStack>
+     <HStack>  <Text as='b'>Số lần hiến: </Text><Text>{donateTime}</Text></HStack>
+     <HStack>  <Text as='b'>Ngày hiến cuối cùng: </Text><Text>{moment(lastDonate).format("D/M/YYYY")}</Text></HStack>
      <HStack>  <Text as='b'>Trạng thái: </Text><Text>{status}</Text></HStack>
      </VStack>
      <VStack></VStack>
@@ -106,7 +115,7 @@ function InforDetail({ infor }) {
             <Tr>
             <Th>Lần hiến</Th>
               <Th>Tên buổi hiến</Th>
-              <Th>Thời gian</Th>
+              <Th>Ngày hiến</Th>
               <Th>Địa điểm</Th>
               <Th>Số máu đã hiến</Th>
             </Tr>
@@ -114,7 +123,7 @@ function InforDetail({ infor }) {
           <Tbody>
             
               {data.sort((a, b) =>new Date(a.time).getTime()-new Date(b.time).getTime()).sort((a, b) =>new Date(a.time).getTime()-new Date(b.time).getTime()).map((bloodDonate, index) => {
-                const {  name, time, address,id } =
+                const {  name, time,createdAt, address,id } =
                 bloodDonate;
               
               return (
@@ -122,7 +131,7 @@ function InforDetail({ infor }) {
                 <Tr key={index}>
                    <Td>{index+1}</Td>
                 <Td>{name}</Td>
-                  <Td>{moment(time).format("MM:HHA D/M/YYYY")}</Td>
+                  <Td>{moment(getDate(id)).format("D/M/YYYY")}</Td>
                   <Td>{address}</Td>
                   <Td>{getAmount(id)}ml</Td>
                 </Tr>

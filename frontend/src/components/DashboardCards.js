@@ -89,7 +89,7 @@ fetchAccounts();
       color: 'brown.500',
     },
     {
-      title: 'Số buổi hiến máu còn lại',
+      title: 'Số buổi hiến máu đang tổ chức',
       value: bloodDonateRemainList.total,
       icon: VolunteerActivismIcon,
       color: 'red.500',

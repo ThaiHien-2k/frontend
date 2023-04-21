@@ -6,7 +6,12 @@ const bloodDonateSchema = mongoose.Schema({
     required: [true, 'Please enter bloodDonate name'],
   },
   time: {
-    type: Date,
+    type: String,
+    required: [true],
+   
+  },
+  timeF: {
+    type: String,
     required: [true],
    
   },
@@ -49,26 +54,26 @@ const bloodDonateSchema = mongoose.Schema({
     required: [true],
  },],
 
- donate:[ {
-  //  id: { type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Infor',
-  //   // required: [true],
-  // },
-  // name: {
-  //   type: String,
+//  donate:[ {
+//   //  id: { type: mongoose.Schema.Types.ObjectId,
+//   //   ref: 'Infor',
+//   //   // required: [true],
+//   // },
+//   // name: {
+//   //   type: String,
    
-  // },
-  //   amount:{
-  //     type: Number,
+//   // },
+//   //   amount:{
+//   //     type: Number,
     
-  //   },
-  //   typeBlood:{
-  //     type: String,
+//   //   },
+//   //   typeBlood:{
+//   //     type: String,
       
-  //   }
-},
+//   //   }
+// },
   
-],
+// ],
   status:{
     type: String,
     require: false,

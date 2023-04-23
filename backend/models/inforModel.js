@@ -4,28 +4,28 @@ const validator = require('validator');
 const inforSchema = mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please enter infor name'],
+    // required: [true, 'Please enter infor name'],
   },
   countryID: {
     type: String,
-    required: [true],
+    // required: [true],
     maxlength: [12, 'CMNN/CCCD không nhiều hơn 12 ký tự'],
     minLength: [9, 'CMNN/CCCD không ít hơn 10 ký tự'],
   },
   address: {
     type: String,
-    required: [true],
+    // required: [true],
     
   },
   email: {
     type: String,
-    required: [true, 'Please provide an email'],
-    unique: true,
+    // required: [true, 'Please provide an email'],
+    // unique: true,
     validate: [validator.isEmail, 'Please enter a valid email'],
   },
   phone: {
     type: String,
-    required: [true],
+    // required: [true],
     
   },
 
@@ -37,7 +37,7 @@ const inforSchema = mongoose.Schema({
 
   typeBlood: {
     type: String,
-    required: [true],
+    // required: [true],
     
   },
   status: {

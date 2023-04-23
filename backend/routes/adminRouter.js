@@ -4,6 +4,7 @@ const adminController = require('../controllers/adminController');
 
 const bloodStorageController = require('../controllers/bloodStorageController');
 const staffController = require('../controllers/staffController');
+const commentController = require('../controllers/commentController');
 const postController = require('../controllers/postController');
 const inforController = require('../controllers/inforController');
 const cashFlowController = require('../controllers/cashFlowController');
@@ -58,8 +59,6 @@ router
     auth.checkAdminPrivileges('admin'),
     adminController.deleteAdmin
   );
-
-
 // create a new Staff
 router
   .route('/staff/new')
@@ -82,6 +81,31 @@ router
     auth.checkUserAuthentication,
     auth.checkAdminPrivileges( 'admin'),
     staffController.deleteStaff
+  );
+
+
+// create a new comment
+router
+  .route('/comment/new')
+  .post(
+    // auth.checkUserAuthentication,
+    // auth.checkAdminPrivileges('admin'),
+    commentController.createComment
+  );
+
+
+// send, update, delete a single Comment
+router
+  .route('/comment/:id')
+  .put(
+    // auth.checkUserAuthentication,
+    // auth.checkAdminPrivileges( 'admin'),
+    commentController.updateComment
+  )
+  .delete(
+    auth.checkUserAuthentication,
+    auth.checkAdminPrivileges( 'admin'),
+    commentController.deleteComment
   );
 
 // cashflow
@@ -164,8 +188,8 @@ router
 router
 .route('/infor/new')
 .post(
-  auth.checkUserAuthentication,
-  auth.checkAdminPrivileges('admin'),
+  // auth.checkUserAuthentication,
+  // auth.checkAdminPrivileges('admin'),
   inforController.createInfor
 );
 

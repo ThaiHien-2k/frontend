@@ -5,7 +5,7 @@ const cloudinary = require('../config/cloudinary');
 
 // create a new infor
 exports.createInfor = catchAsyncError(async (req, res, next) => {
-  req.body.admin = req.user.id;
+  // req.body.admin = req.user.id;
  
   const infor = await Infor.create(req.body);
   res.status(200).json({

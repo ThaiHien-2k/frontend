@@ -13,6 +13,7 @@ const app = express();
 
 const inforRouter = require('./routes/inforRouter');
 const bloodStorageRouter = require('./routes/bloodStorageRouter');
+const commentRouter = require('./routes/commentRouter');
 const staffRouter = require('./routes/staffRouter');
 const postRouter = require('./routes/postRouter');
 const donateRouter = require('./routes/donateRouter');
@@ -64,6 +65,7 @@ app.use('/api/infors', inforRouter);
 
 app.use('/api/bloodStorages', bloodStorageRouter);
 app.use('/api/posts', postRouter);
+app.use('/api/comments', commentRouter);
 app.use('/api/staffs', staffRouter);
 app.use('/api/donates', donateRouter);
 app.use('/api/bloodDonates', bloodDonateRouter);

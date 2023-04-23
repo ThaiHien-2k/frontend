@@ -6,6 +6,7 @@ import {
   View,
   SafeAreaView,
   SectionList,
+  RefreshControl,
   ScrollView,
   // StatusBar,
 } from 'react-native';
@@ -52,7 +53,7 @@ export default function BLoodDonate({ navigation }) {
     try {
    
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
-      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
+      setData(response3.data.data.sort((a, b) =>new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
   // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
@@ -64,6 +65,15 @@ export default function BLoodDonate({ navigation }) {
  
 }
 
+const [refreshing, setRefreshing] = React.useState(false);
+
+const onRefresh = React.useCallback(() => {
+  setRefreshing(true);
+  getData();
+  setTimeout(() => {
+    setRefreshing(false);
+  }, 200);
+}, []);
 useEffect( () => {
   getData();
  console.log(data)
@@ -72,6 +82,9 @@ useEffect( () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
     <SectionList
       sections={DATA}
       keyExtractor={(item, index) => item + index}
@@ -106,6 +119,7 @@ useEffect( () => {
       //   <Text style={styles.header}>{title}</Text>
       // )}
     />
+    </ScrollView>
   </SafeAreaView>
 
   );

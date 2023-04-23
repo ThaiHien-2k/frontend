@@ -69,13 +69,17 @@ useEffect( () => {
 
 
   async function create() {
-
+    if(name===''){
+      navigation.navigate('Change')
+    }
+else{
     const post ={
       title,
       content,
       iduser: id,
-      status:"Chưa duyệt",
+      status:"Đã duyệt",
       name:name,
+      createdAt:Date.now(),
       like:0
 
     }
@@ -90,7 +94,7 @@ useEffect( () => {
     }
     else{
       ToastAndroid.show('Đã có lỗi xảy ra!', ToastAndroid.SHORT);
-    }
+    }}
 }
 
 

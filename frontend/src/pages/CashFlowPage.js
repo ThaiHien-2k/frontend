@@ -37,13 +37,12 @@ function CashFlowsPage() {
       return i.name.toLowerCase().includes(e.toLowerCase())
       })
       setCashFlowList(results);
-      console.log(cashFlows);
-      console.log(cashFlowList);
+    
   }
 
   useEffect(() => {
-    console.log(cashFlows); cashFlowList.push(cashFlows.map(i=>i));
-    console.log(cashFlowList);
+    cashFlowList.push(cashFlows.map(i=>i));
+ 
    
   
 

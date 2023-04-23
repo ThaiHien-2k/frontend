@@ -85,7 +85,7 @@ const view =  (id) => {
     try {
    
       const response3 = await axios.get(`http://10.0.2.2:5000/api/posts`);
-      setData(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)));
+      setData(response3.data.data.sort((a, b) =>new Date(a.createdAt).getTime()-new Date(b.createdAt).getTime()).filter(index=> ['Đã duyệt'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
   // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
@@ -103,7 +103,7 @@ useEffect( () => {
   // getDta();
   }, [])
 
-
+console.log(Date.now())
   return (
 
     <SafeAreaView style={styles.container}>

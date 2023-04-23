@@ -32,6 +32,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // import * as React from 'react';
 import { TextInput } from 'react-native-paper';
 import axios from 'axios';
+import { SafeAreaView } from 'react-native-safe-area-context';
 export default function changePage({ navigation }) {
   const auth = getAuth().currentUser;
   const [data, setData] = useState([]);
@@ -69,11 +70,33 @@ useEffect( () => {
 
 
   async function update() {
-
+    if(id===''){
+      const infor ={
+        countryID,
+        name,
+        phone,
+        email:auth.email,
+        address,
+        status:'Có thể hiến',
+      }
+      const res = await axios.post(`http://10.0.2.2:5000/api/admin/infor/new`,infor);
+  
+      if(res.status===200){
+     
+        ToastAndroid.show('Chỉnh sửa thông tin thành công!', ToastAndroid.SHORT);
+        navigation.navigate('myTabs');
+      }
+      else{
+        ToastAndroid.show('Đã có lỗi xảy ra!', ToastAndroid.SHORT);
+      }
+    }
+else{
     const infor ={
+      countryID,
       name,
       phone,
-      address
+      address,
+      
     }
     const res = await axios.put(`http://10.0.2.2:5000/api/admin/infor/${id}`,infor);
 
@@ -85,6 +108,7 @@ useEffect( () => {
     else{
       ToastAndroid.show('Đã có lỗi xảy ra!', ToastAndroid.SHORT);
     }
+  }
 }
 
 
@@ -98,6 +122,8 @@ useEffect( () => {
   // const [text, setText] = React.useState(""); 
 
   return (
+    <ScrollView>
+    <SafeAreaView >
     <View style={{flex: 1, padding: 24}}>
       {/* <Text>Email:</Text>
     <TextInput
@@ -140,6 +166,8 @@ useEffect( () => {
                         <Text style={styles.text}>Chỉnh sửa</Text>
                     </TouchableOpacity>
     </View>
+    </SafeAreaView>
+    </ScrollView>
   );
 };
 

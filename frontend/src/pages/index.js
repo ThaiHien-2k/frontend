@@ -8,6 +8,7 @@ import BloodStoragesPage from './BloodStoragePage';
 import BloodDonatesPage from './BloodDonatesPage';
 // import SingleStaffPage from './StaffDetailsPage';
 import CashFlowsPage from './CashFlowPage';
+import PostsPage from './PostPage';
 import StaffDetaislPage from './StaffDetailsPage';
 import DonatePage from './DonatePage';
 import DonateDetaislPage from './DonateDetailPage';
@@ -28,7 +29,7 @@ export {
   ViewBloodDonatePage,
   AdminsPage,
   DonatePage,
-
+  PostsPage,
   StaffDetaislPage,
   DonateDetaislPage
 };

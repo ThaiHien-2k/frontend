@@ -8,8 +8,9 @@ import {
   SectionList,
   ScrollView,
   TextInput,
+  Pressable,
   ToastAndroid,
-  TouchableOpacity
+  TouchableOpacity,Alert, Modal, 
   // StatusBar,
 } from 'react-native';
 import { db } from '../../Database';
@@ -32,7 +33,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LogBox } from 'react-native';
 import { Appbar } from 'react-native-paper';
-import { Modal, Portal, Button, Provider } from 'react-native-paper';
+import {  Portal, Button, Provider } from 'react-native-paper';
 import { Avatar, Card, IconButton } from 'react-native-paper';
 import { Ionicons } from "@expo/vector-icons";
 import axios from 'axios';
@@ -66,7 +67,7 @@ export default function Post({ navigation,route}) {
     
 //   ];
   
-
+const [modalVisible, setModalVisible] = useState(false);
   // console.log(comment);
   // const [count, setCount] = useState(1)
   const click = async () => {
@@ -96,21 +97,19 @@ const DATA = [
 const getInfor = async () => {
   try {
     const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-    setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
-    setName(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.name).toString());
-//       // setData(response.data.data.filter(index=> index.email.includes(auth.email)));
-//         setCountryID(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.countryID).toString());
-//   setPhone(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.phone).toString());
-//   setAddress(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.address).toString());
+    setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
+    setName(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name).toString());
+//    
 
   } catch (error) {
     console.error(error);
   } finally {
-      // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i.email));
+      // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.email));
     setLoading(false);
   }
 
 }
+
 
 async function send() {
   getInfor();
@@ -148,7 +147,19 @@ async function send() {
 }
 }
 
+const deleteCmt = async (id) => {
+  // console.log(id);
+  const res = await axios.delete(`http://10.0.2.2:5000/api/admin/comment/`+id);
 
+  if(res.status===200){
+ 
+    ToastAndroid.show('Xóa bình luận thành công!', ToastAndroid.SHORT);
+    
+   getCmt();
+   setModalVisible(!modalVisible);
+
+  }
+}
 
 
   const getData = async () => {
@@ -159,7 +170,7 @@ async function send() {
       // setLike(response3.data.data.map(i=>i.like))
       // console.log(response3.data.data.map(i=>i.status))
       // console.log(response3.data.data.map(i=>i.like));
-  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -175,7 +186,7 @@ const getCmt = async () => {
     const response3 = await axios.get(`http://10.0.2.2:5000/api/comments`);
     setCmt(response3.data.data.sort((a, b) =>new Date(a.time).getTime()-new Date(b.time).getTime()).filter(index=> route.params.id.includes(index.idPost)));
     // console.log(response3.data.data.map(i=>i.status))
-// setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+// setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
 // setLoading(false);
   } catch (error) {
     console.error(error);
@@ -297,18 +308,56 @@ useEffect( () => {
     keyExtractor={(item, index) => item + index}
     renderItem={({item}) => (
       <SafeAreaView>
+     <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text>Bạn có muốn xóa bình luận?</Text>
+          <View style={{flexDirection: 'row',}}>
+            <Pressable
+              style={[ styles.buttonClose]}
+              onPress={() => deleteCmt(item.id)}>
+              <Text style={styles.textStyle}>Xóa</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.buttonOpen]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Thoát</Text>
+            </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
      
-     
-                   
+     <Pressable
+      onLongPress={() => setModalVisible(!modalVisible)}
+      // style={styles.item3}
+       style={({pressed}) => [
+        { marginHorizontal:20,
+          marginVertical: 4,
+          borderWidth:1,
+          borderRadius:10,
+          backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+        },
+        styles.wrapperCustom,
+      ]}
+      >
                  
-      <View style={styles.item3}>
+      <View>
+      
       <Text style={styles.name2}>{item.name}</Text>
       <Text style={styles.newsSummary}>   {new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(item.createdAt)}</Text>
         <Text style={styles.newsTitle2}>   {item.comment}</Text>
         {/* <Text style={styles.newsSummary}>{item.content}</Text> */}
-     
+        
       </View>
-      
+      </Pressable> 
      
       </SafeAreaView>
         )}
@@ -400,6 +449,56 @@ name2: {
   fontSize : 15,
   fontWeight:'bold',
   textAlign : 'left',
+},
+centeredView: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: 22,
+},
+modalView: {
+  margin: 20,
+  backgroundColor: 'white',
+  borderRadius: 20,
+  padding: 35,
+  alignItems: 'center',
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 4,
+  elevation: 5,
+},
+// button: {
+//   borderRadius: 20,
+//   padding: 10,
+//   elevation: 2,
+// },
+buttonOpen: {
+  width: 50,
+  height: 50,
+  borderRadius: 5,
+  margin: 5,
+  
+  // backgroundColor: 'blue',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderWidth:1,
+  // backgroundColor: '#F194FF',
+},
+buttonClose: {
+  width: 50,
+  height: 50,
+  borderRadius: 5,
+  margin: 5,
+  
+  // backgroundColor: 'blue',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderWidth:1,
+  backgroundColor: 'red',
 },
 
   newsTitle : {

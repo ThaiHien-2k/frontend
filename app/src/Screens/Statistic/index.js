@@ -54,8 +54,8 @@ export default function Statistic({ navigation }) {
   const getId = async () => {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-      setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
-      setDntime(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.donateTime).toString());
+      setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
+      setDntime(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.donateTime).toString());
       
       
 
@@ -67,8 +67,8 @@ export default function Statistic({ navigation }) {
       setDta(response3.data.data.filter(index=> data.includes(index.id)));
       setTotal(0);
       // console.log(id)
-      // console.log(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString())
-  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+      // console.log(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString())
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -117,7 +117,7 @@ const handlePress = () => setExpanded(!expanded);
 
 if(id===''){
   return (
-    <SafeAreaView >
+    <SafeAreaView  style={styles.container}>
     <ScrollView >
          <View >
         <Text style={styles.text}>Bạn chưa hiến lần nào!</Text>
@@ -130,7 +130,7 @@ if(id===''){
 else 
   return (
 
-    <SafeAreaView >
+    <SafeAreaView style={styles.container}>
     <ScrollView >
          <View >
         <Text style={styles.text}>Số lần hiến: {dnTime} </Text>
@@ -143,8 +143,8 @@ else
         expanded={!expanded}
         onPress={handlePress}
        >
-        <List.Item title="Xem tất cả" onPress={getAll}/>
-        <List.Item title="Xem gần nhất" onPress={getOne}/>
+        <List.Item title="Xem tất cả"  style={{ borderWidth:1}} onPress={getAll}/>
+        <List.Item title="Xem gần nhất" style={{ borderWidth:1}} onPress={getOne}/>
       </List.Accordion>
 
      
@@ -226,7 +226,7 @@ else
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: '#fff',
+    backgroundColor: '#fff',
     paddingTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -247,8 +247,9 @@ const styles = StyleSheet.create({
   },
 
   chosse:{
-    marginLeft:170,
-    marginRight:30
+    marginLeft:160,
+    marginRight:30,
+    borderWidth:1
    },
   cell:{
     padding:10,

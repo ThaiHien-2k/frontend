@@ -43,17 +43,17 @@ export default function changePage({ navigation }) {
   const getData = async () => {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-      setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
-      setName(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.name).toString());
-      // setData(response.data.data.filter(index=> index.email.includes(auth.email)));
-        setCountryID(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.countryID).toString());
-  setPhone(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.phone).toString());
-  setAddress(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.address).toString());
+      setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
+      setName(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name).toString());
+      // setData(response.data.data.filter(index=> index.email.includes('a@gmail.com')));
+        setCountryID(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.countryID).toString());
+  setPhone(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.phone).toString());
+  setAddress(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.address).toString());
 
     } catch (error) {
       console.error(error);
     } finally {
-        // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i.email));
+        // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.email));
       setLoading(false);
     }
 
@@ -75,7 +75,7 @@ useEffect( () => {
         countryID,
         name,
         phone,
-        email:auth.email,
+        email:'a@gmail.com',
         address,
         status:'Có thể hiến',
       }
@@ -128,7 +128,7 @@ else{
       {/* <Text>Email:</Text>
     <TextInput
       // label="Email"
-      value={data.filter(index=> index.email.includes(auth.email)).map(i=>i.email).toString()}
+      value={data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.email).toString()}
       disabled
       onChangeText={text => setText(text)}
     /> */}

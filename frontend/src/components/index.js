@@ -6,6 +6,7 @@ import DashboardCards from './DashboardCards';
 
 import AdminsTable from './AdminsTable';
 import StaffsTable from './StaffTable';
+import PostsTable from './PostTable';
 import InforsTable from './InforTable';
 import BloodDonatesTable from './BloodDonateTable';
 import DonateTable from './DonateTable';
@@ -33,7 +34,7 @@ export {
   InforsTable,
   BloodStoragesTable,
   CashFlowsTable,
-
+PostsTable,
   StaffDetail,
   CreateNewAdminModal,
 

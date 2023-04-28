@@ -123,9 +123,9 @@ export default function Routes() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name='Login' component={Login} />
+        {/* <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name="SingUp" component={SingUp} />
-        
+         */}
         <Stack.Screen name="myTabs" component={myTabs} />
          <Stack.Screen name="Post" component={Post}   />
         <Stack.Screen name="Change" component={Change} />

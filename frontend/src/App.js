@@ -6,6 +6,8 @@ import {
   LoginPage,
  
   StaffsPage,
+   
+  PostsPage,
   InforsPage,
   CashFlowsPage,
   PrivateRoute,
@@ -57,20 +59,30 @@ function App() {
           <DonatePage />
           </PrivateRoute>
 
-        
+          <PrivateRoute exact path='/posts'>
+          <PostsPage />
+          </PrivateRoute>
+
+         
+         
+        {/* <PrivateRoute exact path='/Posts/:id'>
+          <PostDetaislPage />
+        </PrivateRoute> */}
+
 
           <PrivateRoute exact path='/staffs'>
           <StaffsPage />
           </PrivateRoute>
 
          
-          <PrivateRoute exact path='/infors/:id'>
-          <InforDetaislPage />
-        </PrivateRoute>
+         
         <PrivateRoute exact path='/staffs/:id'>
           <StaffDetaislPage />
         </PrivateRoute>
 
+        <PrivateRoute exact path='/infors/:id'>
+          <InforDetaislPage />
+        </PrivateRoute>
         <PrivateRoute exact path='/donates/:id'>
           <DonateDetaislPage />
         </PrivateRoute>

@@ -64,6 +64,14 @@ const PrivateRoute = ({ children, ...rest }) => {
     );
   }
 
+  if (rest.path === '/posts') {
+    return currentUser &&
+      ['admin'].includes(currentUser.privilege) ? (
+      <Route {...rest}>{children}</Route>
+    ) : (
+      <Redirect to={location.state?.from ?? '/posts'} />
+    );
+  }
   if (rest.path === '/infors') {
    
     return currentUser &&

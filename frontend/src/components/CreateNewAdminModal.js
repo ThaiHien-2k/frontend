@@ -118,7 +118,7 @@ function CreateNewAdminModal() {
               >
                 <option value='admin'>Admin</option>
                 <option value='staff'>Staff</option>
-                <option value='user'>user</option>
+                {/* <option value='user'>user</option> */}
               </Select>
             </FormControl>
           </ModalBody>

@@ -12,6 +12,7 @@ export const LinkItems = [
   { name: 'Dashboard', url: '/', icon: <DashboardIcon /> },
   { name: 'Quản lý tài khoản', url: '/accounts', icon: <PersonIcon /> },
   { name: 'Quản lý nhân viên', url: '/staffs', icon: <PeopleIcon /> },
+  { name: 'Quản lý nhân viên', url: '/posts', icon: <PeopleIcon /> },
   { name: 'Quản lý thu chi', url: '/cashFlows', icon: <AttachMoneyIcon /> },
   { name: 'Quản lý lượng máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
   { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
@@ -45,6 +46,10 @@ export const register_url = `${domain}api/admin/register`;
 export const logout_url = `${domain}api/admin/logout`;
 export const admins_url = `${domain}api/admin/users/`;
 
+
+export const posts_url = `${domain}api/posts/`;
+export const create_new_post = `${domain}api/admin/post/new`;
+export const update_post_url = `${domain}api/admin/post/`;
 
 export const staffs_url = `${domain}api/staffs/`;
 export const create_new_staff = `${domain}api/admin/staff/new`;

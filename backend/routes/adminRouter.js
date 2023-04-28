@@ -103,8 +103,8 @@ router
     commentController.updateComment
   )
   .delete(
-    auth.checkUserAuthentication,
-    auth.checkAdminPrivileges( 'admin'),
+    // auth.checkUserAuthentication,
+    // auth.checkAdminPrivileges( 'admin'),
     commentController.deleteComment
   );
 

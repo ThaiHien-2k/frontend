@@ -16,9 +16,11 @@ import BloodStoragesTable from './BloodStorageTable';
 import CreateNewAdminModal from './CreateNewAdminModal';
 
 import ErrorBoundary from './ErrorBoundary';
+import PostDetail from './PostDetail';
 
 import StaffDetail from './StaffDetail';
 import DonateDetail from './DonateDetail';
+import BookingDetail from './BookingDetail';
 // import Stars from './Stars';
 import BloodDonateDetail from './BloodDonateDetail';
 import PreLoader from './PreLoader';
@@ -39,7 +41,7 @@ PostsTable,
   CreateNewAdminModal,
 
   ErrorBoundary,
-
+  BookingDetail,
   // Stars,
   DonateTable,
   BloodDonatesTable,

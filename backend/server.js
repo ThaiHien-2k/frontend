@@ -15,7 +15,9 @@ const inforRouter = require('./routes/inforRouter');
 const bloodStorageRouter = require('./routes/bloodStorageRouter');
 const commentRouter = require('./routes/commentRouter');
 const staffRouter = require('./routes/staffRouter');
+const notificationRouter = require('./routes/notificationRouter');
 const postRouter = require('./routes/postRouter');
+const bookingRouter = require('./routes/bookingRouter');
 const donateRouter = require('./routes/donateRouter');
 const cashFlowRouter = require('./routes/cashFlowRouter');
 const adminRouter = require('./routes/adminRouter');
@@ -64,6 +66,8 @@ app.get('/', (req, res) => {
 app.use('/api/infors', inforRouter);
 
 app.use('/api/bloodStorages', bloodStorageRouter);
+app.use('/api/notifications', notificationRouter);
+app.use('/api/bookings', bookingRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/comments', commentRouter);
 app.use('/api/staffs', staffRouter);

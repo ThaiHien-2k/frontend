@@ -15,6 +15,7 @@ import changePage from '../Screens/change';
 import InforPage from '../Screens/Infor';
 import CreatePost  from '../Screens/CreatePost';
 import Post  from '../Screens/Post';
+import BookingPage from '../Screens/Booking';
 // import myTabs from '../component/tab';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -40,6 +41,9 @@ function myTabs() {
       name="Trang chủ"
       component={Home}
       options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },
         tabBarIcon: ({ color }) => (
           <Ionicons name="ios-home" color={color} size={26} />
         ),
@@ -49,6 +53,9 @@ function myTabs() {
       name="Thống kê"
       component={Statistic}
       options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },
         tabBarIcon: ({ color }) => (
           <Ionicons name="stats-chart-outline" color={color} size={26} />
         ),
@@ -58,6 +65,9 @@ function myTabs() {
       name="Tạo bài viết"
       component={CreatePost}
       options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },
         tabBarIcon: ({ color }) => (
           <Ionicons name="add-circle-outline" color={color} size={26} />
         ),
@@ -69,6 +79,9 @@ function myTabs() {
       name="Các buổi hiến máu đang tổ chức"
       component={BLoodDonate}
       options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },
         tabBarIcon: ({ color }) => (
           <Ionicons name="calendar-outline" color={color} size={26} />
         ),
@@ -78,6 +91,9 @@ function myTabs() {
       name="Thông tin"
       component={Profile}
       options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },
         tabBarIcon: ({ color }) => (
           <Ionicons name="ios-person" color={color} size={26} />
         ),
@@ -90,7 +106,10 @@ function myTabs() {
   function Infor() {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="Xem thông tin" component={InforPage} />
+        <Tab.Screen name="Xem thông tin" component={InforPage}   options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },}}/>
  
       </Stack.Navigator>
       )
@@ -108,7 +127,22 @@ function myTabs() {
   function Change() {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="Thay đổi thông tin" component={changePage} />
+        <Stack.Screen name="Thay đổi thông tin" component={changePage}  options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },}}/>
+ 
+      </Stack.Navigator>
+      )
+  }
+
+  function Booking({ route, navigation }) {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Booking" component={BookingPage}  options={{
+        headerStyle: {
+          backgroundColor: '#ff6666',
+        },}}/>
  
       </Stack.Navigator>
       )
@@ -129,6 +163,7 @@ export default function Routes() {
         <Stack.Screen name="myTabs" component={myTabs} />
          <Stack.Screen name="Post" component={Post}   />
         <Stack.Screen name="Change" component={Change} />
+        <Stack.Screen name="Booking" component={BookingPage} />
         <Stack.Screen name="Infor" component={Infor} />
        
 

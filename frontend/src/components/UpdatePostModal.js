@@ -25,17 +25,17 @@ import {
 } from '@chakra-ui/react';
 // import { useDropzone } from 'react-dropzone';
 import { usePostContext } from '../context/post_context';
+import { Hidden } from '@mui/material';
 
 function UpdatePostModal({ id }) {
   const {
     single_post: {
-      name = '',
-      countryID = '',
-      address = '',
-      phone = '',
-      suppostTime = '',
-      from = '',
-      type = 'Nhân Viên Hỗ Trợ',
+      name,
+      title,
+      content,
+      status,
+      like
+
       
     },
     // single_post_loading,
@@ -58,13 +58,7 @@ function UpdatePostModal({ id }) {
 
   const handleSubmit = async () => {
     if (
-      !name ||
-      !countryID ||
-      !address ||
-      !type ||
-      !phone||
-      !from||
-      !suppostTime 
+      !status
     ) {
       return toast({
         position: 'top',
@@ -78,12 +72,10 @@ function UpdatePostModal({ id }) {
     setLoading(true);
     const post = {
       name,
-      countryID,
-      address,
-      phone,
-      from,
-      suppostTime,
-      type
+      title,
+      content,
+      status,
+      like
     };
     const responseCreate = await updatePost(id, post);
     setLoading(false);
@@ -119,20 +111,20 @@ function UpdatePostModal({ id }) {
           onOpen();
         }}
       >
-        Chỉnh Sửa
+        Duyệt bài viết
       </Text>
 
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Chỉnh sửa nhân viên</ModalHeader>
+          <ModalHeader>Duyệt bài viết</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            {/* <FormControl>
-              <FormLabel>Họ và tên</FormLabel>
-              <Input
+            <FormControl>
+         
+              <Hidden
                 ref={initialRef}
-                placeholder='Họ và tên'
+                // placeholder='Họ và tên'
                 name='name'
                 focusBorderColor='brown.500'
                 value={name}
@@ -141,76 +133,57 @@ function UpdatePostModal({ id }) {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>CMND/CCCD</FormLabel>
-              <Input
-                type='number'
-                placeholder='CMND/CCCD'
-                name='countryID'
+           
+              <Hidden
+                // type='number'
+                // placeholder='CMND/CCCD'
+                name='title'
                 focusBorderColor='brown.500'
-                value={countryID}
+                value={title}
                 onChange={updateExistingPostDetails}
               />
             </FormControl>
 
             <FormControl>
-              <FormLabel>SĐT</FormLabel>
-              <Input
+              {/* <FormLabel>SĐT</FormLabel> */}
+              <Hidden
                 ref={initialRef}
-                placeholder='SĐT'
-                name='phone'
+                // placeholder='SĐT'
+                name='content'
                 focusBorderColor='brown.500'
-                value={phone}
+                value={content}
                 onChange={updateExistingPostDetails}
               />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Địa chỉ</FormLabel>
-              <Textarea
-                placeholder='Địa chỉ'
-                name='address'
+              {/* <FormLabel>Địa chỉ</FormLabel> */}
+              <Hidden
+                // placeholder='Địa chỉ'
+                name='like'
                 focusBorderColor='brown.500'
-                value={address}
+                value={like}
                 onChange={updateExistingPostDetails}
               />
             </FormControl>
-            <FormControl mt={4}>
-              <FormLabel>Đơn vị</FormLabel>
-              <Textarea
-                placeholder='Đơn vị'
-                name='from'
-                focusBorderColor='brown.500'
-                value={from}
-                onChange={updateExistingPostDetails}
-              />
-            </FormControl>
+         
 
-            <FormControl mt={4}>
-              <FormLabel>Số lần hỗ trợ</FormLabel>
-              <Input
-                type='number'
-                placeholder='Số lần hỗ trợ'
-                name='suppostTime'
-                focusBorderColor='brown.500'
-                value={suppostTime}
-                onChange={updateExistingPostDetails}
-              />
-            </FormControl>
+         
             
             
             <FormControl mt={4}>
-            <FormLabel>Loại nhân viên</FormLabel>
+            {/* <FormLabel>Loại nhân viên</FormLabel> */}
               <Select
-                name='type'
+                name='status'
                 focusBorderColor='brown.500'
-                value={type}
+                value={status}
                 onChange={updateExistingPostDetails}
               >
-                <option value='Quản Trị Viên'>Quản Trị Viên</option>
-                <option value='Bác Sĩ'>Bác Sĩ</option>
-                <option value='Nhân Viên Hỗ Trợ'>Nhân Viên Hỗ Trợ</option>
+                <option value='Đã duyệt'>Duyệt</option>
+                <option value='Chưa duyệt'>Không duyệt</option>
+               
               </Select>
-            </FormControl> */}
+            </FormControl>
 
           </ModalBody>
 

@@ -23,6 +23,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import UpdatePostModal from './UpdatePostModal';
+import moment from 'moment';
 
 function PostsTable({ posts }) {
   const toast = useToast();
@@ -84,7 +85,7 @@ function PostsTable({ posts }) {
                   <Td>{name}</Td>
                   <Td>{title}</Td>
                   <Td>{like}</Td>
-                  <Td>{createdAt}</Td>
+                  <Td>{moment(Date(createdAt)).format('MM:HHA DD/MM/YYYY')}</Td>
                   <Td>{status}</Td>
              
                   <Td>

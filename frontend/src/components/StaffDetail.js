@@ -95,7 +95,7 @@ function StaffDetail({ staff }) {
           </Thead>
           <Tbody>
             {suppost.sort((a, b) =>new Date(a.time).getTime()-new Date(b.time).getTime()).map((sup, index) => {
-              const {  name, time, address,staffList } =
+              const {  name, time,timeF, address,staffList } =
               sup;
                 // console.log(staffList.map(index=>index))
                 // console.log(id)
@@ -105,7 +105,10 @@ function StaffDetail({ staff }) {
                 <Tr key={index}>
                    <Td>{index+1}</Td>
                 <Td>{name}</Td>
-                  <Td>{moment(time).format("MM:HHA D/M/YYYY")}</Td>
+                <Td>{time.substr(10,5)+'-'+timeF.substr(10,5)}
+                  <br/>{moment(timeF.substring(0,10)).format('DD/MM/YYYY')}
+                  </Td>
+              
                   <Td>{address}</Td>
         
                 </Tr>

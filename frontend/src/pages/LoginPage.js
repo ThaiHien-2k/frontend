@@ -41,23 +41,23 @@ export default function LoginPage() {
     if (mounted.current) {
       setLoading(false);
     }
-    if (response.false) {
-      return toast({
-        position: 'top',
-        description: `Logged In as ${response.data.name}`,
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
-    } else {
-      return toast({
-        position: 'top',
-        description: response.message,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
+    // if (response.false) {
+    //   return toast({
+    //     position: 'top',
+    //     description: `Logged In as ${response.data.name}`,
+    //     status: 'success',
+    //     duration: 5000,
+    //     isClosable: true,
+    //   });
+    // } else {
+    //   return toast({
+    //     position: 'top',
+    //     description: response.message,
+    //     status: 'error',
+    //     duration: 5000,
+    //     isClosable: true,
+    //   });
+    // }
   };
 
   if (authLoading) {

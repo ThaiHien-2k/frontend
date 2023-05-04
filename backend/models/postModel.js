@@ -21,11 +21,7 @@ const postSchema = mongoose.Schema({
     
   },
 
-  image: {
-    type: String,
-   
-    
-  },
+  
 
   like: {
     type: Number,

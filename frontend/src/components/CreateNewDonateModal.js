@@ -159,6 +159,7 @@ console.log(name);
       await fetchSingleDonate(id);
       await fetchInfors();
         onClose();
+        
         return toast({
           position: 'top',
           description: 'Donate created',

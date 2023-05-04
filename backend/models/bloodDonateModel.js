@@ -54,26 +54,7 @@ const bloodDonateSchema = mongoose.Schema({
     required: [true],
  },],
 
-//  donate:[ {
-//   //  id: { type: mongoose.Schema.Types.ObjectId,
-//   //   ref: 'Infor',
-//   //   // required: [true],
-//   // },
-//   // name: {
-//   //   type: String,
-   
-//   // },
-//   //   amount:{
-//   //     type: Number,
-    
-//   //   },
-//   //   typeBlood:{
-//   //     type: String,
-      
-//   //   }
-// },
-  
-// ],
+
   status:{
     type: String,
     require: false,

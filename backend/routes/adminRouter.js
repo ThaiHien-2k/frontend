@@ -6,6 +6,8 @@ const bloodStorageController = require('../controllers/bloodStorageController');
 const staffController = require('../controllers/staffController');
 const commentController = require('../controllers/commentController');
 const postController = require('../controllers/postController');
+const bookingController = require('../controllers/bookingController');
+const notificationController = require('../controllers/notificationController');
 const inforController = require('../controllers/inforController');
 const cashFlowController = require('../controllers/cashFlowController');
 const bloodDonateController = require('../controllers/bloodDonateController')
@@ -233,7 +235,7 @@ router
   );
 
 
-  // create a new Staff
+  // create a new post
 router
 .route('/post/new')
 .post(
@@ -254,5 +256,53 @@ router
   auth.checkAdminPrivileges( 'admin'),
   postController.deletePost
 );
+
+
+
+
+  // create a new notification
+  router
+  .route('/notification/new')
+  .post(
+   
+    notificationController.createNotification
+  );
+  
+  
+  // send, update, delete a single Notification
+  router
+  .route('/notification/:id')
+  .put(
+    
+    notificationController.updateNotification
+  )
+  .delete(
+    auth.checkUserAuthentication,
+    auth.checkAdminPrivileges( 'admin'),
+    notificationController.deleteNotification
+  );
+
+  // create a new booking
+  router
+  .route('/booking/new')
+  .post(
+   
+    bookingController.createBooking
+  );
+  
+  
+  // send, update, delete a single Booking
+  router
+  .route('/booking/:id')
+  .put(
+    
+    bookingController.updateBooking
+  )
+  .delete(
+    auth.checkUserAuthentication,
+    auth.checkAdminPrivileges( 'admin'),
+    bookingController.deleteBooking
+  );
+
 
 module.exports = router;

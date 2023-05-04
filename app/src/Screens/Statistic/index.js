@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   SafeAreaView,
+  RefreshControl,
   Keyboard,
   SimpleGrid,
   Table,
@@ -111,8 +112,17 @@ const getOne =  async() => {
   setExpanded(!expanded);
   }   
 //  console.log(sum);
-const [expanded, setExpanded] = React.useState(true);
+const onRefresh = React.useCallback(() => {
+  setRefreshing(true);
+  getId();
 
+  setTimeout(() => {
+    setRefreshing(false);
+  }, 200);
+}, []);
+
+const [expanded, setExpanded] = React.useState(true);
+const [refreshing, setRefreshing] = React.useState(false);
 const handlePress = () => setExpanded(!expanded);
 
 if(id===''){
@@ -131,7 +141,9 @@ else
   return (
 
     <SafeAreaView style={styles.container}>
-    <ScrollView >
+    <ScrollView refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
          <View >
         <Text style={styles.text}>Số lần hiến: {dnTime} </Text>
         <Text style={styles.text}>Tổng lượng máu đã hiến: {total}ml</Text>

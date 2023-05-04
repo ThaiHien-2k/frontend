@@ -41,7 +41,7 @@ function InforsTable({ infors }) {
         duration: 5000,
         isClosable: true,
       });
-      window.location.reload(false);
+      // window.location.reload(false);
       return await fetchInfors();
     } else {
       return toast({

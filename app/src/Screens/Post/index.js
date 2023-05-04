@@ -246,7 +246,7 @@ useEffect( () => {
   const containerStyle = {backgroundColor: 'white', padding: 20};
   return (
     <>
-<Appbar.Header>
+<Appbar.Header >
     <Appbar.BackAction  onPress={() => click()}/>
     <Appbar.Content title="Bài viết" />
     {/* <Appbar.Action icon="calendar" onPress={() => {}} />

@@ -4,10 +4,12 @@ import {
   StyleSheet,
   Text,
   View,
+  Pressable,
   SafeAreaView,
   SectionList,
   RefreshControl,
   ScrollView,
+  Alert, Modal, 
   // StatusBar,
 } from 'react-native';
 import { db } from '../../Database';
@@ -48,6 +50,7 @@ export default function BLoodDonate({ navigation }) {
    
     
   ];
+  const [modalVisible, setModalVisible] = useState(false);
 
   const getData = async () => {
     try {
@@ -55,7 +58,7 @@ export default function BLoodDonate({ navigation }) {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
       setData(response3.data.data.sort((a, b) =>new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -63,6 +66,16 @@ export default function BLoodDonate({ navigation }) {
       setLoading(false);
     }
  
+}
+
+
+const deleteCmt = async (id) => {
+  console.log(id)
+  navigation.navigate('Booking',{ id: id });
+  // navigation.navigate('Booking',{ id: id })
+   setModalVisible(!modalVisible);
+
+  
 }
 
 const [refreshing, setRefreshing] = React.useState(false);
@@ -76,7 +89,7 @@ const onRefresh = React.useCallback(() => {
 }, []);
 useEffect( () => {
   getData();
- console.log(data)
+
   // getDta();
   }, [])
 
@@ -91,6 +104,43 @@ useEffect( () => {
       renderItem={({item}) => (
         <SafeAreaView>
         <ScrollView>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text>Bạn có muốn đặt lịch hẹn ở buổi này?</Text>
+          <View style={{flexDirection: 'row',}}>
+            <Pressable
+              style={[ styles.buttonClose]}
+              onPress={() => deleteCmt(item.name)}>
+              <Text style={styles.textStyle}>Đặt lịch</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.buttonOpen]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Thoát</Text>
+            </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+     
+     <Pressable
+      onLongPress={() => setModalVisible(!modalVisible)}
+      // style={styles.item3}
+       style={({pressed}) => [
+        { 
+          backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+        },
+        styles.wrapperCustom,
+      ]}
+      >
         <View style={styles.item}>
         <View style={{flexDirection: 'row',}}>
           <Text style={styles.title}>Tên Buổi hiến: </Text>
@@ -112,6 +162,7 @@ useEffect( () => {
           <Text style={styles.title2}>{item.address}</Text>
           </View>
         </View>
+        </Pressable> 
         </ScrollView>
         </SafeAreaView>
       )}
@@ -120,6 +171,7 @@ useEffect( () => {
       // )}
     />
     </ScrollView>
+  
   </SafeAreaView>
 
   );
@@ -153,6 +205,56 @@ const styles = StyleSheet.create({
     padding:5,
     fontSize: 20,
     // borderWidth:1
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  // button: {
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   elevation: 2,
+  // },
+  buttonOpen: {
+    width: 60,
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+    
+    // backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth:1,
+    // backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    width: 60,
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+    
+    // backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth:1,
+    backgroundColor: 'red',
   },
 });
 

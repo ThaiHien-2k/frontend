@@ -29,7 +29,7 @@ function BloodStoragesPage() {
   function setSearchTerm(e){
     // staffs = staffs.filter(staff => staff.countryID < 60);
     const results = bloodStorages.filter(bloodStorage => {
-      if (e === "") return bloodStorageList
+      if (e === "") return bloodStorageList.push(bloodStorages.map(i=>i));
       return bloodStorage.name.toLowerCase().includes(e.toLowerCase())
       })
       setBloodStorageList(results);
@@ -37,23 +37,24 @@ function BloodStoragesPage() {
   }
 
   useEffect(() => {
-    setBloodStorageList(bloodStorages);
+    setSearchTerm("");
  
 
 }, [])
+
   if (loading) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewBloodStorageModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Spinner size='lg' color='brown.500' />
@@ -67,14 +68,14 @@ function BloodStoragesPage() {
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewBloodStorageModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Heading color='red.500'>There was an error</Heading>
@@ -93,16 +94,16 @@ function BloodStoragesPage() {
       }}
       />
         <CreateNewBloodStorageModal />
-        <Button
+        {/* <Button
           colorScheme='brown'
           variant='outline'
           leftIcon={<MdOutlineRefresh />}
           onClick={handleRefresh}
         >
           Tải lại
-        </Button>
+        </Button> */}
       </HStack>
-      <BloodStoragesTable bloodStorages={bloodStorageList} />
+      <BloodStoragesTable bloodStorages={bloodStorages.filter(i=>bloodStorageList.map(i=>i.id).includes(i.id))} />
     </SidebarWithHeader>
   );
 }

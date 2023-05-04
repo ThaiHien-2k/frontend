@@ -84,7 +84,7 @@ function BloodDonatesTable({ bloodDonates }) {
         duration: 5000,
         isClosable: true,
       });
-      window.location.reload(true);
+      // window.location.reload(true);
       return await fetchBloodDonates();
     } else {
       return toast({

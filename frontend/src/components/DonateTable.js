@@ -96,7 +96,9 @@ function DonateTable({ bloodDonates }) {
                   </Td>
                   <Td>{address}</Td>
                   <Td>{status}</Td>
+
                   <Td>
+                  <Button ><Link to={`/bookings/${id}`}>Xem danh sách hẹn</Link></Button><br/><br/>
                   <Button ><Link to={`/donates/${id}`}>Chọn</Link></Button>
                     {/* <Menu>
                       <MenuButton as={Button} rightIcon={<BiChevronDown />}>

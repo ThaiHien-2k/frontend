@@ -1,51 +1,59 @@
 import React from 'react';
 import {
-//   InforsTable,
+//   BookingsTable,
   SidebarWithHeader,
-//   CreateNewInforModal,
+//   CreateNewBookingModal,
 } from '../components';
-import InforsTable from '../components/InforTable';
+import BookingsTable from '../components/BookingTable';
 
-import CreateNewInforModal from '../components/CreateNewInforModal';
+// import CreateNewBookingModal from '../components/CreateNewBookingModal';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
-import { useInforContext } from '../context/infor_context';
-import { useState ,useEffect} from 'react';
+import { useBookingContext } from '../context/booking_context';
 import { Input } from 'semantic-ui-react';
-function InforsPage() {
+import 'semantic-ui-css/semantic.min.css';
+import { useState,useEffect } from 'react';
+
+function BookingPage() {
   const {
-    infors,
-    infors_loading: loading,
-    infors_error: error,
-    fetchInfors,
-  } = useInforContext();
+    bookings,
+    bookings_loading: loading,
+    bookings_error: error,
+    fetchBookings,
+  } = useBookingContext();
 
   const handleRefresh = async () => {
-    await fetchInfors();
+ 
+      setBookingList(bookings);
+
+    await fetchBookings();
   };
+  const [bookingList, setBookingList] = useState([]);
 
-  const [inforList, setInforList] = useState([]);
-
-  function setSearchTerm(e){
-    // staffs = staffs.filter(staff => staff.countryID < 60);
-    const results = infors.filter(infor => {
-      if (e === "") return inforList.push(infors.map(i=>i));
-      return infor.name.toLowerCase().includes(e.toLowerCase())
-      })
-      setInforList(results);
-    console.log(infors);
-  }
 
   useEffect(() => {
+  
     setSearchTerm("");
  
+       
+      
+  }, [])
 
-}, [])
+  function setSearchTerm(e){
+    // bookings = bookings.filter(booking => booking.countryID < 60);
+    const results = bookings.filter(booking => {
+      if (e === "") return  bookingList.push(bookings.map(i=>i));
+      return booking.name.toLowerCase().includes(e.toLowerCase())
+      })
+      setBookingList(results);
+    // console.log(BookingList);
+  }
+
   if (loading) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewInforModal />
+          {/* <CreateNewBookingModal /> */}
           {/* <Button
             colorScheme='brown'
             variant='outline'
@@ -66,7 +74,7 @@ function InforsPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewInforModal />
+          {/* <CreateNewBookingModal /> */}
           {/* <Button
             colorScheme='brown'
             variant='outline'
@@ -86,13 +94,14 @@ function InforsPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-      <Input icon='search'
+      
+        {/* <Input icon='search'
        placeholder='Nhập tên cần tìm' 
       onChange={(event) => {
         setSearchTerm(event.target.value);
       }}
-      />
-        <CreateNewInforModal />
+      /> */}
+        {/* <CreateNewBookingModal /> */}
         {/* <Button
           colorScheme='brown'
           variant='outline'
@@ -102,9 +111,10 @@ function InforsPage() {
           Tải lại
         </Button> */}
       </HStack>
-      <InforsTable infors={infors.filter(i=>inforList.map(i=>i.id).includes(i.id))} />
+     
+      <BookingsTable bookings={bookings.filter(i=>bookingList.map(i=>i.id).includes(i.id))} />
     </SidebarWithHeader>
   );
 }
 
-export default InforsPage;
+export default BookingPage;

@@ -90,6 +90,14 @@ const PrivateRoute = ({ children, ...rest }) => {
       <Redirect to={location.state?.from ?? '/donates'} />
     );
   }
+  if (rest.path === '/bookings') {
+    return currentUser &&
+      ['staff', 'admin'].includes(currentUser.privilege) ? (
+      <Route {...rest}>{children}</Route>
+    ) : (
+      <Redirect to={location.state?.from ?? '/bookings'} />
+    );
+  }
 
   if (rest.path === '/bloodDonates') {
     return currentUser &&

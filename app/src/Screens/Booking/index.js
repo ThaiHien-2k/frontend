@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect,useRef } from 'react';
-
+import { Appbar } from 'react-native-paper';
 import {
   View,
   Text,
@@ -32,8 +32,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // import * as React from 'react';
 import { TextInput } from 'react-native-paper';
 import axios from 'axios';
-import { SafeAreaView } from 'react-native-safe-area-context';
-export default function changePage({ navigation }) {
+export default function BookingPage({ navigation ,route}) {
   const auth = getAuth().currentUser;
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -43,12 +42,12 @@ export default function changePage({ navigation }) {
   const getData = async () => {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-      setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
+      setIdu(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
       setName(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name).toString());
-      // setData(response.data.data.filter(index=> index.email.includes('a@gmail.com')));
-        setCountryID(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.countryID).toString());
-  setPhone(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.phone).toString());
-  setAddress(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.address).toString());
+//       // setData(response.data.data.filter(index=> index.email.includes('a@gmail.com')));
+//         setCountryID(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.countryID).toString());
+//   setPhone(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.phone).toString());
+//   setAddress(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.address).toString());
 
     } catch (error) {
       console.error(error);
@@ -59,71 +58,79 @@ export default function changePage({ navigation }) {
 
 }
 
+const click = async () => {
 
+    navigation.navigate('Các buổi hiến máu đang tổ chức');
+
+}
 
 useEffect( () => {
   getData();
-  console.log(id)
+
   
   setLoading(false);
   }, [])
 
 
-  async function update() {
-    if(id===''){
-      const infor ={
-        countryID,
-        name,
-        phone,
-        email:'a@gmail.com',
-        address,
-        status:'Có thể hiến',
-      }
-      const res = await axios.post(`http://10.0.2.2:5000/api/admin/infor/new`,infor);
-  
-      if(res.status===200){
-     
-        ToastAndroid.show('Chỉnh sửa thông tin thành công!', ToastAndroid.SHORT);
-        navigation.navigate('myTabs');
-      }
-      else{
-        ToastAndroid.show('Đã có lỗi xảy ra!', ToastAndroid.SHORT);
-      }
+  async function create() {
+
+
+    const post ={
+        iduser:idu,
+        idBD:route.params.id,
+        sex: 'Nam',
+    //   status:"Đã duyệt",
+      heigh:120,
+      weight:120,
+      isAcohol:false,
+      isNicotine:false,
+      isHeartDisease:false,
+      isSitUp:false,
+      isSick:false,
+      isAllergies:"Không có",
+      createdAt:Date.now(),
+
+
     }
-else{
-    const infor ={
-      countryID,
-      name,
-      phone,
-      address,
-      
-    }
-    const res = await axios.put(`http://10.0.2.2:5000/api/admin/infor/${id}`,infor);
+    const res = await axios.post(`http://10.0.2.2:5000/api/admin/booking/new`,post);
 
     if(res.status===200){
    
-      ToastAndroid.show('Chỉnh sửa thông tin thành công!', ToastAndroid.SHORT);
-      navigation.navigate('myTabs');
+      ToastAndroid.show('Đặt lịch thành công!', ToastAndroid.SHORT);
+      setTitle('');
+      setContent('');
+      navigation.navigate('Các buổi hiến máu đang tổ chức');
     }
     else{
       ToastAndroid.show('Đã có lỗi xảy ra!', ToastAndroid.SHORT);
     }
-  }
 }
 
 
   const [text, setText] = React.useState("");
-  
-  const [id, setId] = React.useState("");
   const [name, setName] = React.useState("");
-  const [phone, setPhone] = React.useState("");
-  const [countryID, setCountryID] = React.useState("");
-  const [address, setAddress] = React.useState("");
+
+  const [idu, setIdu] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [content, setContent] = React.useState("");
+//   const [countryID, setCountryID] = React.useState("");
+//   const [address, setAddress] = React.useState("");
   // const [text, setText] = React.useState(""); 
 
   return (
-    <ScrollView > 
-    {/* <SafeAreaView  > */}
+   <>
+    <Appbar.Header style={[
+    
+        {
+         
+          backgroundColor: '#ff6666',
+        },
+      ]}>
+    <Appbar.BackAction  onPress={() => click()}/>
+    <Appbar.Content title="Thêm thông tin" />
+    {/* <Appbar.Action icon="calendar" onPress={() => {}} />
+    <Appbar.Action icon="magnify" onPress={() => {}} /> */}
+  </Appbar.Header>
     <View style={{flex: 1, padding: 24}}>
       {/* <Text>Email:</Text>
     <TextInput
@@ -132,53 +139,40 @@ else{
       disabled
       onChangeText={text => setText(text)}
     /> */}
-<Text style={styles.text2}>CMND/CCCD:</Text>
-<TextInput
+<Text style={styles.text2}>Tiêu đề:</Text>
+{/* <TextInput
     
-      value={countryID}
+      value={title}
       // disabled
       autoCapitalize="none"
       autoCorrect={false}
       backgroundColor='white'
-      onChangeText={text => setCountryID(text)}
-    />
-    <Text style={styles.text2}>Họ và tên:</Text>
-<TextInput
-    ref={initialRef}
-      value={name}
+      onChangeText={text => setTitle(text)}
+    /> */}
+    <Text style={styles.text2}>Nội dung:</Text>
+{/* <TextInput
+    // ref={initialRef}
+    multiline
+        numberOfLines={14}
+      value={content}
       // disabled
       backgroundColor='white'
-      onChangeText={text => setName(text)}
-    />
-<Text style={styles.text2}>SĐT:</Text>
-<TextInput
-    
-    value={phone}
-    // disabled
-    backgroundColor='white'
-    onChangeText={text => setPhone(text)}
-  />
-  <Text style={styles.text2}>Địa chỉ:</Text>
-  <TextInput
-    
-  value={address}
-  // disabled
-  backgroundColor='white'
-  onChangeText={text => setAddress(text)}
-/>
- <TouchableOpacity style={styles.button} onPress={update}>
-                        <Text style={styles.text}>Chỉnh sửa</Text>
+      onChangeText={text => setContent(text)}
+    /> */}
+
+ <TouchableOpacity style={styles.button} onPress={create}>
+                        <Text style={styles.text}>Đặt hẹn</Text>
                     </TouchableOpacity>
     </View>
-    {/* </SafeAreaView> */}
-    </ScrollView>
+    </>
   );
+ 
 };
 
 const styles = StyleSheet.create({
   container: {
 
-    // paddingTop: 20,
+    paddingTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
 

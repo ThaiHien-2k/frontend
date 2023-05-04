@@ -70,7 +70,7 @@ function CreateNewCashFlowModal() {
     }
     
     setLoading(true);
-    console.log('uploading');
+  
     const cashFlow = {
         name,
         amount,
@@ -82,7 +82,8 @@ function CreateNewCashFlowModal() {
     const responseCreate = await createNewCashFlow(cashFlow);
     setLoading(false);
     if (responseCreate.success) {
-      
+      // return await fetchCashFlows();
+      window.location.reload(false);
       onClose();
       return toast({
         position: 'top',
@@ -91,7 +92,9 @@ function CreateNewCashFlowModal() {
         duration: 5000,
         isClosable: true,
       });
-      return await fetchCashFlows();
+     
+      // await fetchCashFlows();
+      // return await fetchCashFlows();
     } else {
       return toast({
         position: 'top',

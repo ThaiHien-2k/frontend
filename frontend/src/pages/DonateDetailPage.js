@@ -60,18 +60,18 @@ function DonateDetailPage() {
       }}
       />
         <CreateNewDonateModal  id={id} />
-        <Button
+        {/* <Button
           colorScheme='brown'
           variant='outline'
           leftIcon={<MdOutlineRefresh />}
           onClick={handleRefresh}
         >
           Tải lại
-        </Button>
+        </Button> */}
        
       </HStack>
      
-      <DonateDetail donates={donateList}  id={id}/>
+      <DonateDetail donates={donates}  iduser={id}/>
     </SidebarWithHeader>
   );
 }

@@ -24,22 +24,17 @@ function StaffsPage() {
 
   const handleRefresh = async () => {
  
-  
-    
- 
       setStaffList(staffs);
-   
-  
 
     await fetchStaffs();
   };
   const [staffList, setStaffList] = useState([]);
 
+
   useEffect(() => {
   
-    
+    setSearchTerm("");
  
-          setStaffList(staffs);
        
       
   }, [])
@@ -47,11 +42,11 @@ function StaffsPage() {
   function setSearchTerm(e){
     // staffs = staffs.filter(staff => staff.countryID < 60);
     const results = staffs.filter(staff => {
-      if (e === "") return staffList
+      if (e === "") return  staffList.push(staffs.map(i=>i));
       return staff.name.toLowerCase().includes(e.toLowerCase())
       })
       setStaffList(results);
-    console.log(staffList);
+    // console.log(staffList);
   }
 
   if (loading) {
@@ -59,14 +54,14 @@ function StaffsPage() {
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewStaffModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Spinner size='lg' color='brown.500' />
@@ -80,14 +75,14 @@ function StaffsPage() {
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewStaffModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Heading color='red.500'>There was an error</Heading>
@@ -107,17 +102,17 @@ function StaffsPage() {
       }}
       />
         <CreateNewStaffModal />
-        <Button
+        {/* <Button
           colorScheme='brown'
           variant='outline'
           leftIcon={<MdOutlineRefresh />}
           onClick={handleRefresh}
         >
           Tải lại
-        </Button>
+        </Button> */}
       </HStack>
      
-      <StaffsTable staffs={staffList} />
+      <StaffsTable staffs={staffs.filter(i=>staffList.map(i=>i.id).includes(i.id))} />
     </SidebarWithHeader>
   );
 }

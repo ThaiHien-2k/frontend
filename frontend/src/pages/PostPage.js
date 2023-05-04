@@ -39,7 +39,8 @@ function PostsPage() {
   
     
  
-          setPostList(posts);
+    setSearchTerm("");
+ 
        
       
   }, [])
@@ -47,11 +48,11 @@ function PostsPage() {
   function setSearchTerm(e){
     // posts = posts.filter(post => post.countryID < 60);
     const results = posts.filter(post => {
-      if (e === "") return postList
+      if (e === "") return postList.push(posts.map(i=>i));
       return post.name.toLowerCase().includes(e.toLowerCase())
       })
       setPostList(results);
-    console.log(postList);
+
   }
 
   if (loading) {
@@ -59,14 +60,14 @@ function PostsPage() {
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewPostModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Spinner size='lg' color='brown.500' />
@@ -80,14 +81,14 @@ function PostsPage() {
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewPostModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Heading color='red.500'>There was an error</Heading>
@@ -107,17 +108,17 @@ function PostsPage() {
       }}
       />
         <CreateNewPostModal />
-        <Button
+        {/* <Button
           colorScheme='brown'
           variant='outline'
           leftIcon={<MdOutlineRefresh />}
           onClick={handleRefresh}
         >
           Tải lại
-        </Button>
+        </Button> */}
       </HStack>
      
-      <PostsTable posts={postList} />
+      <PostsTable posts={posts.filter(i=>postList.map(i=>i.id).includes(i.id))} />
     </SidebarWithHeader>
   );
 }

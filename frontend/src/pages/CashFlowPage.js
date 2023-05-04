@@ -32,7 +32,7 @@ function CashFlowsPage() {
    
     // staffs = staffs.filter(staff => staff.countryID < 60);
     const results = cashFlows.filter(i => {
-      if (e === "") return  setCashFlowList(cashFlows.map(i=>i));
+      if (e === "") return  cashFlowList.push(cashFlows.map(i=>i));
       else
       return i.name.toLowerCase().includes(e.toLowerCase())
       })
@@ -41,26 +41,28 @@ function CashFlowsPage() {
   }
 
   useEffect(() => {
-    cashFlowList.push(cashFlows.map(i=>i));
- 
+    setSearchTerm("");
+
    
   
 
 }, [])
+
+
 
   if (loading) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewCashFlowModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
              Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Spinner size='lg' color='brown.500' />
@@ -74,14 +76,14 @@ function CashFlowsPage() {
       <SidebarWithHeader>
         <HStack mb={5}>
           <CreateNewCashFlowModal />
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
             Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Heading color='red.500'>There was an error</Heading>
@@ -90,26 +92,29 @@ function CashFlowsPage() {
     );
   }
 
+
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
       <Input icon='search'
        placeholder='Nhập tên cần tìm' 
+       defaultValue=""
       onChange={(event) => {
         setSearchTerm(event.target.value);
       }}
       />
         <CreateNewCashFlowModal />
-        <Button
+        {/* <Button
           colorScheme='brown'
           variant='outline'
           leftIcon={<MdOutlineRefresh />}
           onClick={handleRefresh}
         >
           Tải lại
-        </Button>
+        </Button> */}
       </HStack>
-      <CashFlowsTable cashFlows={cashFlows.filter(i=>i.id.includes(cashFlowList.map(i=>i.id)))} />
+      
+      <CashFlowsTable cashFlows={cashFlows.filter(i=>cashFlowList.map(i=>i.id).includes(i.id))} />
     </SidebarWithHeader>
   );
 }

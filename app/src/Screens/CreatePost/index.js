@@ -77,7 +77,7 @@ else{
       title,
       content,
       iduser: id,
-      status:"Đã duyệt",
+      status:"Chưa duyệt",
       name:name,
       createdAt:Date.now(),
       like:0
@@ -124,6 +124,7 @@ else{
       // disabled
       autoCapitalize="none"
       autoCorrect={false}
+      backgroundColor='white'
       onChangeText={text => setTitle(text)}
     />
     <Text style={styles.text2}>Nội dung:</Text>
@@ -133,6 +134,7 @@ else{
         numberOfLines={14}
       value={content}
       // disabled
+      backgroundColor='white'
       onChangeText={text => setContent(text)}
     />
 

@@ -6,7 +6,7 @@ import {
   LoginPage,
  
   StaffsPage,
-   
+  PostDetailPage,
   PostsPage,
   InforsPage,
   CashFlowsPage,
@@ -16,6 +16,8 @@ import {
    StaffDetaislPage,
   DonateDetaislPage,
   BloodDonatesPage,
+  BookingPage,
+  BookingDetailPage,
   ViewBloodStoragePage,
   DonatePage,
   ViewBloodDonatePage,
@@ -54,6 +56,16 @@ function App() {
           <PrivateRoute exact path='/bloodStorages/:id'>
           <ViewBloodStoragePage />
           </PrivateRoute>
+          <PrivateRoute exact path='/bookingsDetail/:id/:id'>
+          <BookingDetailPage />
+          </PrivateRoute>
+          <PrivateRoute exact path='/bookings/:id'>
+          <BookingPage />
+
+          </PrivateRoute>
+          <PrivateRoute exact path='/bookings'>
+          <DonatePage />
+          </PrivateRoute>
 
           <PrivateRoute exact path='/donates'>
           <DonatePage />
@@ -65,9 +77,9 @@ function App() {
 
          
          
-        {/* <PrivateRoute exact path='/Posts/:id'>
-          <PostDetaislPage />
-        </PrivateRoute> */}
+        <PrivateRoute exact path='/posts/:id'>
+          <PostDetailPage />
+        </PrivateRoute>
 
 
           <PrivateRoute exact path='/staffs'>

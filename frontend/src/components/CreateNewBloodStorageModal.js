@@ -167,6 +167,7 @@ getdata();
     setLoading(false);
     if (responseCreate.success) {
       onClose();
+      window.location.reload(false);
       return toast({
         position: 'top',
         description: 'bloodstorage created',

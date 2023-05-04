@@ -9,7 +9,7 @@ import axios from "axios";
 import { useUserContext } from '../context/user_context';
 import { useBloodStorageContext } from "../context/bloodStorage_context";
 import { useBloodDonateContext } from "../context/bloodDonate_context";
-import { HStack } from '@chakra-ui/react';
+import { HStack,Text,VStack } from '@chakra-ui/react';
 import DonateTable from '../components/DonateTable';
 // import { MdOutlineRefresh } from 'react-icons/md';
 
@@ -124,6 +124,7 @@ getdata2();
    return (
     <SidebarWithHeader>
       <DashboardCards />
+     
       <Flex
           
             shadow='lg'
@@ -132,6 +133,8 @@ getdata2();
             borderRadius='lg'
             justifyContent='center'
           >
+            <VStack>
+             <Text fontSize='lg' fontWeight='bold'>Biểu đồ máu nhận 4 lần hiến máu gần nhất</Text>
             <Chart 
             type="bar"
             width={600}
@@ -153,10 +156,10 @@ getdata2();
 
             options={{
              labels:name,
-             title:{
-                text:"Biểu đồ máu nhận 4 lần hiến máu gần nhất",
-               // align:"center",
-             },
+            //  title:{
+            //     text:"Biểu đồ máu nhận 4 lần hiến máu gần nhất",
+            //    // align:"center",
+            //  },
 
              plotOptions: {
               bar: {
@@ -200,6 +203,9 @@ getdata2();
             }
             
             />
+            </VStack>
+            <VStack >
+             <Text fontSize='lg' fontWeight='bold'>Biểu đồ máu còn lại theo nhóm</Text>
              <Chart 
             type="donut"
             width={600}
@@ -208,7 +214,7 @@ getdata2();
             options={{
              labels:['O','A','B','AB'],
              title:{
-              text:"Biểu đồ máu còn lại theo nhóm",
+              // text:"Biểu đồ máu còn lại theo nhóm",
                // align:"center",
              },
 
@@ -238,6 +244,7 @@ getdata2();
             }}
             
             />
+              </VStack>
 </Flex>
         
      

@@ -79,13 +79,13 @@ function CreateNewBloodDonateModal() {
   
   // }
 
-  const handleChange = e => {
-    setNameList(e);
+  const handleChange = y => {
+    setNameList(y);
     // setStaffList( [nameList.map(index=> index.value)])
     
    
   }
-  console.log(minute);
+
 
  let options = staffs.map(function (index) {
   return { value: index.id, label: index.name+' - '+index.type };
@@ -143,13 +143,13 @@ function CreateNewBloodDonateModal() {
         
           };
           const responseCreate =  updateStaff(index.value, staff);
-         window.location.reload(true);
+
         });
        
      
     
       })
-    
+      window.location.reload(false);
       onClose();
       
       return toast({
@@ -208,7 +208,7 @@ function CreateNewBloodDonateModal() {
                 name='minute'
                 focusBorderColor='brown.500'
                 value={minute}
-                onChange={e=>setMinute(e.target.value)}
+                onChange={y=>setMinute(y.target.value)}
               />
               {/* <Text>Ngày bắt đầu</Text> */}
               {/* <Input

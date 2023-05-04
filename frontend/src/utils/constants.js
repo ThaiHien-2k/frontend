@@ -8,19 +8,17 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import AdUnitsIcon from '@mui/icons-material/AdUnits';
 export const LinkItems = [
   { name: 'Dashboard', url: '/', icon: <DashboardIcon /> },
   { name: 'Quản lý tài khoản', url: '/accounts', icon: <PersonIcon /> },
-  { name: 'Quản lý nhân viên', url: '/staffs', icon: <PeopleIcon /> },
-  { name: 'Quản lý nhân viên', url: '/posts', icon: <PeopleIcon /> },
+  { name: 'Quản lý bài viết', url: '/posts', icon: <AdUnitsIcon /> },
   { name: 'Quản lý thu chi', url: '/cashFlows', icon: <AttachMoneyIcon /> },
-  { name: 'Quản lý lượng máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
+  { name: 'Quản lý nhân viên', url: '/staffs', icon: <PeopleIcon /> },
+  { name: 'Quản lý kho', url: '/bloodStorages', icon: <BloodtypeIcon /> },
   { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
   { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIndIcon /> },
   { name: 'Hiến máu', url: '/donates', icon: <AssignmentIcon /> },
-  
-
-  
 ];
 
 export const LinkItemsStaff = [
@@ -46,7 +44,8 @@ export const register_url = `${domain}api/admin/register`;
 export const logout_url = `${domain}api/admin/logout`;
 export const admins_url = `${domain}api/admin/users/`;
 
-
+export const cmt_url = `${domain}api/comments/`;
+export const deletecmt_url = `${domain}api/admin/comment/`;
 export const posts_url = `${domain}api/posts/`;
 export const create_new_post = `${domain}api/admin/post/new`;
 export const update_post_url = `${domain}api/admin/post/`;
@@ -54,6 +53,10 @@ export const update_post_url = `${domain}api/admin/post/`;
 export const staffs_url = `${domain}api/staffs/`;
 export const create_new_staff = `${domain}api/admin/staff/new`;
 export const update_staff_url = `${domain}api/admin/staff/`;
+
+export const bookings_url = `${domain}api/bookings/`;
+export const create_new_booking = `${domain}api/admin/booking/new`;
+export const update_booking_url = `${domain}api/admin/booking/`;
 
 export const donates_url = `${domain}api/donates/`;
 export const create_new_donate = `${domain}api/admin/donate/new`;

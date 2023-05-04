@@ -9,6 +9,7 @@ import { CashFlowProvider } from './context/cashFlow_context';
 import { BloodStorageProvider } from './context/bloodStorage_context';
 import { PostProvider } from './context/post_context';
 import { StaffProvider } from './context/staff_context';
+import { BookingProvider } from './context/booking_context';
 import { InforProvider } from './context/infor_context';
 import { DonateProvider } from './context/donate_context';
 import { BloodDonateProvider } from './context/bloodDonate_context';
@@ -22,7 +23,7 @@ ReactDOM.render(
         <BloodDonateProvider>
         <PostProvider>
         <StaffProvider>
-       
+       <BookingProvider>
          
         <BloodStorageProvider>
         <DonateProvider>
@@ -31,6 +32,7 @@ ReactDOM.render(
           </ChakraProvider>
           </DonateProvider>
           </BloodStorageProvider>
+          </BookingProvider>
           </StaffProvider>
          
 

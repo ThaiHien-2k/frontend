@@ -60,22 +60,7 @@ const getData = async () => {
 
 
 }
-// useEffect( () => {
-// getData();
-// const current = new Date();
-// const nextDonate = new Date(data).setDate(current.getDate() + 90);
-// // console.log(current)
-// if(data===''){
-//   setTask('Bạn chưa hiến lần nào!')
-// }
-// if(current===nextDonate){
-//   setTask('Bạn có thể hiến')
-// }
-// else if(current<nextDonate){
 
-//   setTask('Ngày hiến hiến máu tiếp theo là:  '+moment(nextDonate).format("D/M/YYYY"))
-// }
-// }, [])
 
 async function logout() {
   const auth = getAuth();
@@ -104,6 +89,10 @@ async function change() {
 
           <TouchableOpacity style={styles.button2} onPress={change}>
             <Text style={styles.text2}>Thay đổi thông tin </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button4} onPress={change}>
+            <Text style={styles.text2}>Xem lịch hẹn </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button3} onPress={logout}>
@@ -171,6 +160,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20
   },
+
+  button4: {
+    width: 300,
+    height: 50,
+    borderRadius: 5,
+    margin: 5,
+    backgroundColor: 'orange',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20
+  },
   text: {
     // color: 'white',
     fontSize: 20,
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   icon:{
     color:'gray',
     textAlign: 'center',
-    fontSize: 250,
+    fontSize: 200,
     // paddingBottom:40,
   }
   

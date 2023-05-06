@@ -90,7 +90,7 @@ getdata2();
     useEffect(()=>{
       const getdataChart =  () => {
        
-        data.push(bloodDonates.filter(o => o.status.includes('Đã thực hiện')).sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 4).map(index=>index));
+        data.push(bloodDonates.filter(o => o.status.includes('Đã thực hiện')).sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 3).map(index=>index));
         
      
         data[0].forEach(index=> name.push(index.name));
@@ -134,7 +134,7 @@ getdata2();
             justifyContent='center'
           >
             <VStack>
-             <Text fontSize='lg' fontWeight='bold'>Biểu đồ máu nhận 4 lần hiến máu gần nhất</Text>
+             <Text fontSize='lg' fontWeight='bold'>Biểu đồ máu nhận 3 lần hiến máu gần nhất</Text>
             <Chart 
             type="bar"
             width={600}

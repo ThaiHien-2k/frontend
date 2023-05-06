@@ -50,6 +50,7 @@ console.log(id);
 
 
   return (
+    <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>
     <VStack alignItems='left' justifyContent='left'>
     
       <HStack spacing='300px'>  
@@ -155,6 +156,7 @@ console.log(id);
    
      
     </VStack>
+      </SimpleGrid>
   );
 }
 

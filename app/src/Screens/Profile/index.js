@@ -51,7 +51,7 @@ const [data, setData] = useState([])
 const getData = async () => {
   try {
     const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-    setData(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.lastDonate).toString());
+    setData(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.lastDonate).toString());
   } catch (error) {
     console.error(error);
   } finally {
@@ -75,12 +75,14 @@ async function infor() {
 async function change() {
   navigation.navigate("Change");
 }
-
+async function booking() {
+  navigation.navigate("BookingView");
+}
   return (
     
          <View style={styles.container}>
        <Ionicons style={styles.icon} name="person-circle-outline"/>
-       <Text style={styles.text}>Chào, {'a@gmail.com'}</Text>
+       <Text style={styles.text}>Chào, {auth.email}</Text>
        {/* <Text style={styles.text}>{task}</Text> */}
        <TouchableOpacity style={styles.button1} onPress={infor}>
             <Text style={styles.text1}>Thông tin cá nhân</Text>
@@ -91,7 +93,7 @@ async function change() {
             <Text style={styles.text2}>Thay đổi thông tin </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button4} onPress={change}>
+          <TouchableOpacity style={styles.button4} onPress={booking}>
             <Text style={styles.text2}>Xem lịch hẹn </Text>
           </TouchableOpacity>
 

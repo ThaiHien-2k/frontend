@@ -79,6 +79,8 @@ const [modalVisible, setModalVisible] = useState(false);
 
 }
 
+
+const [dltcmt, setdltCmt] = useState([])
 const [cmt, setCmt] = useState([])
 const DATA = [
   // {
@@ -97,14 +99,14 @@ const DATA = [
 const getInfor = async () => {
   try {
     const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-    setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
-    setName(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.name).toString());
+    setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
+    setName(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.name).toString());
 //    
-
+   
   } catch (error) {
     console.error(error);
   } finally {
-      // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.email));
+      // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i.email));
     setLoading(false);
   }
 
@@ -147,9 +149,13 @@ async function send() {
 }
 }
 
-const deleteCmt = async (id) => {
-  // console.log(id);
-  const res = await axios.delete(`http://10.0.2.2:5000/api/admin/comment/`+id);
+const deleteCmt = async (idd,iduser) => {
+ 
+  if(id!=iduser){
+    ToastAndroid.show('Không được xóa bình luận của người khác!', ToastAndroid.SHORT);
+  }
+  else{
+  const res = await axios.delete(`http://10.0.2.2:5000/api/admin/comment/`+idd);
 
   if(res.status===200){
  
@@ -158,7 +164,7 @@ const deleteCmt = async (id) => {
    getCmt();
    setModalVisible(!modalVisible);
 
-  }
+  }}
 }
 
 
@@ -170,7 +176,7 @@ const deleteCmt = async (id) => {
       // setLike(response3.data.data.map(i=>i.like))
       // console.log(response3.data.data.map(i=>i.status))
       // console.log(response3.data.data.map(i=>i.like));
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -186,13 +192,20 @@ const getCmt = async () => {
     const response3 = await axios.get(`http://10.0.2.2:5000/api/comments`);
     setCmt(response3.data.data.sort((a, b) =>new Date(a.time).getTime()-new Date(b.time).getTime()).filter(index=> route.params.id.includes(index.idPost)));
     // console.log(response3.data.data.map(i=>i.status))
-// setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+// setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
 // setLoading(false);
   } catch (error) {
     console.error(error);
   } finally {
     setLoading(false);
   }
+
+}
+
+const view = async (id) => {
+ 
+    console.error(id);
+
 
 }
   const [count, setCount] = useState(1)
@@ -225,7 +238,7 @@ const clickLike = async (id) => {
   
     getData();
   }
-  console.log(count);
+  console.log(dltcmt);
   // navigation.navigate('Post',{ id: id });
   // console.log(id);
 
@@ -246,7 +259,13 @@ useEffect( () => {
   const containerStyle = {backgroundColor: 'white', padding: 20};
   return (
     <>
-<Appbar.Header >
+<Appbar.Header style={[
+    
+    {
+     
+      backgroundColor: '#ff6666',
+    },
+  ]} >
     <Appbar.BackAction  onPress={() => click()}/>
     <Appbar.Content title="Bài viết" />
     {/* <Appbar.Action icon="calendar" onPress={() => {}} />
@@ -322,7 +341,7 @@ useEffect( () => {
           <View style={{flexDirection: 'row',}}>
             <Pressable
               style={[ styles.buttonClose]}
-              onPress={() => deleteCmt(item.id)}>
+              onPress={() => deleteCmt(dltcmt,item.iduser)}>
               <Text style={styles.textStyle}>Xóa</Text>
             </Pressable>
             <Pressable
@@ -336,7 +355,7 @@ useEffect( () => {
       </Modal>
      
      <Pressable
-      onLongPress={() => setModalVisible(!modalVisible)}
+      onLongPress={() =>{setdltCmt(item.id),setModalVisible(!modalVisible)}}
       // style={styles.item3}
        style={({pressed}) => [
         { marginHorizontal:20,
@@ -534,7 +553,7 @@ content : {
     padding: 8,
     paddingTop:0,
     color : '#4f4f4f',
-    fontSize : 15,
+    fontSize : 20,
     textAlign : 'left',
 },
 newsSummary : {

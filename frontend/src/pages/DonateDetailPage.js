@@ -71,7 +71,7 @@ function DonateDetailPage() {
        
       </HStack>
      
-      <DonateDetail donates={donates}  iduser={id}/>
+      <DonateDetail donates={donates}  id={id}/>
     </SidebarWithHeader>
   );
 }

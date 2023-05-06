@@ -102,3 +102,30 @@ exports.getSinglePost = catchAsyncError(async (req, res, next) => {
       data: post,
     });
   });
+
+
+  exports.getPostRemain = catchAsyncError(async  (req, res) => {
+ 
+    const post = await Post.find();
+    let total = 0;
+    let data = post.map((item, index) => {
+      const {
+        status,
+       
+      } = item;
+      const newItem = {
+        status,
+       
+      };
+  
+      if(status=='Chưa duyệt'){
+      total = total + 1;}
+   
+      return total ;
+      
+    });
+  
+    res.status(200).json({
+      total,
+    }); 
+  });

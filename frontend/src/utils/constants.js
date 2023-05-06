@@ -15,9 +15,10 @@ export const LinkItems = [
   { name: 'Quản lý bài viết', url: '/posts', icon: <AdUnitsIcon /> },
   { name: 'Quản lý thu chi', url: '/cashFlows', icon: <AttachMoneyIcon /> },
   { name: 'Quản lý nhân viên', url: '/staffs', icon: <PeopleIcon /> },
-  { name: 'Quản lý kho', url: '/bloodStorages', icon: <BloodtypeIcon /> },
-  { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
   { name: 'Thông tin người hiến', url: '/infors', icon: <AssignmentIndIcon /> },
+  { name: 'Quản lý kho máu', url: '/bloodStorages', icon: <BloodtypeIcon /> },
+  { name: 'Quản lý buổi hiến máu', url: '/bloodDonates', icon: <VolunteerActivismIcon /> },
+
   { name: 'Hiến máu', url: '/donates', icon: <AssignmentIcon /> },
 ];
 
@@ -70,7 +71,7 @@ export const create_new_bloodDonate = `${domain}api/admin/bloodDonate/new`;
 export const update_bloodDonate_url = `${domain}api/admin/bloodDonate/`;
 
 export const cashFlows_url = `${domain}api/cashFlows/`;
-export const cashFlow_remaining = `${domain}api/cashFlows/totalRemaining`;
+export const cashFlow_remaining = `${domain}api/posts/PostRemain`;
 export const create_new_cashFlow = `${domain}api/admin/cashFlow/new`;
 export const update_cashFlow_url = `${domain}api/admin/cashFlow/`;
 

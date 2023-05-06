@@ -15,7 +15,9 @@ import changePage from '../Screens/change';
 import InforPage from '../Screens/Infor';
 import CreatePost  from '../Screens/CreatePost';
 import Post  from '../Screens/Post';
+
 import BookingPage from '../Screens/Booking';
+import ViewBookingPage from '../Screens/ViewBooking';
 // import myTabs from '../component/tab';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -139,7 +141,7 @@ function myTabs() {
   function Booking({ route, navigation }) {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="Booking" component={BookingPage}  options={{
+        <Stack.Screen name="BookingView" component={ViewBookingPage}  options={{
         headerStyle: {
           backgroundColor: '#ff6666',
         },}}/>
@@ -157,14 +159,15 @@ export default function Routes() {
           headerShown: false,
         }}
       >
-        {/* <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name="SingUp" component={SingUp} />
-         */}
+        
         <Stack.Screen name="myTabs" component={myTabs} />
          <Stack.Screen name="Post" component={Post}   />
         <Stack.Screen name="Change" component={Change} />
         <Stack.Screen name="Booking" component={BookingPage} />
         <Stack.Screen name="Infor" component={Infor} />
+        <Stack.Screen name="BookingView" component={Booking} />
        
 
       </Stack.Navigator>

@@ -95,17 +95,18 @@ fetchAccounts();
       color: 'red.500',
     },
     {
-      title: 'Số máu còn lại',
-      value: bloodRemainList.total + ' đơn vị',
-      icon: OpacityIcon,
-      color: 'blue.500',
-    },
-    {
-      title: 'Số tiền còn lại',
-      value: formatPrice(remainList.total) + 'đ',
+      title: 'Số bài viết chưa duyệt',
+      value: formatPrice(remainList.total),
       icon: AttachMoneyIcon,
       color: 'green.500',
     },
+    {
+      title: 'Số máu còn lại',
+      value:  formatPrice(bloodRemainList.total) + ' đơn vị',
+      icon: OpacityIcon,
+      color: 'blue.500',
+    },
+ 
   ];
 
   return (

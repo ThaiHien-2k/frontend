@@ -299,8 +299,7 @@ router
     bookingController.updateBooking
   )
   .delete(
-    auth.checkUserAuthentication,
-    auth.checkAdminPrivileges( 'admin'),
+
     bookingController.deleteBooking
   );
 

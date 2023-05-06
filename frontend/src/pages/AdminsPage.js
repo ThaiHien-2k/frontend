@@ -24,14 +24,14 @@ function AdminsPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
              Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Spinner size='lg' color='brown.500' />
@@ -44,14 +44,14 @@ function AdminsPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <Button
+          {/* <Button
             colorScheme='brown'
             variant='outline'
             leftIcon={<MdOutlineRefresh />}
             onClick={handleRefresh}
           >
            Tải lại
-          </Button>
+          </Button> */}
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
           <Heading color='red.500'>There was an error</Heading>
@@ -64,14 +64,14 @@ function AdminsPage() {
     <SidebarWithHeader>
       <HStack mb={5}>
         <CreateNewAdminModal />
-        <Button
+        {/* <Button
           colorScheme='brown'
           variant='outline'
           leftIcon={<MdOutlineRefresh />}
           onClick={handleRefresh}
         >
           Tải lại
-        </Button>
+        </Button> */}
       </HStack>
       <AdminsTable admins={admins} />
     </SidebarWithHeader>

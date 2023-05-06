@@ -20,9 +20,13 @@ import {
 
   HStack,
   Spinner,
-
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
   useToast,
 } from '@chakra-ui/react';
+import { BiChevronDown } from 'react-icons/bi';
 // import UpdateBloodDonateModal from './UpdateBloodDonateModal';
 // import UpdateStatusBloodDonateModal from './UpdateStatusBloodDonateModal'
 import { useDonateContext } from '../context/donate_context';
@@ -79,7 +83,7 @@ function DonateTable({ bloodDonates }) {
               <Th>Thời gian</Th>
               <Th>Địa điểm</Th>
               <Th>Trạng thái</Th>
-              <Th></Th>
+              <Th>Hành động</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -98,8 +102,23 @@ function DonateTable({ bloodDonates }) {
                   <Td>{status}</Td>
 
                   <Td>
-                  <Button ><Link to={`/bookings/${id}`}>Xem danh sách hẹn</Link></Button><br/><br/>
-                  <Button ><Link to={`/donates/${id}`}>Chọn</Link></Button>
+                  <Menu>
+                          <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                            Hành động
+                          </MenuButton>
+                          <MenuList>
+                            <Link to={`/bookings/${id}`}>
+                              <MenuItem>Xem danh sách hẹn</MenuItem>
+                            </Link>
+                            <Link to={`/donates/${id}`}>
+                              <MenuItem>Chọn</MenuItem>
+                            </Link>
+                          
+                           
+                          </MenuList>
+                        </Menu>
+                  {/* <Button ><Link to={`/bookings/${id}`}>Xem danh sách hẹn</Link></Button><br/><br/>
+                  <Button ><Link to={`/donates/${id}`}>Chọn</Link></Button> */}
                     {/* <Menu>
                       <MenuButton as={Button} rightIcon={<BiChevronDown />}>
                         Hành động

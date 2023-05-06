@@ -11,7 +11,7 @@ import {  Card } from 'react-native-paper';
 
 export default function SingUp({ navigation }) {
 
-    // const [name, setName] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [erorSingUp, setErrorSingUp] = useState(false)
@@ -19,7 +19,7 @@ export default function SingUp({ navigation }) {
     async function singUp() {
         if(password===cfPass){
         const user={
-            name:'',
+            name:name,
             email:email,
             privilege:'user',
             password:password
@@ -65,7 +65,16 @@ export default function SingUp({ navigation }) {
 
                     <Text style={styles.textMain}>Đăng ký</Text>
                  
-
+                    <TextInput style={styles.TextInput}
+                        placeholder="name"
+                        placeholderTextColor="#ffcccc"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        // keyboardType='email-address'
+                        value={name}
+                        variant="outlined" label="Label"
+                        onChangeText={(text) => setName(text)}
+                    />
                     <TextInput style={styles.TextInput}
                         placeholder="Email"
                         placeholderTextColor="#ffcccc"

@@ -38,6 +38,7 @@ LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
 export default function BLoodDonate({ navigation }) {
   const [data, setData] = useState([])
+  const [iddata, setidData] = useState([])
 
   const [isLoading, setLoading] = useState(true);
   const DATA = [
@@ -58,7 +59,7 @@ export default function BLoodDonate({ navigation }) {
       const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
       setData(response3.data.data.sort((a, b) =>new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime()).filter(index=> ['Chưa thực hiện'].includes(index.status)));
       // console.log(response3.data.data.map(i=>i.status))
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -118,7 +119,7 @@ useEffect( () => {
           <View style={{flexDirection: 'row',}}>
             <Pressable
               style={[ styles.buttonClose]}
-              onPress={() => deleteCmt(item.name)}>
+              onPress={() => deleteCmt(iddata)}>
               <Text style={styles.textStyle}>Đặt lịch</Text>
             </Pressable>
             <Pressable
@@ -132,7 +133,7 @@ useEffect( () => {
       </Modal>
      
      <Pressable
-      onLongPress={() => setModalVisible(!modalVisible)}
+      onLongPress={() => {setModalVisible(!modalVisible),setidData(item.id)}}
       // style={styles.item3}
        style={({pressed}) => [
         { 
@@ -141,6 +142,7 @@ useEffect( () => {
         styles.wrapperCustom,
       ]}
       >
+         <View>
         <View style={styles.item}>
         <View style={{flexDirection: 'row',}}>
           <Text style={styles.title}>Tên Buổi hiến: </Text>
@@ -157,10 +159,11 @@ useEffect( () => {
           <Text style={styles.title2}>{moment(item.timeF.substring(0,10)).format('DD/MM/YYYY')}</Text>
 
           </View>
-          <View style={{flexDirection: 'row',}}>
+          <View >
           <Text style={styles.title}>Địa điểm: </Text>
           <Text style={styles.title2}>{item.address}</Text>
           </View>
+        </View>
         </View>
         </Pressable> 
         </ScrollView>

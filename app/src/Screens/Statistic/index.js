@@ -55,8 +55,8 @@ export default function Statistic({ navigation }) {
   const getId = async () => {
     try {
       const response = await axios.get(`http://10.0.2.2:5000/api/infors`);
-      setId(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString());
-      setDntime(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.donateTime).toString());
+      setId(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString());
+      setDntime(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.donateTime).toString());
       
       
 
@@ -68,8 +68,8 @@ export default function Statistic({ navigation }) {
       setDta(response3.data.data.filter(index=> data.includes(index.id)));
       setTotal(0);
       // console.log(id)
-      // console.log(response.data.data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i.id).toString())
-  // setTask(data.filter(index=> index.email.includes('a@gmail.com')).map(i=>i));
+      // console.log(response.data.data.filter(index=> index.email.includes(auth.email)).map(i=>i.id).toString())
+  // setTask(data.filter(index=> index.email.includes(auth.email)).map(i=>i));
   // setLoading(false);
     } catch (error) {
       console.error(error);
@@ -209,7 +209,7 @@ else
         .filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt))
         }</Text>
         </View>
-        <View style={{flexDirection: 'row',}}>
+        <View >
         <Text style={styles.title}>Địa điểm:</Text>
         <Text style={styles.title2}>{address}</Text>
         </View>
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#f9c2ff',
     // padding: 20,
     backgroundColor: '#fff',
-    marginHorizontal:8,
+    marginHorizontal:10,
     marginVertical: 4,
     borderWidth:1
   },
@@ -287,12 +287,14 @@ const styles = StyleSheet.create({
   title: {
     fontWeight:'bold',
     padding:5,
+   
     fontSize: 20,
     // borderWidth:1
   },
   title2: {
     // fontWeight:'bold',
     padding:5,
+    marginHorizontal:10,
     fontSize: 20,
     // borderWidth:1
   },

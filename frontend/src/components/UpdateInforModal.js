@@ -134,7 +134,7 @@ function UpdateInforModal({ id }) {
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Thêm người hiến mới</ModalHeader>
+          <ModalHeader>Chỉnh sửa thông tin người hiến</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>

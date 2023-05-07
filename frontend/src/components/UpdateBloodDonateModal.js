@@ -202,7 +202,7 @@ let defaults = staffs.filter(index=> staffList.includes(index.id)).map(function 
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-        <ModalHeader>Chỉnh sửa trạng thái</ModalHeader>
+        <ModalHeader>Chỉnh sửa buổi hiến</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>

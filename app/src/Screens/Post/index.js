@@ -553,8 +553,8 @@ content : {
     padding: 8,
     paddingTop:0,
     color : '#4f4f4f',
-    fontSize : 20,
-    textAlign : 'left',
+    fontSize : 15,
+    // textAlign : 'left',
 },
 newsSummary : {
   padding: 8,

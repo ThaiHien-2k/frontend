@@ -180,7 +180,7 @@ else
         .filter(index=> index.iduser.includes(idU)).map(index=>index.createdAt))
 }</Text>
           </View>
-          <View style={{flexDirection: 'row',}}>
+          <View >
           <Text style={styles.title}>Địa điểm:</Text>
           <Text style={styles.title2}>{address}</Text>
           </View>

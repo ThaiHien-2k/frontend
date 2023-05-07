@@ -70,7 +70,7 @@ function PostDetail({ post }) {
 
   return (
     <VStack alignItems='left' justifyContent='left'>
-      <Text fontSize='4xl' as='b'>THÔNG TIN NHÂN VIÊN</Text>
+      <Text fontSize='4xl' as='b'>THÔNG TIN BÀI VIẾT</Text>
        <VStack alignItems='left' justifyContent='left'>
       <HStack><Text as='b'>Tên người đăng: </Text><Text>{name}</Text></HStack>
      <HStack> <Text as='b'>Tiêu đề: </Text><Text>{title}</Text></HStack>

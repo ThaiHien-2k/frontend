@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "645615aa063ec84c34aacc8f"
+  },
+  "name": "Tiền chi tháng 3",
+  "amount": 2000000,
+  "from": "Tiền mua quà tặng",
+  "type": "Chi",
+  "date": {
+    "$date": "2023-03-06T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.021Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64561674063ec84c34aaccca"
+  },
+  "name": "Tiền chi tháng 4",
+  "amount": 3000000,
+  "from": "Tiền chi mua quà",
+  "type": "Chi",
+  "date": {
+    "$date": "2023-04-20T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.021Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645616b4063ec84c34aaccdb"
+  },
+  "name": "Tiền thu tháng 3",
+  "amount": 1000000,
+  "from": "Tiền mạnh thường quân ủng hộ",
+  "type": "Thu",
+  "date": {
+    "$date": "2023-03-12T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.021Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645616ea063ec84c34aaccec"
+  },
+  "name": "Tiền thu tháng 4",
+  "amount": 4000000,
+  "from": "Tiền đại học Cần Thơ ủng hộ",
+  "type": "Thu",
+  "date": {
+    "$date": "2023-04-16T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.021Z"
+  },
+  "__v": 0
+}]

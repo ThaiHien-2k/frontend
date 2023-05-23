@@ -119,7 +119,7 @@ useEffect( () => {
   async function create() {
       getData();
       getData2(idu);
-      console.log(data2)
+      console.log(route.params.id);
     console.log(data2===undefined)
     if(!sex||
     !heigh||
@@ -132,6 +132,9 @@ useEffect( () => {
 
     ){
       ToastAndroid.show('Không được bỏ trống thông tin!', ToastAndroid.SHORT);
+
+      navigation.navigate('Booking',{ id: route.params.id });
+    
     }
 
      if(isAllergies===''){
@@ -139,6 +142,7 @@ useEffect( () => {
     }
     if(status==='Chưa thể hiến'){
       ToastAndroid.show('Bạn chưa thể hiến nên không thể đặt lịch!', ToastAndroid.SHORT);
+      navigation.navigate('Booking',{ id:route.params.id });
     }
  
     if(data2===undefined){
@@ -172,10 +176,12 @@ useEffect( () => {
     }
     else{
       ToastAndroid.show('Đã có lỗi xảy ra!', ToastAndroid.SHORT);
+      navigation.navigate('Booking',{ id: route.params.id });
     }
   }
   if(data2!=undefined){
     ToastAndroid.show('Bạn đã đặt lịch trước đó vui lòng xóa để có thể đặt lịch!', ToastAndroid.SHORT);
+    navigation.navigate('Booking',{ id:route.params.id });
   }
 }
 

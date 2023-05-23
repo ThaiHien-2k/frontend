@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "645622f0063ec84c34aacf73"
+  },
+  "name": "Máu nhận",
+  "amount": 6.6,
+  "from": "Buổi hiến máu tháng 2",
+  "type": "Nhận",
+  "date": "2023-02-2507:30",
+  "detail": "Nhận từ buổi hiến máu",
+  "A": 800,
+  "B": 350,
+  "AB": 250,
+  "O": 250,
+  "createdAt": {
+    "$date": "2023-05-06T06:01:11.943Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645622b2063ec84c34aacf3e"
+  },
+  "name": "Máu nhận",
+  "amount": 8,
+  "from": "Buổi hiến máu hội Xuân Hồng",
+  "type": "Nhận",
+  "date": "2023-02-0607:00",
+  "detail": "Nhận từ buổi hiến máu",
+  "A": 1050,
+  "B": 250,
+  "AB": 250,
+  "O": 450,
+  "createdAt": {
+    "$date": "2023-05-06T06:01:11.943Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64562157063ec84c34aaceeb"
+  },
+  "name": "Máu nhận",
+  "amount": 6.8,
+  "from": "Buổi hiến máu tháng 3",
+  "type": "Nhận",
+  "date": "2023-03-0609:00",
+  "detail": "Nhận từ buổi hiến máu",
+  "A": 850,
+  "B": 250,
+  "AB": 250,
+  "O": 350,
+  "createdAt": {
+    "$date": "2023-05-06T06:01:11.943Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645621dd063ec84c34aacf14"
+  },
+  "name": "Máu nhận",
+  "amount": 7.2,
+  "from": "Buổi hiến máu tháng 4",
+  "type": "Nhận",
+  "date": "2023-04-1507:00",
+  "detail": "Nhận từ buổi hiến máu",
+  "A": 850,
+  "B": 250,
+  "AB": 250,
+  "O": 450,
+  "createdAt": {
+    "$date": "2023-05-06T06:01:11.943Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64562336063ec84c34aacfb4"
+  },
+  "name": "Máu nhận",
+  "amount": 3.8,
+  "from": "Buổi hiến máu tháng 5",
+  "type": "Nhận",
+  "date": "2023-05-1507:00",
+  "detail": "Nhận từ buổi hiến máu",
+  "A": 0,
+  "B": 250,
+  "AB": 250,
+  "O": 450,
+  "createdAt": {
+    "$date": "2023-05-15T06:16:03.493Z"
+  },
+  "__v": 0
+}]

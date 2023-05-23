@@ -29,7 +29,7 @@ const initialState = {
     phone:'',
     // from: '',
     address: '',
-    typeBlood:'O',
+    typeBlood:'',
     status:'',
     oldDate:'',
     donateTime:'',

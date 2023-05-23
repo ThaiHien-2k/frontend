@@ -207,6 +207,7 @@ function CreateNewInforModal({oldDate}) {
                 value={typeBlood}
                 onChange={updateNewInforDetails}
               >
+                <option value=' '> </option>
                 <option value='O'>O</option>
                 <option value='A'>A</option>
                 <option value='B'>B</option>

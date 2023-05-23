@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "645624cb063ec84c34aad1f0"
+  },
+  "iduser": {
+    "$oid": "64561e67063ec84c34aace7a"
+  },
+  "idPost": {
+    "$oid": "64561a35063ec84c34aacdf5"
+  },
+  "name": "Nguyễn Thành Lợi",
+  "comment": "Còn cần không bạn",
+  "createdAt": "1683367113358",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645624e9063ec84c34aad1f8"
+  },
+  "iduser": {
+    "$oid": "64561e67063ec84c34aace7a"
+  },
+  "idPost": {
+    "$oid": "64561e6d063ec84c34aace82"
+  },
+  "name": "Nguyễn Thành Lợi",
+  "comment": "bài viết hữu ích ",
+  "createdAt": "1683367143397",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64562d1b063ec84c34aad851"
+  },
+  "iduser": {
+    "$oid": "64561cdc063ec84c34aace5a"
+  },
+  "idPost": {
+    "$oid": "64561a35063ec84c34aacdf5"
+  },
+  "name": "Minh Nhật ",
+  "comment": "Mình có thể hiến để mình chạy qua",
+  "createdAt": "1683369241351",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6461dbb6d436b21c2f2ef129"
+  },
+  "iduser": {
+    "$oid": "64561973063ec84c34aacd82"
+  },
+  "idPost": {
+    "$oid": "64562048063ec84c34aace9a"
+  },
+  "name": "Phan Thái Hiền ",
+  "comment": "alo",
+  "createdAt": "1684134837846",
+  "__v": 0
+}]

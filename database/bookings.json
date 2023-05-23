@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "64562b18063ec84c34aad792"
+  },
+  "iduser": {
+    "$oid": "64561cdc063ec84c34aace5a"
+  },
+  "idBD": {
+    "$oid": "64562336063ec84c34aacfb4"
+  },
+  "sex": "Nam",
+  "heigh": 160,
+  "weight": 55,
+  "isAcohol": "Không",
+  "isNicotine": "Không",
+  "isHeartDisease": "Không",
+  "isSitUp": "Không",
+  "isSick": "Không",
+  "isAllergies": "không ",
+  "createdAt": "1683368725787",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64673ecc340bf1f21790538e"
+  },
+  "iduser": {
+    "$oid": "64561973063ec84c34aacd82"
+  },
+  "idBD": {
+    "$oid": "6461da06d436b21c2f2eeef9"
+  },
+  "sex": "Nam",
+  "heigh": 160,
+  "weight": 55,
+  "isAcohol": "Không",
+  "isNicotine": "Không",
+  "isHeartDisease": "Không",
+  "isSitUp": "Không",
+  "isSick": "Không",
+  "isAllergies": "không",
+  "createdAt": "1684487884299",
+  "__v": 0
+}]

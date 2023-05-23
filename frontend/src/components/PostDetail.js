@@ -75,7 +75,7 @@ function PostDetail({ post }) {
       <HStack><Text as='b'>Tên người đăng: </Text><Text>{name}</Text></HStack>
      <HStack> <Text as='b'>Tiêu đề: </Text><Text>{title}</Text></HStack>
      <HStack> <Text as='b'>Số like: </Text><Text>{like}</Text></HStack>
-     <HStack><Text as='b'>Ngày đăng: </Text><Text>{moment(Date(createdAt)).format('MM:HHA DD/MM/YYYY')}</Text></HStack>
+     <HStack><Text as='b'>Ngày đăng: </Text><Text>{new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(createdAt)}</Text></HStack>
      <HStack><Text as='b'>Trạng thái: </Text><Text>{status}</Text></HStack>
      <HStack> <Text as='b'>Nội dung: </Text><Text>{content}</Text></HStack>
    

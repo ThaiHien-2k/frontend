@@ -85,7 +85,7 @@ function PostsTable({ posts }) {
                   <Td>{name}</Td>
                   <Td>{title}</Td>
                   <Td>{like}</Td>
-                  <Td>{moment(Date(createdAt)).format('MM:HHA DD/MM/YYYY')}</Td>
+                  <Td>{new Intl.DateTimeFormat('vn-VN', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(createdAt)}</Td>
                   <Td>{status}</Td>
              
                   <Td>

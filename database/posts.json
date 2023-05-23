@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "64561a35063ec84c34aacdf5"
+  },
+  "iduser": {
+    "$oid": "64561973063ec84c34aacd82"
+  },
+  "title": "Cần máu gấp",
+  "name": "Phan Thái Hiền ",
+  "content": "Cần gấp máu O tại bệnh viện máu Cần Thơ. Ai có thể hiến liên hệ SĐT: 0937760152",
+  "like": 8,
+  "status": "Đã duyệt",
+  "createdAt": "1683364403396",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64561dd1063ec84c34aace73"
+  },
+  "iduser": {
+    "$oid": "64561cdc063ec84c34aace5a"
+  },
+  "title": "Tm người hỗ trợ ",
+  "name": "Minh Nhật ",
+  "content": "Cần tìm 3 người hỗ trợ hiến máu ngày 5/6/2023\nYêu cầu:\n1.Có thể làm việc suốt khung giờ.\n2.Đã từng hỗ trợ trước đây.\n3.Có tinh thần trách nhiệm\nQuyền lợi:\nCộng 5 DRL nếu là sinh viên, giấy khen cấp thành phố nếu hỗ trợ tích cực\nLiên Hệ: 0976554553",
+  "like": 1,
+  "status": "Đã duyệt",
+  "createdAt": "1683365326774",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64561e6d063ec84c34aace82"
+  },
+  "iduser": {
+    "$oid": "64561e67063ec84c34aace7a"
+  },
+  "title": "Những điêu cần chú ý trước khi hiến máu",
+  "name": "Nguyễn Thành Lợi",
+  "content": "\n1.Ăn sáng.\n2.Không dùng các chất kich thích thần kinh như rượu, thuốc lá, cà phê,..\n3.Không thức khuya.",
+  "like": 51,
+  "status": "Đã duyệt",
+  "createdAt": "1683365482882",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64562048063ec84c34aace9a"
+  },
+  "title": "Xét khen thưởng hiến máu tình nguyện",
+  "name": "Admin",
+  "content": "\nBước 1: truy cập Form: hienmau.form.com\nBước 2: nhập các thông tin vào form\nBước 3: chờ kết quả.\n\nKết quả sẽ được thông báo vào ngày 5/6/2023",
+  "like": 1,
+  "status": "Đã duyệt",
+  "createdAt": "1683365960836",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645620dd063ec84c34aaceab"
+  },
+  "title": "Danh sách khen thưởng ",
+  "name": "Admin",
+  "content": "Truy cập vào: hienmau.danhsach.com để xem thông tin khen thưởng.\nMọi thắc mắc liên hệ: hienmau.facebook.com.\nHạn cuối giải quyết thắc mắc: 20/5/2023\n",
+  "like": 0,
+  "status": "Chưa duyệt",
+  "createdAt": "1683366109063",
+  "__v": 0
+}]

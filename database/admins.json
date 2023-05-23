@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "63fe5d283e8d32557aa3a544"
+  },
+  "name": "thaihien",
+  "email": "hien@gmail.com",
+  "privilege": "staff",
+  "password": "$2a$10$hXczelbLxeLgOw7GnDFtTuTSTfPUbmc.fRpb0L0w3zOTpSimySlda",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.170Z"
+  }
+},{
+  "_id": {
+    "$oid": "63fe698b24631ef4e7475796"
+  },
+  "name": "Phan Thái Hiền",
+  "email": "admin@gmail.com",
+  "privilege": "admin",
+  "password": "$2a$10$504WdjWJ6H.BOydUS/7qPOV3hfLfROIec/0o/l34/fUkI/Q.o1iO.",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-03-04T17:22:23.398Z"
+  }
+},{
+  "_id": {
+    "$oid": "64561812063ec84c34aacd63"
+  },
+  "name": "Thái Hiền",
+  "email": "thaihien@gmail.com",
+  "privilege": "user",
+  "password": "$2a$10$1b481.7YUO8VWxCxUCHY9OeQVRhfazR3ONzSOFXlpRJjkaV1kJhmG",
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.170Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64561ae7063ec84c34aace1d"
+  },
+  "name": "Thành Lợi",
+  "email": "loi@gmail.com",
+  "privilege": "user",
+  "password": "$2a$10$a3e8sb9j1oM5ox93SZHo7OnsP12Tm/ktPzrICPSuDRX8V/EvZzM8y",
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.170Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64561c6e063ec84c34aace55"
+  },
+  "name": "Minh Nhật ",
+  "email": "nhat@gmail.com",
+  "privilege": "user",
+  "password": "$2a$10$TvKKSycOBbKkx6kmljkfVuOArwFM.gKKwebxqTcsdg7Mkh83gOzSW",
+  "createdAt": {
+    "$date": "2023-05-06T06:01:12.170Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64574efa8536cdfcf288ed90"
+  },
+  "name": "Tấn Đạt",
+  "email": "dat@gmail.com",
+  "privilege": "user",
+  "password": "$2a$10$8msLV7JGK7Wv/Jt0mUxwM.o2DnzO4H3QM92uk4FkVvT85I87WHVCy",
+  "createdAt": {
+    "$date": "2023-05-07T06:58:57.856Z"
+  },
+  "__v": 0
+}]

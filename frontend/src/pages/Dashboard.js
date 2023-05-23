@@ -90,7 +90,7 @@ getdata2();
     useEffect(()=>{
       const getdataChart =  () => {
        
-        data.push(bloodDonates.filter(o => o.status.includes('Đã thực hiện')).sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).slice(0, 3).map(index=>index));
+        data.push(bloodDonates.filter(o => o.status.includes('Đã thực hiện')).sort((a, b) =>new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime()).slice(0, 3).map(index=>index));
         
      
         data[0].forEach(index=> name.push(index.name));

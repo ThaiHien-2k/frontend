@@ -106,9 +106,12 @@ setExpanded(!expanded);
 const getOne =  async() => {
   //  setDta(dta)
   const response3 = await axios.get(`http://10.0.2.2:5000/api/bloodDonates`);
-  setDta(response3.data.data.sort((a, b) =>new Date(b.time).getTime()-new Date(a.time).getTime()).filter(index=> data.includes(index.id)).slice(0, 1));
+  setDta(response3.data.data.sort((a, b) =>new Date(b.createdAt).getTime()-new Date(a.
+    createdAt).getTime()).filter(index=> data.includes(index.id)).slice(0, 1));
   // getAmount();
   setNum(1);
+  console.log(response3.data.data.sort((a, b) =>new Date(b.createdAt).getTime()-new Date(a.
+    createdAt).getTime()).filter(index=> data.includes(index.id)).slice(0, 1))
   setExpanded(!expanded);
   }   
 //  console.log(sum);
@@ -169,7 +172,7 @@ else
                 
                 <View style={styles.item}>
                   <Text style={styles.text}>Lần hiến thứ: {index+1} </Text>
-                  <View style={{flexDirection: 'row',}}>
+                  <View >
                     <Text style={styles.title}>Tên Buổi hiến: </Text>
                     <Text style={styles.title2}>{name}</Text> 
                     </View>
@@ -197,7 +200,7 @@ else
               return (
                 <View style={styles.item}>
                 <Text style={styles.text}>Lần hiến gần nhất</Text>
-                <View style={{flexDirection: 'row',}}>
+                <View >
                   <Text style={styles.title}>Tên Buổi hiến: </Text>
                   <Text style={styles.title2}>{name}</Text> 
                   </View>

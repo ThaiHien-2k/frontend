@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.js": "/ThaiHien-2k.github.io/frontend/static/js/main.63690006.chunk.js",
+    "main.js.map": "/ThaiHien-2k.github.io/frontend/static/js/main.63690006.chunk.js.map",
+    "runtime-main.js": "/ThaiHien-2k.github.io/frontend/static/js/runtime-main.3ccaee18.js",
+    "runtime-main.js.map": "/ThaiHien-2k.github.io/frontend/static/js/runtime-main.3ccaee18.js.map",
+    "static/css/2.49d85cfb.chunk.css": "/ThaiHien-2k.github.io/frontend/static/css/2.49d85cfb.chunk.css",
+    "static/js/2.0e759fb3.chunk.js": "/ThaiHien-2k.github.io/frontend/static/js/2.0e759fb3.chunk.js",
+    "static/js/2.0e759fb3.chunk.js.map": "/ThaiHien-2k.github.io/frontend/static/js/2.0e759fb3.chunk.js.map",
+    "index.html": "/ThaiHien-2k.github.io/frontend/index.html",
+    "precache-manifest.9caf456cf9f3fdb5f3c34a1881dab36b.js": "/ThaiHien-2k.github.io/frontend/precache-manifest.9caf456cf9f3fdb5f3c34a1881dab36b.js",
+    "service-worker.js": "/ThaiHien-2k.github.io/frontend/service-worker.js",
+    "static/css/2.49d85cfb.chunk.css.map": "/ThaiHien-2k.github.io/frontend/static/css/2.49d85cfb.chunk.css.map",
+    "static/js/2.0e759fb3.chunk.js.LICENSE.txt": "/ThaiHien-2k.github.io/frontend/static/js/2.0e759fb3.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/ThaiHien-2k.github.io/frontend/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/icon.jpg": "/ThaiHien-2k.github.io/frontend/static/media/icon.c7620a99.jpg",
+    "static/media/logo.svg": "/ThaiHien-2k.github.io/frontend/static/media/logo.aa66e387.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ccaee18.js",
+    "static/css/2.49d85cfb.chunk.css",
+    "static/js/2.0e759fb3.chunk.js",
+    "static/js/main.63690006.chunk.js"
+  ]
+}

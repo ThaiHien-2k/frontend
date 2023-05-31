@@ -30,6 +30,7 @@ export const UserProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(login_url, { email, password });
+      console.log(login_url, { email, password });
       const { success, data } = response.data;
       setUser(data);
       return { success, data };

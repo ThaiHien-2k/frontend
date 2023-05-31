@@ -1,10 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import {
   AdminsPage,
   Dashboard,
   LoginPage,
- 
   StaffsPage,
   PostDetailPage,
   PostsPage,
@@ -13,7 +12,7 @@ import {
   PrivateRoute,
   BloodStoragesPage,
   InforDetaislPage,
-   StaffDetaislPage,
+  StaffDetaislPage,
   DonateDetaislPage,
   BloodDonatesPage,
   BookingPage,
@@ -21,89 +20,79 @@ import {
   ViewBloodStoragePage,
   DonatePage,
   ViewBloodDonatePage,
-} from './pages';
-
-
+} from "./pages";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path='/'>
+        <PrivateRoute exact path="/">
           <Dashboard />
         </PrivateRoute>
-        <PrivateRoute exact path='/infors'>
+        <PrivateRoute exact path="/infors">
           <InforsPage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-        <PrivateRoute exact path='/cashFlows'>
+        <PrivateRoute exact path="/cashFlows">
           <CashFlowsPage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-          <PrivateRoute exact path='/bloodDonates'>
+        <PrivateRoute exact path="/bloodDonates">
           <BloodDonatesPage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-          <PrivateRoute exact path='/bloodDonates/:id'>
+        <PrivateRoute exact path="/bloodDonates/:id">
           <ViewBloodDonatePage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-          
-          <PrivateRoute exact path='/bloodStorages'>
+        <PrivateRoute exact path="/bloodStorages">
           <BloodStoragesPage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-          <PrivateRoute exact path='/bloodStorages/:id'>
+        <PrivateRoute exact path="/bloodStorages/:id">
           <ViewBloodStoragePage />
-          </PrivateRoute>
-          <PrivateRoute exact path='/bookingsDetail/:id/:id'>
+        </PrivateRoute>
+        <PrivateRoute exact path="/bookingsDetail/:id/:id">
           <BookingDetailPage />
-          </PrivateRoute>
-          <PrivateRoute exact path='/bookings/:id'>
+        </PrivateRoute>
+        <PrivateRoute exact path="/bookings/:id">
           <BookingPage />
-
-          </PrivateRoute>
-          <PrivateRoute exact path='/bookings'>
+        </PrivateRoute>
+        <PrivateRoute exact path="/bookings">
           <DonatePage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-          <PrivateRoute exact path='/donates'>
+        <PrivateRoute exact path="/donates">
           <DonatePage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-          <PrivateRoute exact path='/posts'>
+        <PrivateRoute exact path="/posts">
           <PostsPage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-         
-         
-        <PrivateRoute exact path='/posts/:id'>
+        <PrivateRoute exact path="/posts/:id">
           <PostDetailPage />
         </PrivateRoute>
 
-
-          <PrivateRoute exact path='/staffs'>
+        <PrivateRoute exact path="/staffs">
           <StaffsPage />
-          </PrivateRoute>
+        </PrivateRoute>
 
-         
-         
-        <PrivateRoute exact path='/staffs/:id'>
+        <PrivateRoute exact path="/staffs/:id">
           <StaffDetaislPage />
         </PrivateRoute>
 
-        <PrivateRoute exact path='/infors/:id'>
+        <PrivateRoute exact path="/infors/:id">
           <InforDetaislPage />
         </PrivateRoute>
-        <PrivateRoute exact path='/donates/:id'>
+        <PrivateRoute exact path="/donates/:id">
           <DonateDetaislPage />
         </PrivateRoute>
-        
-      
-        <PrivateRoute exact path='/accounts'>
+
+        <PrivateRoute exact path="/accounts">
           <AdminsPage />
         </PrivateRoute>
-        <PrivateRoute exact path='/login'>
+        <PrivateRoute exact path="/login">
           <LoginPage />
         </PrivateRoute>
       </Switch>
